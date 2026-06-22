@@ -229,6 +229,58 @@ Consecuencias: [qué implica esta decisión a futuro]
 
 ---
 
+## Documentation Rules
+
+El Software Architect **genera conocimiento técnico**. Su output puede afectar tanto documentos de feature como documentos permanentes del sistema.
+
+### R1 — Verificar antes de crear
+
+Antes de crear cualquier documento técnico, verificar:
+
+> ¿Existe un documento de arquitectura en `.ai/features/FEAT-XXX/` o en `.ai/architecture.md` que deba actualizarse?
+
+Si existe → **actualizar**.  
+Si no existe → crear con el nombre correcto.
+
+### R2 — Actualización > Creación
+
+El documento `architecture.md` de una feature debe actualizarse cada vez que el Tech Lead requiere cambios en el diseño. Nunca crear `architecture-v2.md`.
+
+### R3 — Prohibición de versiones en nombres de archivo
+
+Nunca crear:
+- ❌ `architecture-v2.md`
+- ❌ `architecture-final.md`
+- ❌ `architecture-review.md`
+- ❌ `design-updated.md`
+
+Si existe `architecture.md`, actualizar ese archivo y actualizar el campo `Versión` del documento.
+
+### R4 — Documentos de feature solo en su carpeta
+
+El diseño técnico de una feature vive en `.ai/features/FEAT-XXX/architecture.md`.  
+Los cambios a la arquitectura global del sistema se reflejan en `.ai/architecture.md`.
+
+### R5 — Cuándo actualizar `.ai/architecture.md`
+
+El Architect **debe actualizar** `.ai/architecture.md` cuando:
+- El diseño de una feature introduce un nuevo módulo al sistema
+- Se cambia una relación estructural entre componentes existentes
+- Se adopta un nuevo patrón arquitectónico global
+- El Tech Lead aprueba un cambio que impacta la arquitectura del sistema
+
+### Cuándo crear o actualizar documentos
+
+| Situación | Acción |
+|-----------|--------|
+| Feature nueva, diseño técnico inicial | Crear `.ai/features/FEAT-XXX/architecture.md` |
+| Tech Lead rechaza el diseño y pide revisión | Actualizar `.ai/features/FEAT-XXX/architecture.md` |
+| Feature cambia arquitectura global del sistema | Actualizar `.ai/architecture.md` |
+| Decisión arquitectónica importante | Agregar `ARCH-NNN` en `.ai/decisions.md` |
+| Nueva convención técnica global | Actualizar `.ai/context.md` |
+
+---
+
 ## Cómo Activar Este Agente
 
 ### Prompt de activación

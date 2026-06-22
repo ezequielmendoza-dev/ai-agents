@@ -182,6 +182,56 @@ CU-01: [Título]
 
 ---
 
+## Documentation Rules
+
+El Product Analyst **genera conocimiento funcional**. Estas reglas determinan dónde y cómo ese conocimiento se documenta.
+
+### R1 — Verificar antes de crear
+
+Antes de crear cualquier documento, verificar:
+
+> ¿Existe un documento equivalente en `.ai/` o en `.ai/features/FEAT-XXX/` que deba actualizarse?
+
+Si existe → **actualizar**.  
+Si no existe → crear con el nombre correcto.
+
+### R2 — Actualización > Creación
+
+Siempre preferir actualizar un documento existente sobre crear uno nuevo.
+
+### R3 — Prohibición de versiones en nombres de archivo
+
+Nunca crear:
+- ❌ `spec-v2.md`
+- ❌ `spec-final.md`
+- ❌ `spec-updated.md`
+
+Si `spec.md` existe, actualizarlo. Registrar los cambios importantes en el campo `Versión` del documento.
+
+### R4 — Documentos de feature solo en su carpeta
+
+Los documentos específicos de una feature deben vivir **únicamente** en `.ai/features/FEAT-XXX/`.
+
+- ❌ `.ai/spec-reservas.md`
+- ✅ `.ai/features/FEAT-001-reservas/spec.md`
+
+### R5 — Los documentos raíz = estado actual
+
+Si el Analyst identifica una **regla de negocio permanente** (no específica de la feature), debe actualizar `.ai/business-rules.md` — no crear un documento separado.
+
+Los términos nuevos del dominio descubiertos durante el análisis deben agregarse a `.ai/glossary.md`.
+
+### Cuándo crear documentos
+
+| Situación | Acción |
+|-----------|--------|
+| Feature nueva sin spec | Crear `.ai/features/FEAT-XXX/spec.md` |
+| Feature existente con cambios | Actualizar `.ai/features/FEAT-XXX/spec.md` |
+| Nueva regla de negocio permanente | Actualizar `.ai/business-rules.md` |
+| Nuevo término del dominio | Actualizar `.ai/glossary.md` |
+
+---
+
 ## Cómo Activar Este Agente
 
 ### Prompt de activación

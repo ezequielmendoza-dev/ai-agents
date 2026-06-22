@@ -6,6 +6,46 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [1.1.0] — 2026-06-22
+
+### Agregado
+
+**Estrategia documental:**
+- `docs/documentation-strategy.md` — Manifiesto filosófico del sistema documental: conocimiento permanente vs. trabajo por feature, 5 reglas documentales, ciclo de vida de documentos y anti-patrones
+- `docs/naming-conventions.md` — Convenciones de nomenclatura: `FEAT-NNN`, `BUG-NNN`, `ARCH-NNN`, branches de Git y commits (Conventional Commits)
+- `docs/project-ai-structure.md` — Guía completa de la estructura `.ai/` para proyectos: propósito de cada carpeta (`context.md`, `business-rules.md`, `architecture.md`, `decisions.md`, `glossary.md`, `features/`, `archive/`, `sessions/`)
+
+**Template:**
+- `templates/feature-folder-template.md` — Template que documenta la estructura de una carpeta de feature (`FEAT-XXX/`), propósito de cada archivo (`spec.md`, `architecture.md`, `qa.md`, `decision.md`) y ciclo de vida completo
+
+**Workflows (nueva carpeta):**
+- `workflows/new-feature.md` — Pipeline completo de nueva feature integrado con `.ai/` y `features/FEAT-XXX/`
+- `workflows/bug-fix.md` — Proceso de corrección de bugs con triaje, escalación de críticos y post-mortem
+- `workflows/refactor.md` — Workflow de refactorización con principio de comportamiento externo inmutable
+- `workflows/release.md` — Proceso de deployment a producción con smoke test en staging, plan de rollback y flujo de hotfix
+- `workflows/architecture-change.md` — Cambios estructurales del sistema con ADR obligatorio y enfoque por fases
+
+### Modificado
+
+**Agentes — Sección `Documentation Rules` agregada a todos:**
+- `agents/analyst.md` — Reglas para documentos de feature y actualización de docs permanentes (business-rules, glossary)
+- `agents/architect.md` — Reglas para architecture.md de feature y actualización de architecture.md global
+- `agents/tech-lead.md` — Rol como guardián de los estándares documentales del equipo
+- `agents/developer.md` — Scope documental acotado: output del agente y escalación de conocimiento permanente
+- `agents/qa.md` — qa.md como único output documental y reporte de conocimiento permanente descubierto
+- `agents/devops.md` — Scope de infraestructura y context.md como fuente de verdad operacional
+
+**README principal:**
+- Actualizado para reflejar el nuevo sistema documental
+- Sección "Sistema Documental" con el modelo de dos niveles y las 5 reglas
+- Tabla de convenciones de nomenclatura
+- Estructura de carpetas actualizada (workflows/ ahora existe)
+- Flujo de trabajo con paso de archivado de features
+- Buenas prácticas actualizadas con reglas de actualización documental
+- Versión bumped a `v1.1.0`
+
+---
+
 ## [2.0.1] — 2026-06-22
 
 ### Eliminado

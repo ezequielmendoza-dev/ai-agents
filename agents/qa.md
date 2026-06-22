@@ -226,6 +226,52 @@ Acción requerida: Volver al Developer con los bugs listados.
 
 ---
 
+## Documentation Rules
+
+El QA Engineer **valida y documenta defectos**. Su output documental está acotado al reporte de QA de la feature.
+
+### R1 — Verificar antes de crear
+
+El QA no crea documentos nuevos de arquitectura, spec o contexto. Si durante la validación detecta información que debería estar en un documento permanente, lo reporta al agente correspondiente.
+
+### R2 — Actualización > Creación
+
+Si existe un `qa.md` previo de una feature (por ejemplo, de una iteración anterior), el QA debe actualizarlo — no crear `qa-v2.md`.
+
+### R3 — Prohibición de versiones en nombres de archivo
+
+El único output documental del QA es `.ai/features/FEAT-XXX/qa.md`.
+
+Nunca crear:
+- ❌ `qa-report-v2.md`
+- ❌ `qa-final.md`
+- ❌ `qa-retest.md`
+
+Si hubo una re-validación después de correcciones, actualizar el mismo `qa.md` con la nueva fecha y resultado.
+
+### R4 — Documentos de feature solo en su carpeta
+
+El reporte de QA vive en `.ai/features/FEAT-XXX/qa.md`.  
+Los bugs reportados quedan registrados en ese archivo — no se crean archivos de bug separados para cada bug individual.
+
+### R5 — Conocimiento permanente descubierto durante QA
+
+Si el QA descubre durante la validación:
+- Una regla de negocio no documentada → reportar al Analyst para actualizar `.ai/business-rules.md`
+- Un caso borde que debería ser una convención permanente → reportar al Tech Lead
+- Un patrón de bug recurrente → documentar en `.ai/decisions.md` a través del Tech Lead
+
+### Cuándo crear o actualizar documentos
+
+| Situación | Acción |
+|-----------|--------|
+| Primera validación de una feature | Crear `.ai/features/FEAT-XXX/qa.md` |
+| Re-validación después de correcciones de bugs | Actualizar `.ai/features/FEAT-XXX/qa.md` |
+| Regla de negocio no documentada descubierta | Reportar al Analyst — no documentar directamente |
+| Bug crítico que revela problema de diseño | Reportar al Tech Lead para decisión en `.ai/decisions.md` |
+
+---
+
 ## Cómo Activar Este Agente
 
 ### Prompt de activación

@@ -227,6 +227,51 @@ Blockers: [lista de issues críticos]
 
 ---
 
+## Documentation Rules
+
+El Tech Lead es el **guardián de los estándares documentales**. Además de supervisar el trabajo técnico, supervisa que todos los agentes respeten estas reglas.
+
+### R1 — Verificar antes de crear
+
+El Tech Lead debe verificar en cada revisión que el agente revisado no creó documentos nuevos cuando debería haber actualizado documentos existentes.
+
+Si durante una revisión el Tech Lead detecta un documento que no debería existir (ej: `spec-v2.md`), debe indicar al agente que lo elimine y actualice el documento original.
+
+### R2 — Actualización > Creación
+
+En sus instrucciones de feedback cuando rechaza trabajo, el Tech Lead debe indicar explícitamente:
+- **Qué documento actualizar** (no crear uno nuevo)
+- **Qué sección modificar** dentro del documento existente
+
+### R3 — Hacer cumplir la prohibición de versiones
+
+El Tech Lead rechaza y solicita corrección de cualquier documento con nombre incorrecto:
+- ❌ `spec-v2.md` → corregir a `spec.md`
+- ❌ `architecture-final.md` → corregir a `architecture.md`
+- ❌ `decisions-updated.md` → agregar la entrada a `decisions.md`
+
+### R4 — Verificar ubicación de documentos de feature
+
+El Tech Lead verifica que todos los documentos de una feature están en `.ai/features/FEAT-XXX/` y no en ninguna otra ubicación.
+
+### R5 — Mantener `.ai/` actualizado
+
+El Tech Lead es el responsable final de que los documentos permanentes estén actualizados:
+- Verificar que `.ai/architecture.md` refleja el sistema real después de cada release
+- Verificar que `.ai/decisions.md` tiene registradas todas las decisiones importantes
+- Señalar cuando `.ai/context.md` o `.ai/business-rules.md` están desactualizados
+
+### Cuándo crear o actualizar documentos
+
+| Situación | Acción |
+|-----------|--------|
+| Revisión de feature aprobada | Verificar que los docs de la feature están en orden |
+| Decisión técnica importante durante revisión | Indicar al Architect que registre en `.ai/decisions.md` |
+| Feature aprobada para release | Verificar que `.ai/architecture.md` está actualizado |
+| Detección de docs mal nombrados | Indicar corrección antes de aprobar |
+
+---
+
 ## Cómo Activar Este Agente
 
 ### Prompt de activación

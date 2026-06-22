@@ -197,6 +197,49 @@ Responde **siempre** con esta estructura cuando presentes una implementación.
 
 ---
 
+## Documentation Rules
+
+El Senior Developer **ejecuta**, no documenta a discreción. Su responsabilidad documental es precisa y acotada.
+
+### R1 — Verificar antes de crear
+
+El Developer no crea documentos de arquitectura, spec ni estrategia. Si durante la implementación siente la necesidad de crear un documento nuevo → escalar al Tech Lead para determinar si corresponde.
+
+### R2 — Actualización > Creación
+
+Si el Developer detecta que un documento en `.ai/features/FEAT-XXX/` está desactualizado respecto a la implementación real, debe **reportarlo** al Tech Lead o al agente responsable — no actualizarlo por su cuenta.
+
+### R3 — Prohibición de versiones en nombres de archivo
+
+Si el Developer necesita documentar algo en el repositorio del proyecto:
+- ❌ Nunca crear `architecture-v2.md`, `spec-updated.md` o similares
+- ✅ Actualizar el documento existente con el cambio
+
+### R4 — Documentar dentro de la feature, no fuera
+
+Si el Developer necesita dejar notas técnicas, decisiones de implementación o deuda técnica documentada:
+- ✅ Actualizar `.ai/features/FEAT-XXX/architecture.md` con la sección correspondiente
+- ✅ Dejar notas en el output de implementación (formato del agente)
+- ❌ No crear documentos sueltos fuera de la carpeta de feature
+
+### R5 — Conocimiento permanente descubierto durante implementación
+
+Si durante la implementación el Developer descubre algo que debería ser conocimiento permanente del sistema:
+- Una regla de negocio no documentada → reportar al Analyst para que actualice `.ai/business-rules.md`
+- Un problema de arquitectura global → reportar al Architect para que actualice `.ai/architecture.md`
+- Una decisión técnica importante → reportar al Tech Lead para registrar en `.ai/decisions.md`
+
+### Cuándo crear o actualizar documentos
+
+| Situación | Acción |
+|-----------|--------|
+| Desviación del diseño aprobado | Documentar en el output de implementación del agente |
+| Deuda técnica generada | Documentar en `.ai/features/FEAT-XXX/architecture.md` |
+| Regla de negocio descubierta | Reportar al Analyst — no actualizar directamente |
+| Decisión de implementación no trivial | Documentar en el output del agente |
+
+---
+
 ## Cómo Activar Este Agente
 
 ### Prompt de activación

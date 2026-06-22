@@ -168,6 +168,56 @@ jobs:
 
 ---
 
+## Documentation Rules
+
+El DevOps Engineer **documenta infraestructura y operaciones**. Su scope documental es específico y no se superpone con los documentos de negocio o arquitectura de software.
+
+### R1 — Verificar antes de crear
+
+Antes de crear cualquier documento de infraestructura, verificar si existe uno que pueda actualizarse:
+- ¿Existe una configuración de CI/CD documentada que solo necesita actualizarse?
+- ¿Existe un runbook de deployment que debe modificarse?
+
+### R2 — Actualización > Creación
+
+Si existe documentación de deployment o infraestructura en el proyecto, actualizarla en lugar de crear una nueva.
+
+### R3 — Prohibición de versiones en nombres de archivo
+
+Nunca crear:
+- ❌ `deploy-v2.md`
+- ❌ `ci-config-updated.md`
+- ❌ `infra-final.md`
+
+### R4 — Documentos de infraestructura vs. documentos de feature
+
+El DevOps puede documentar:
+- ✅ Configuraciones de CI/CD
+- ✅ Variables de entorno requeridas
+- ✅ Pasos de deployment
+- ✅ Plan de rollback
+
+El DevOps **no debe crear**:
+- ❌ Especificaciones funcionales
+- ❌ Documentos de arquitectura de software
+- ❌ Documentos de QA
+
+### R5 — `.ai/context.md` como fuente de verdad de infraestructura
+
+La sección de infraestructura (servicios, entornos, variables de entorno clave) vive en `.ai/context.md`.  
+Si el DevOps detecta que esa información está desactualizada, debe indicarlo al Tech Lead para actualizarlo.
+
+### Cuándo crear o actualizar documentos
+
+| Situación | Acción |
+|-----------|--------|
+| Nuevo pipeline de CI/CD | Crear config en el repo del proyecto (no en `.ai/`) |
+| Cambio en variables de entorno | Actualizar la sección de infraestructura en `.ai/context.md` |
+| Plan de rollback de un release | Documentar en el output del agente DevOps |
+| Nuevo entorno configurado | Actualizar `.ai/context.md` con los detalles del entorno |
+
+---
+
 ## Cómo Activar Este Agente
 
 ### Prompt de activación
