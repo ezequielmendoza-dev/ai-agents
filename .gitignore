@@ -1,0 +1,69 @@
+# Archivos ignorados por Git
+
+# ========================
+# Sistema Operativo
+# ========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ========================
+# IDEs y Editores
+# ========================
+.idea/
+.vscode/settings.json
+.vscode/launch.json
+*.swp
+*.swo
+*~
+
+# Cursor IDE
+.cursor/
+
+# ========================
+# Sesiones y trabajo local
+# ========================
+# Las sesiones de trabajo son específicas de cada proyecto
+# No deben compartirse en el repositorio compartido
+sessions/
+*.session.md
+
+# ========================
+# Datos sensibles
+# ========================
+.env
+.env.local
+.env.*.local
+secrets/
+*.key
+*.pem
+
+# ========================
+# Archivos temporales
+# ========================
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# ========================
+# Outputs generados
+# ========================
+# Si se agregan scripts que generan outputs, excluirlos aquí
+dist/
+build/
+out/
+
+# ========================
+# Node (si se agregan scripts)
+# ========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
