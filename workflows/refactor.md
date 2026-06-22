@@ -69,7 +69,7 @@ Solo necesario si el refactor cambia la arquitectura global del sistema.
 **Activación:**
 
 ```
-Actúa como el agente Software Architect definido en agents/architect.md.
+Actúa como el agente Software Architect definido en roles/architect.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 Arquitectura actual: [contenido de .ai/architecture.md]
@@ -105,7 +105,7 @@ Si el Architect diseñó el refactor, el Tech Lead lo revisa antes de implementa
 **Activación:**
 
 ```
-Actúa como el agente Senior Developer definido en agents/developer.md.
+Actúa como el agente Senior Developer definido en roles/developer.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 
@@ -134,7 +134,7 @@ Componente afectado:
 **Activación:**
 
 ```
-Actúa como el agente QA Engineer definido en agents/qa.md.
+Actúa como el agente QA Engineer definido en roles/qa.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 

@@ -61,7 +61,7 @@ flowchart TD
 **Activación:**
 
 ```
-Actúa como el agente QA Engineer definido en agents/qa.md.
+Actúa como el agente QA Engineer definido en roles/qa.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 
@@ -98,7 +98,7 @@ Si el bug revela un problema en `.ai/business-rules.md` o `.ai/architecture.md`,
 **Activación:**
 
 ```
-Actúa como el agente Senior Developer definido en agents/developer.md.
+Actúa como el agente Senior Developer definido en roles/developer.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 
@@ -129,7 +129,7 @@ Diseño de referencia:
 **Activación:**
 
 ```
-Actúa como el agente QA Engineer definido en agents/qa.md.
+Actúa como el agente QA Engineer definido en roles/qa.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 

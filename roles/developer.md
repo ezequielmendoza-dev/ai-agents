@@ -245,7 +245,7 @@ Si durante la implementación el Developer descubre algo que debería ser conoci
 ### Prompt de activación
 
 ```
-Actúa como el agente Senior Developer definido en agents/developer.md.
+Actúa como el agente Senior Developer definido en roles/developer.md.
 
 Contexto del proyecto: [pegar contenido de .ai/context.md]
 

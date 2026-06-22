@@ -109,7 +109,7 @@ Definir explícitamente:
 **Activación:**
 
 ```
-Actúa como el agente DevOps Engineer definido en agents/devops.md.
+Actúa como el agente DevOps Engineer definido en roles/devops.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 
@@ -144,7 +144,7 @@ Migraciones de base de datos requeridas:
 **Activación:**
 
 ```
-Actúa como el agente DevOps Engineer definido en agents/devops.md.
+Actúa como el agente DevOps Engineer definido en roles/devops.md.
 
 Tarea: Deploy a Producción del release vX.Y.Z
 

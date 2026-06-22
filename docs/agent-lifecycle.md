@@ -67,8 +67,8 @@ Un agente se crea cuando:
 3. Diseñar el Chain of Thought
 4. Diseñar el Output Format con ejemplos reales
 5. Escribir la guía de activación
-6. Agregarlo al `agents/README.md`
-7. Documentar el ejemplo de uso en `agents/prompt-guide.md`
+6. Agregarlo al `roles/README.md`
+7. Documentar el ejemplo de uso en `roles/prompt-guide.md`
 
 ### Fase 2: Uso
 

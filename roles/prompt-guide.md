@@ -18,7 +18,7 @@ La diferencia entre un output genérico e inútil y uno preciso y accionable est
 
 ```markdown
 ## 1. Activación del agente
-"Actúa como el agente [Nombre] definido en agents/[archivo].md"
+"Actúa como el agente [Nombre] definido en roles/[archivo].md"
 
 ## 2. Contexto del proyecto (SIEMPRE)
 "Contexto del proyecto:
@@ -42,7 +42,7 @@ La diferencia entre un output genérico e inútil y uno preciso y accionable est
 
 #### Prompt estándar — análisis de nueva feature
 ```
-Actúa como el agente Product Analyst definido en agents/analyst.md.
+Actúa como el agente Product Analyst definido en roles/analyst.md.
 
 Contexto del proyecto:
 - Nombre: LogiTrack
@@ -58,7 +58,7 @@ La calificación es con estrellas del 1 al 5 y un comentario opcional."
 
 #### Prompt con contexto de archivo
 ```
-Actúa como el agente Product Analyst definido en agents/analyst.md.
+Actúa como el agente Product Analyst definido en roles/analyst.md.
 
 [Pegar contenido completo de .ai/context.md]
 
@@ -73,7 +73,7 @@ Restricciones conocidas:
 
 #### Prompt de re-análisis por feedback del Tech Lead
 ```
-Actúa como el agente Product Analyst definido en agents/analyst.md.
+Actúa como el agente Product Analyst definido en roles/analyst.md.
 
 El Tech Lead rechazó la especificación anterior con este feedback:
 [pegar feedback del Tech Lead]
@@ -90,7 +90,7 @@ Por favor, revisa y corrige los puntos señalados.
 
 #### Prompt estándar
 ```
-Actúa como el agente Software Architect definido en agents/architect.md.
+Actúa como el agente Software Architect definido en roles/architect.md.
 
 Contexto del proyecto:
 [pegar .ai/context.md]
@@ -105,7 +105,7 @@ Restricciones técnicas adicionales:
 
 #### Prompt con contexto de arquitectura existente
 ```
-Actúa como el agente Software Architect definido en agents/architect.md.
+Actúa como el agente Software Architect definido en roles/architect.md.
 
 [pegar .ai/context.md]
 
@@ -124,7 +124,7 @@ Feature a diseñar:
 
 #### Prompt de revisión de feature-spec
 ```
-Actúa como el agente Tech Lead definido en agents/tech-lead.md.
+Actúa como el agente Tech Lead definido en roles/tech-lead.md.
 
 [pegar .ai/context.md]
 
@@ -136,7 +136,7 @@ Por favor, evalúa completitud, consistencia y riesgos.
 
 #### Prompt de revisión de diseño técnico
 ```
-Actúa como el agente Tech Lead definido en agents/tech-lead.md.
+Actúa como el agente Tech Lead definido en roles/tech-lead.md.
 
 [pegar .ai/context.md]
 
@@ -152,7 +152,7 @@ Diseño técnico a revisar:
 
 #### Prompt de decisión ante conflicto
 ```
-Actúa como el agente Tech Lead definido en agents/tech-lead.md.
+Actúa como el agente Tech Lead definido en roles/tech-lead.md.
 
 [pegar .ai/context.md]
 
@@ -170,7 +170,7 @@ Hay un conflicto que necesita tu decisión:
 
 #### Prompt estándar de implementación
 ```
-Actúa como el agente Senior Developer definido en agents/developer.md.
+Actúa como el agente Senior Developer definido en roles/developer.md.
 
 [pegar .ai/context.md]
 
@@ -188,7 +188,7 @@ Convenciones del proyecto:
 
 #### Prompt de corrección de bug
 ```
-Actúa como el agente Senior Developer definido en agents/developer.md.
+Actúa como el agente Senior Developer definido en roles/developer.md.
 
 [pegar .ai/context.md]
 
@@ -205,7 +205,7 @@ Código actual donde ocurre el bug:
 
 #### Prompt estándar de validación
 ```
-Actúa como el agente QA Engineer definido en agents/qa.md.
+Actúa como el agente QA Engineer definido en roles/qa.md.
 
 [pegar .ai/context.md]
 
@@ -220,7 +220,7 @@ Foco especial: validar seguridad en los endpoints de reserva.
 
 #### Prompt de re-verificación post bug-fix
 ```
-Actúa como el agente QA Engineer definido en agents/qa.md.
+Actúa como el agente QA Engineer definido en roles/qa.md.
 
 El Developer corrigió los siguientes bugs del reporte anterior:
 [listar los bugs corregidos]
@@ -243,7 +243,7 @@ Por favor, verifica:
 "Analiza este requerimiento: quiero un sistema de reservas."
 
 ✅ Bien:
-"Actúa como el Analyst de agents/analyst.md.
+"Actúa como el Analyst de roles/analyst.md.
 Proyecto: LogiTrack — SaaS de transporte. Stack: NestJS + PostgreSQL.
 Requerimiento: sistema de reservas de asientos para pasajeros."
 ```
@@ -294,7 +294,7 @@ Puedes activar múltiples agentes en secuencia en la misma conversación:
 ```
 
 ### Tip 2: Dar el archivo completo del agente como contexto
-En algunos IDEs (Cursor, Windsurf) puedes hacer `@agents/analyst.md` para incluir el agente completo automáticamente.
+En algunos IDEs (Cursor, Windsurf) puedes hacer `@roles/analyst.md` para incluir el agente completo automáticamente.
 
 ### Tip 3: Usar el contexto del proyecto siempre
 La diferencia más grande en la calidad del output viene de tener `.ai/context.md` bien documentado y pegarlo en cada prompt.

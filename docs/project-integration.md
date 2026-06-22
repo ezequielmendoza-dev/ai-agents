@@ -215,13 +215,13 @@ Crear `.cursorrules` en la raíz del proyecto:
 Antes de cualquier tarea, lee `.ai/context.md` para entender el proyecto.
 
 ## Agentes disponibles
-Los agentes están en `.ai/agents/agents/`. Úsalos según el tipo de tarea:
-- Nueva feature → `.ai/agents/agents/analyst.md`
-- Diseño técnico → `.ai/agents/agents/architect.md`
-- Supervisión → `.ai/agents/agents/tech-lead.md`
-- Implementación → `.ai/agents/agents/developer.md`
-- Validación → `.ai/agents/agents/qa.md`
-- CI/CD/Deploy → `.ai/agents/agents/devops.md`
+Los agentes están en `.ai/agents/roles/`. Úsalos según el tipo de tarea:
+- Nueva feature → `.ai/agents/roles/analyst.md`
+- Diseño técnico → `.ai/agents/roles/architect.md`
+- Supervisión → `.ai/agents/roles/tech-lead.md`
+- Implementación → `.ai/agents/roles/developer.md`
+- Validación → `.ai/agents/roles/qa.md`
+- CI/CD/Deploy → `.ai/agents/roles/devops.md`
 
 ## Workflow estándar
 Seguir el pipeline: Analyst → Architect → Tech Lead → Developer → QA
@@ -230,7 +230,7 @@ Seguir el pipeline: Analyst → Architect → Tech Lead → Developer → QA
 Los templates están en `.ai/agents/templates/`
 
 ## Guía de prompts
-Ver `.ai/agents/agents/prompt-guide.md` para ejemplos de activación de agentes.
+Ver `.ai/agents/roles/prompt-guide.md` para ejemplos de activación de agentes.
 ```
 
 ### 6.2 Windsurf / Cline / Continue
@@ -239,11 +239,11 @@ Estos IDEs leen archivos de contexto de distintas formas. La estructura `.ai/` e
 
 ```bash
 # En Windsurf — referenciar el agente directamente
-@.ai/agents/agents/analyst.md
+@.ai/agents/roles/analyst.md
 
 # En Cline — incluir como documento de contexto
 /add .ai/context.md
-/add .ai/agents/agents/analyst.md
+/add .ai/agents/roles/analyst.md
 ```
 
 ### 6.3 VS Code (con extensiones de AI)
@@ -254,7 +254,7 @@ Agregar a `.vscode/settings.json`:
 {
   "ai.contextFiles": [
     ".ai/context.md",
-    ".ai/agents/agents/prompt-guide.md"
+    ".ai/agents/roles/prompt-guide.md"
   ]
 }
 ```
@@ -405,7 +405,7 @@ git commit -m "chore: resolve submodule conflict"
 
 Verificar que el submodule está inicializado:
 ```bash
-ls .ai/agents/agents/  # debe listar los archivos .md
+ls .ai/agents/roles/  # debe listar los archivos .md
 # Si está vacío:
 git submodule update --init
 ```

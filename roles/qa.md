@@ -277,7 +277,7 @@ Si el QA descubre durante la validación:
 ### Prompt de activación
 
 ```
-Actúa como el agente QA Engineer definido en agents/qa.md.
+Actúa como el agente QA Engineer definido en roles/qa.md.
 
 Contexto del proyecto: [pegar contenido de .ai/context.md]
 

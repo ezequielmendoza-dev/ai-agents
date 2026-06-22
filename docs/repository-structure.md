@@ -9,7 +9,7 @@
 ```
 ai-agents/
 │
-├── agents/                        # Agentes del sistema (fuente canónica)
+├── roles/                        # Agentes del sistema (fuente canónica)
 │   ├── analyst.md                 # Product Analyst v2.0
 │   ├── architect.md               # Software Architect v2.0
 │   ├── tech-lead.md               # Tech Lead v2.0
@@ -70,7 +70,7 @@ ai-agents/
 
 ## Propósito de cada sección
 
-### `agents/` — El núcleo
+### `roles/` — El núcleo
 
 Contiene las definiciones de los agentes. Es la sección más importante del repositorio. Cada agente define:
 - Su rol y experiencia
@@ -79,7 +79,7 @@ Contiene las definiciones de los agentes. Es la sección más importante del rep
 - El formato exacto de su output
 - Cómo activarlo con un prompt
 
-**Regla:** Ningún agente vive fuera de `agents/`. La raíz del repositorio es solo para archivos de configuración del repo.
+**Regla:** Ningún agente vive fuera de `roles/`. La raíz del repositorio es solo para archivos de configuración del repo.
 
 ---
 
@@ -153,18 +153,18 @@ Documentación sobre el repositorio en sí — cómo funciona, cómo evoluciona,
 
 ```mermaid
 graph LR
-    A[agents/analyst.md] -->|produce| B[templates/feature-spec.md]
-    C[agents/architect.md] -->|produce| D[templates/architecture-spec.md]
-    E[agents/tech-lead.md] -->|produce| F[templates/technical-task.md]
-    G[agents/developer.md] -->|referencia| F
-    H[agents/qa.md] -->|produce| I[templates/qa-report.md]
+    A[roles/analyst.md] -->|produce| B[templates/feature-spec.md]
+    C[roles/architect.md] -->|produce| D[templates/architecture-spec.md]
+    E[roles/tech-lead.md] -->|produce| F[templates/technical-task.md]
+    G[roles/developer.md] -->|referencia| F
+    H[roles/qa.md] -->|produce| I[templates/qa-report.md]
 
     B -->|input para| C
     D -->|input para| G
     F -->|input para| G
     B -->|input para| H
 
-    J[agents/prompt-guide.md] -->|documenta cómo usar| A
+    J[roles/prompt-guide.md] -->|documenta cómo usar| A
     J -->|documenta cómo usar| C
     J -->|documenta cómo usar| E
     J -->|documenta cómo usar| G

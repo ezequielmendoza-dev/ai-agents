@@ -2,7 +2,7 @@
 
 > **Uso:** Meta-documento. Define la estructura estándar que todo agente debe seguir.  
 > **Ubicación:** `docs/agent-definitions.md`  
-> **Referenciado por:** Todos los agentes en `agents/`
+> **Referenciado por:** Todos los agentes en `roles/`
 
 ---
 

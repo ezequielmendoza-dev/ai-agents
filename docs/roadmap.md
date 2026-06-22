@@ -120,19 +120,19 @@ from agents import Agent, Runner
 
 analyst = Agent(
     name="Product Analyst",
-    instructions=open("agents/analyst.md").read(),
+    instructions=open("roles/analyst.md").read(),
     tools=[read_context, ask_clarification]
 )
 
 architect = Agent(
     name="Software Architect",
-    instructions=open("agents/architect.md").read(),
+    instructions=open("roles/architect.md").read(),
     tools=[read_context, read_feature_spec]
 )
 
 tech_lead = Agent(
     name="Tech Lead",
-    instructions=open("agents/tech-lead.md").read(),
+    instructions=open("roles/tech-lead.md").read(),
     tools=[read_all_artifacts, approve, reject, redirect]
 )
 
@@ -143,8 +143,8 @@ pipeline.run("Quiero una feature de reserva de asientos para LogiTrack")
 
 ### Cambios necesarios en el repositorio para esta fase
 
-- Agregar `agents/tools/` con definiciones de herramientas disponibles por agente
-- Agregar `agents/pipelines/` con definiciones de orquestaciones predefinidas
+- Agregar `roles/tools/` con definiciones de herramientas disponibles por agente
+- Agregar `roles/pipelines/` con definiciones de orquestaciones predefinidas
 - Los Output Formats deben ser parseables (JSON schemas además de Markdown)
 
 ---

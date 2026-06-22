@@ -37,12 +37,12 @@ En lugar de improvisar prompts o depender de respuestas genéricas, este reposit
 
 | Agente | Archivo | Responsabilidad Principal |
 |--------|---------|--------------------------| 
-| **Product Analyst** | [`agents/analyst.md`](agents/analyst.md) | Transforma ideas en especificaciones funcionales claras |
-| **Software Architect** | [`agents/architect.md`](agents/architect.md) | Diseña soluciones técnicas escalables |
-| **Tech Lead** | [`agents/tech-lead.md`](agents/tech-lead.md) | Supervisa, coordina y toma decisiones técnicas |
-| **Senior Developer** | [`agents/developer.md`](agents/developer.md) | Implementa siguiendo la arquitectura aprobada |
-| **QA Engineer** | [`agents/qa.md`](agents/qa.md) | Valida calidad antes de producción |
-| **DevOps Engineer** | [`agents/devops.md`](agents/devops.md) | CI/CD, deployments, infraestructura *(bajo demanda)* |
+| **Product Analyst** | [`roles/analyst.md`](roles/analyst.md) | Transforma ideas en especificaciones funcionales claras |
+| **Software Architect** | [`roles/architect.md`](roles/architect.md) | Diseña soluciones técnicas escalables |
+| **Tech Lead** | [`roles/tech-lead.md`](roles/tech-lead.md) | Supervisa, coordina y toma decisiones técnicas |
+| **Senior Developer** | [`roles/developer.md`](roles/developer.md) | Implementa siguiendo la arquitectura aprobada |
+| **QA Engineer** | [`roles/qa.md`](roles/qa.md) | Valida calidad antes de producción |
+| **DevOps Engineer** | [`roles/devops.md`](roles/devops.md) | CI/CD, deployments, infraestructura *(bajo demanda)* |
 
 ### Restricciones por Diseño
 
@@ -57,7 +57,7 @@ Cada agente también tiene una sección **Documentation Rules** que establece cu
 ```
 ai-agents/
 │
-├── agents/                    # Definiciones de agentes (v2.0)
+├── roles/                    # Definiciones de agentes (v2.0)
 │   ├── analyst.md             # Product Analyst
 │   ├── architect.md           # Software Architect
 │   ├── tech-lead.md           # Tech Lead (supervisor y árbitro)
@@ -222,7 +222,7 @@ Cuando trabajes en este proyecto:
 1. Lee `.ai/context.md` para entender el proyecto
 2. Lee `.ai/architecture.md` para entender la arquitectura actual
 3. Consulta `.ai/business-rules.md` antes de definir comportamientos
-4. Usa los agentes de `.ai/agents/` según el tipo de tarea
+4. Usa los agentes de `.ai/agents/roles/` según el tipo de tarea
 5. Sigue los workflows de `.ai/agents/workflows/`
 6. Trabaja dentro de `.ai/features/FEAT-XXX/` para la feature actual
 7. Nunca crees documentos fuera de `.ai/features/FEAT-XXX/` salvo que corresponda actualizar un documento permanente
@@ -257,7 +257,7 @@ mkdir -p .ai/features/FEAT-001-nombre
 touch .ai/features/FEAT-001-nombre/spec.md
 
 # Paso 2: Activar Analyst
-Actúa como el agente Product Analyst definido en .ai/agents/analyst.md.
+Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
 Contexto del proyecto: [contenido de .ai/context.md]
 Feature: FEAT-001 — [descripción del requerimiento]
 ```
@@ -266,7 +266,7 @@ Feature: FEAT-001 — [descripción del requerimiento]
 
 ```markdown
 # Activar QA para documentar el bug
-Actúa como el agente QA Engineer definido en .ai/agents/qa.md.
+Actúa como el agente QA Engineer definido en .ai/agents/roles/qa.md.
 Contexto del proyecto: [contenido de .ai/context.md]
 Necesito documentar: BUG-001
 Descripción del comportamiento incorrecto: [descripción]
@@ -276,7 +276,7 @@ Descripción del comportamiento incorrecto: [descripción]
 
 ```markdown
 # Activar Tech Lead
-Actúa como el agente Tech Lead definido en .ai/agents/tech-lead.md.
+Actúa como el agente Tech Lead definido en .ai/agents/roles/tech-lead.md.
 Contexto del proyecto: [contenido de .ai/context.md]
 Estoy presentando para revisión: [feature-spec / arch-spec / implementación]
 [contenido del documento a revisar]

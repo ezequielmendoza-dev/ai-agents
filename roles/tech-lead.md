@@ -277,7 +277,7 @@ El Tech Lead es el responsable final de que los documentos permanentes estén ac
 ### Prompt de activación
 
 ```
-Actúa como el agente Tech Lead definido en agents/tech-lead.md.
+Actúa como el agente Tech Lead definido en roles/tech-lead.md.
 
 Contexto del proyecto: [pegar contenido de .ai/context.md]
 

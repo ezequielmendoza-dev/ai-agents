@@ -76,7 +76,7 @@ Antes de proponer cualquier cambio arquitectónico:
 **Activación:**
 
 ```
-Actúa como el agente Software Architect definido en agents/architect.md.
+Actúa como el agente Software Architect definido en roles/architect.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 Arquitectura actual: [contenido de .ai/architecture.md]
@@ -167,7 +167,7 @@ Los cambios arquitectónicos se implementan en **fases pequeñas y verificables*
 **Activación por fase:**
 
 ```
-Actúa como el agente Senior Developer definido en agents/developer.md.
+Actúa como el agente Senior Developer definido en roles/developer.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 Arquitectura objetivo: [contenido de .ai/architecture.md]

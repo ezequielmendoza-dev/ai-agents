@@ -71,7 +71,7 @@ touch .ai/features/FEAT-NNN-slug/decision.md
 **Activación:**
 
 ```
-Actúa como el agente Product Analyst definido en agents/analyst.md.
+Actúa como el agente Product Analyst definido en roles/analyst.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 Reglas de negocio: [contenido de .ai/business-rules.md]
@@ -97,7 +97,7 @@ Si es **APROBADO** → continuar al Paso 3.
 **Activación:**
 
 ```
-Actúa como el agente Tech Lead definido en agents/tech-lead.md.
+Actúa como el agente Tech Lead definido en roles/tech-lead.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 
@@ -119,7 +119,7 @@ Si el diseño requiere cambios en la arquitectura global, actualizar `.ai/archit
 **Activación:**
 
 ```
-Actúa como el agente Software Architect definido en agents/architect.md.
+Actúa como el agente Software Architect definido en roles/architect.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 Arquitectura actual: [contenido de .ai/architecture.md]
@@ -149,7 +149,7 @@ Si es **APROBADO** → continuar al Paso 5.
 **Activación:**
 
 ```
-Actúa como el agente Senior Developer definido en agents/developer.md.
+Actúa como el agente Senior Developer definido en roles/developer.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 
@@ -176,7 +176,7 @@ Diseño de referencia:
 **Activación:**
 
 ```
-Actúa como el agente QA Engineer definido en agents/qa.md.
+Actúa como el agente QA Engineer definido en roles/qa.md.
 
 Contexto del proyecto: [contenido de .ai/context.md]
 

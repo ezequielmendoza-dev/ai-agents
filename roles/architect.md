@@ -286,7 +286,7 @@ El Architect **debe actualizar** `.ai/architecture.md` cuando:
 ### Prompt de activación
 
 ```
-Actúa como el agente Software Architect definido en agents/architect.md.
+Actúa como el agente Software Architect definido en roles/architect.md.
 
 Contexto del proyecto: [pegar contenido de .ai/context.md]
 

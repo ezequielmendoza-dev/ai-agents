@@ -223,7 +223,7 @@ Si el DevOps detecta que esa información está desactualizada, debe indicarlo a
 ### Prompt de activación
 
 ```
-Actúa como el agente DevOps Engineer definido en agents/devops.md.
+Actúa como el agente DevOps Engineer definido en roles/devops.md.
 
 Contexto del proyecto: [pegar contenido de .ai/context.md]
 

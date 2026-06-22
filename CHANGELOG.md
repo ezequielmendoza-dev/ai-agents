@@ -27,19 +27,23 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ### Modificado
 
+**Estructura del repositorio (Renombre de Carpeta):**
+- Carpeta principal `agents/` renombrada a `roles/` para evitar la redundancia de rutas (`.ai/agents/agents/` -> `.ai/agents/roles/`) al integrar el repositorio como submodule en la ruta recomendada `.ai/agents/`.
+- Actualizadas todas las referencias internas y externas en guías de activación, prompts, workflows y documentación para apuntar a `roles/` en lugar de `agents/`.
+
 **Agentes — Sección `Documentation Rules` agregada a todos:**
-- `agents/analyst.md` — Reglas para documentos de feature y actualización de docs permanentes (business-rules, glossary)
-- `agents/architect.md` — Reglas para architecture.md de feature y actualización de architecture.md global
-- `agents/tech-lead.md` — Rol como guardián de los estándares documentales del equipo
-- `agents/developer.md` — Scope documental acotado: output del agente y escalación de conocimiento permanente
-- `agents/qa.md` — qa.md como único output documental y reporte de conocimiento permanente descubierto
-- `agents/devops.md` — Scope de infraestructura y context.md como fuente de verdad operacional
+- `roles/analyst.md` — Reglas para documentos de feature y actualización de docs permanentes (business-rules, glossary)
+- `roles/architect.md` — Reglas para architecture.md de feature y actualización de architecture.md global
+- `roles/tech-lead.md` — Rol como guardián de los estándares documentales del equipo
+- `roles/developer.md` — Scope documental acotado: output del agente y escalación de conocimiento permanente
+- `roles/qa.md` — qa.md como único output documental y reporte de conocimiento permanente descubierto
+- `roles/devops.md` — Scope de infraestructura y context.md como fuente de verdad operacional
 
 **README principal:**
 - Actualizado para reflejar el nuevo sistema documental
 - Sección "Sistema Documental" con el modelo de dos niveles y las 5 reglas
 - Tabla de convenciones de nomenclatura
-- Estructura de carpetas actualizada (workflows/ ahora existe)
+- Estructura de carpetas actualizada (workflows/ ahora existe, roles/ reemplaza a agents/)
 - Flujo de trabajo con paso de archivado de features
 - Buenas prácticas actualizadas con reglas de actualización documental
 - Versión bumped a `v1.1.0`
@@ -49,15 +53,15 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 ## [2.0.1] — 2026-06-22
 
 ### Eliminado
-- `analyst.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/analyst.md` v2.0
-- `architect.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/architect.md` v2.0
-- `developer.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/developer.md` v2.0
-- `qa.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/qa.md` v2.0
-- `tech-lead.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/tech-lead.md` v2.0
+- `analyst.md` (raíz) — v1.0 obsoleta, reemplazada por `roles/analyst.md` v2.0
+- `architect.md` (raíz) — v1.0 obsoleta, reemplazada por `roles/architect.md` v2.0
+- `developer.md` (raíz) — v1.0 obsoleta, reemplazada por `roles/developer.md` v2.0
+- `qa.md` (raíz) — v1.0 obsoleta, reemplazada por `roles/qa.md` v2.0
+- `tech-lead.md` (raíz) — v1.0 obsoleta, reemplazada por `roles/tech-lead.md` v2.0
 - `agent-definitions.md` (raíz) — reemplazado por `docs/agent-definitions.md` con contenido real
 
 ### Razón
-Los archivos de la raíz eran versiones v1.0 sin headers markdown, sin Chain of Thought, sin output format estructurado y sin guías de activación. Mantenerlos junto a las versiones v2.0 en `agents/` generaba confusión sobre cuál era la fuente canónica. La raíz queda limpia — los agentes viven en `agents/`.
+Los archivos de la raíz eran versiones v1.0 sin headers markdown, sin Chain of Thought, sin output format estructurado y sin guías de activación. Mantenerlos junto a las versiones v2.0 en `roles/` generaba confusión sobre cuál era la fuente canónica. La raíz queda limpia — los agentes viven en `roles/`.
 
 ---
 
@@ -65,13 +69,13 @@ Los archivos de la raíz eran versiones v1.0 sin headers markdown, sin Chain of 
 
 
 ### Agregado
-- `agents/analyst.md` v2.0 — Chain of Thought, Output Format estructurado, guía de activación
-- `agents/architect.md` v2.0 — Chain of Thought, Output Format estructurado, guía de activación
-- `agents/tech-lead.md` v2.0 — Decision Framework, Chain of Thought, Output Format estructurado
-- `agents/developer.md` v2.0 — Chain of Thought, Output Format estructurado, guía de activación
-- `agents/qa.md` v2.0 — Clasificación de bugs, Chain of Thought, Output Format estructurado
-- `agents/devops.md` v1.0 — Nuevo agente especializado para infraestructura y deployments
-- `agents/prompt-guide.md` v1.0 — Guía completa de prompts por agente con ejemplos reales
+- `roles/analyst.md` v2.0 — Chain of Thought, Output Format estructurado, guía de activación
+- `roles/architect.md` v2.0 — Chain of Thought, Output Format estructurado, guía de activación
+- `roles/tech-lead.md` v2.0 — Decision Framework, Chain of Thought, Output Format estructurado
+- `roles/developer.md` v2.0 — Chain of Thought, Output Format estructurado, guía de activación
+- `roles/qa.md` v2.0 — Clasificación de bugs, Chain of Thought, Output Format estructurado
+- `roles/devops.md` v1.0 — Nuevo agente especializado para infraestructura y deployments
+- `roles/prompt-guide.md` v1.0 — Guía completa de prompts por agente con ejemplos reales
 - `docs/agent-definitions.md` — Meta-documento con estándar de diseño de agentes
 - `templates/feature-spec.md` — Template completo para especificaciones funcionales
 - `templates/architecture-spec.md` — Template completo para diseños técnicos

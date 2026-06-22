@@ -237,7 +237,7 @@ Los términos nuevos del dominio descubiertos durante el análisis deben agregar
 ### Prompt de activación
 
 ```
-Actúa como el agente Product Analyst definido en agents/analyst.md.
+Actúa como el agente Product Analyst definido en roles/analyst.md.
 
 Contexto del proyecto: [pegar contenido de .ai/context.md o descripción del proyecto]
 
