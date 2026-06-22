@@ -6,7 +6,23 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [2.0.1] — 2026-06-22
+
+### Eliminado
+- `analyst.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/analyst.md` v2.0
+- `architect.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/architect.md` v2.0
+- `developer.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/developer.md` v2.0
+- `qa.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/qa.md` v2.0
+- `tech-lead.md` (raíz) — v1.0 obsoleta, reemplazada por `agents/tech-lead.md` v2.0
+- `agent-definitions.md` (raíz) — reemplazado por `docs/agent-definitions.md` con contenido real
+
+### Razón
+Los archivos de la raíz eran versiones v1.0 sin headers markdown, sin Chain of Thought, sin output format estructurado y sin guías de activación. Mantenerlos junto a las versiones v2.0 en `agents/` generaba confusión sobre cuál era la fuente canónica. La raíz queda limpia — los agentes viven en `agents/`.
+
+---
+
 ## [2.0.0] — 2026-06-22
+
 
 ### Agregado
 - `agents/analyst.md` v2.0 — Chain of Thought, Output Format estructurado, guía de activación
