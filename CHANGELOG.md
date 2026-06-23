@@ -6,6 +6,28 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [1.5.0] — 2026-06-23
+
+### Modificado
+- `workflows/bug-fix.md` — Rediseñado el workflow de corrección de bugs para hacerlo dinámico según la severidad e impacto del bug. Se definieron caminos específicos (sub-pipelines) de agentes (Analyst, UI Designer, Architect, Developer, QA y DevOps).
+- `templates/ide-configs/AGENTS.md` — Actualizado el flujo del pipeline del bug-fix en las plantillas del IDE para reflejar su flexibilidad.
+
+---
+
+## [1.4.0] — 2026-06-23
+
+### Agregado
+- **Agente UI Designer**: Nuevo rol de agente experto (`roles/ui-designer.md`) responsable de proponer layouts responsivos, estados de interfaz detallados (carga, éxito, error, vacío) y accesibilidad (a11y).
+- **Plantilla de especificación de interfaz**: Nueva plantilla `templates/ui-design-spec.md` para documentar la propuesta de UI/UX en `.ai/features/FEAT-NNN-slug/ui-design.md`.
+- **Checklist de UI/UX Review**: Nuevo checklist `checklists/ui-review.md` para auditar la consistencia visual y de interacción antes de mergear cambios.
+
+### Modificado
+- `workflows/new-feature.md` — Integrado el paso de diseño de UI (`ui-design.md`) en el pipeline de desarrollo antes del diseño técnico de la arquitectura.
+- `templates/feature-folder-template.md` — Actualizada la estructura de carpeta por feature y el ciclo de vida para incluir a `ui-design.md`.
+- `AGENTS.md` y `templates/ide-configs/AGENTS.md` — Se agregó al UI Designer en la tabla de roles de agentes, prompts de instanciación, checklists y workflows globales.
+
+---
+
 ## [1.3.0] — 2026-06-23
 
 ### Agregado

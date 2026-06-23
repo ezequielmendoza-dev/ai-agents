@@ -1,7 +1,7 @@
 # Workflow: Nueva Feature
 
 > **Versión:** 1.0  
-> **Agentes involucrados:** Analyst → Architect → Tech Lead → Developer → QA → DevOps (si aplica)
+> **Agentes involucrados:** Analyst → UI Designer → Architect → Tech Lead → Developer → QA → DevOps (si aplica)
 
 ---
 
@@ -21,9 +21,11 @@ flowchart TD
     B --> C[🔍 Analyst: Crear spec.md en FEAT-XXX]
     C --> D{Tech Lead: Revisar spec}
     D -->|Rechazado| C
-    D -->|Aprobado| E[🏗️ Architect: Crear architecture.md en FEAT-XXX]
-    E --> F{Tech Lead: Revisar diseño}
-    F -->|Rechazado| E
+    D -->|Aprobado| UI[🎨 UI Designer: Crear ui-design.md en FEAT-XXX]
+    UI --> E[🏗️ Architect: Crear architecture.md en FEAT-XXX]
+    E --> F{Tech Lead: Revisar diseño visual y técnico}
+    F -->|Rechazado UI| UI
+    F -->|Rechazado Técnico| E
     F -->|Aprobado| G[💻 Developer: Implementar]
     G --> H[🧪 QA: Crear qa.md en FEAT-XXX]
     H --> I{Resultado QA}
@@ -53,6 +55,7 @@ Antes de iniciar cualquier trabajo:
 ```bash
 mkdir -p .ai/features/FEAT-NNN-slug
 touch .ai/features/FEAT-NNN-slug/spec.md
+touch .ai/features/FEAT-NNN-slug/ui-design.md
 touch .ai/features/FEAT-NNN-slug/architecture.md
 touch .ai/features/FEAT-NNN-slug/qa.md
 touch .ai/features/FEAT-NNN-slug/decision.md
@@ -102,13 +105,28 @@ Actúa como el agente Tech Lead definido en roles/tech-lead.md.
 Contexto del proyecto: [contenido de .ai/context.md]
 
 Estoy presentando para revisión: feature-spec
+### Paso 3 — Diseño de Interfaz (UI Designer)
 
+**Agente:** UI Designer  
+**Output:** `.ai/features/FEAT-NNN-slug/ui-design.md`  
+**Template:** [`templates/ui-design-spec.md`](../templates/ui-design-spec.md)
+
+**Activación:**
+
+```
+Actúa como el agente UI Designer definido en roles/ui-designer.md.
+
+Contexto del proyecto: [contenido de .ai/context.md]
+
+Especificación funcional de referencia:
 [contenido de .ai/features/FEAT-NNN-slug/spec.md]
 ```
 
+**Criterio de salida:** `ui-design.md` completa, con la arquitectura de información, layouts y componentes diseñados para todos los viewports, lista para el desarrollo.
+
 ---
 
-### Paso 3 — Diseño Técnico (Architect)
+### Paso 4 — Diseño Técnico (Architect)
 
 **Agente:** Software Architect  
 **Output:** `.ai/features/FEAT-NNN-slug/architecture.md`  
@@ -126,22 +144,25 @@ Arquitectura actual: [contenido de .ai/architecture.md]
 
 Especificación funcional a diseñar:
 [contenido de .ai/features/FEAT-NNN-slug/spec.md]
+
+Diseño visual de referencia:
+[contenido de .ai/features/FEAT-NNN-slug/ui-design.md]
 ```
 
 ---
 
-### Paso 4 — Revisión de Diseño (Tech Lead)
+### Paso 5 — Revisión de Diseño (Tech Lead)
 
 **Agente:** Tech Lead  
 **Veredictos posibles:** APROBADO / APROBADO CON OBSERVACIONES / RECHAZADO
 
-Si es **RECHAZADO** → volver al Paso 3 con el feedback del Tech Lead.  
+Si es **RECHAZADO** (por diseño técnico o visual) → volver al Paso 3 o 4 con el feedback del Tech Lead.  
 Si hay decisiones de arquitectura importantes → registrar en `.ai/decisions.md`.  
-Si es **APROBADO** → continuar al Paso 5.
+Si es **APROBADO** → continuar al Paso 6.
 
 ---
 
-### Paso 5 — Implementación (Developer)
+### Paso 6 — Implementación (Developer)
 
 **Agente:** Senior Developer  
 **Template de referencia:** [`templates/technical-task.md`](../templates/technical-task.md)
@@ -159,15 +180,18 @@ Tarea a implementar:
 Especificación de referencia:
 [contenido de .ai/features/FEAT-NNN-slug/spec.md]
 
-Diseño de referencia:
+Diseño visual de referencia:
+[contenido de .ai/features/FEAT-NNN-slug/ui-design.md]
+
+Diseño técnico de referencia:
 [contenido de .ai/features/FEAT-NNN-slug/architecture.md]
 ```
 
-**Criterio de salida:** Implementación completa y funcional, lista para QA.
+**Criterio de salida:** Implementación completa, funcional y fiel a la UI y la arquitectura, lista para QA.
 
 ---
 
-### Paso 6 — Validación de Calidad (QA)
+### Paso 7 — Validación de Calidad (QA)
 
 **Agente:** QA Engineer  
 **Output:** `.ai/features/FEAT-NNN-slug/qa.md`  
@@ -183,6 +207,9 @@ Contexto del proyecto: [contenido de .ai/context.md]
 Feature spec de referencia:
 [contenido de .ai/features/FEAT-NNN-slug/spec.md]
 
+Diseño visual de referencia:
+[contenido de .ai/features/FEAT-NNN-slug/ui-design.md]
+
 Diseño técnico de referencia:
 [contenido de .ai/features/FEAT-NNN-slug/architecture.md]
 
@@ -190,26 +217,26 @@ Implementación a revisar:
 [descripción de los cambios implementados]
 ```
 
-Si el resultado es **FAIL** → volver al Paso 5 con los bugs reportados.  
-Si el resultado es **PASS** o **PASS WITH OBSERVATIONS** → continuar al Paso 7.
+Si el resultado es **FAIL** → volver al Paso 6 con los bugs reportados.  
+Si el resultado es **PASS** o **PASS WITH OBSERVATIONS** → continuar al Paso 8.
 
 ---
 
-### Paso 7 — Veredicto Final (Tech Lead)
+### Paso 8 — Final Veredicto (Tech Lead)
 
 **Agente:** Tech Lead  
 **Acción:** Revisar el reporte de QA y emitir veredicto final de deployment.
 
 ---
 
-### Paso 8 — Deployment (DevOps)
+### Paso 9 — Deployment (DevOps)
 
 **Agente:** DevOps Engineer (bajo demanda del Tech Lead)  
 **Workflow:** Ver [`workflows/release.md`](release.md) para el proceso de deployment.
 
 ---
 
-### Paso 9 — Cierre de Feature
+### Paso 10 — Cierre de Feature
 
 Cuando la feature está en producción:
 
@@ -231,6 +258,7 @@ Cuando la feature está en producción:
 ## Checklist de Cierre de Feature
 
 - [ ] `spec.md` en estado `Aprobada`
+- [ ] `ui-design.md` en estado `Aprobado`
 - [ ] `architecture.md` en estado `Aprobado`
 - [ ] `qa.md` en estado `PASS` o `PASS WITH OBSERVATIONS` resueltas
 - [ ] Veredicto del Tech Lead: `APROBADO`

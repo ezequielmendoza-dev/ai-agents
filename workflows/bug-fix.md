@@ -1,190 +1,192 @@
-# Workflow: Bug Fix
+# Workflow: Corrección de Bugs (Bug Fix)
 
-> **Versión:** 1.0  
-> **Agentes involucrados:** QA → Developer → QA (re-validación) → Tech Lead
+> **Versión:** 2.0  
+> **Agentes involucrados:** Dinámico según clasificación (QA, Analyst, UI Designer, Architect, Developer, Tech Lead, DevOps)
 
 ---
 
 ## Cuándo usar este workflow
 
-- Se detectó un defecto en producción o staging
-- QA reportó un bug durante el desarrollo de una feature
-- Un usuario reportó un comportamiento incorrecto del sistema
+- Se detecta un comportamiento anómalo o incorrecto en producción, staging o desarrollo.
+- Un usuario, stakeholder o QA reporta un defecto de interfaz, lógica de negocio, arquitectura técnica o rendimiento.
 
 ---
 
-## Flujo
+## Flujo Dinámico del Pipeline
 
 ```mermaid
 flowchart TD
-    A[🐛 Bug detectado] --> B[Asignar BUG-NNN]
-    B --> C[Leer .ai/context.md y feature relacionada]
-    C --> D{¿El bug tiene feature asociada?}
-    D -->|Sí| E[Leer .ai/features/FEAT-XXX/ o archive/]
-    D -->|No| F[Leer .ai/architecture.md y business-rules.md]
-    E --> G[🧪 QA: Documentar bug con pasos de reproducción]
-    F --> G
-    G --> H{¿Es un bug de diseño o de implementación?}
-    H -->|Diseño| I[Escalar a Tech Lead → Architect]
-    H -->|Implementación| J[💻 Developer: Corregir el bug]
-    I --> K[🏗️ Architect: Revisar y corregir diseño si aplica]
-    K --> J
-    J --> L[🧪 QA: Re-validar la corrección]
-    L --> M{¿Bug resuelto?}
-    M -->|No| J
-    M -->|Sí| N[⚖️ Tech Lead: Veredicto final]
-    N --> O[🚀 Deploy del fix]
-    O --> P[📝 Actualizar docs permanentes si aplica]
+    Start[🐛 Bug Detectado] --> Triaje[Paso 0: Triaje y Clasificación]
+    
+    Triaje --> Categorias{Categoría del Bug}
+    
+    Categorias -->|1. Negocio / Funcional| Spec[Paso 1.A: Ajuste de Spec - Analyst]
+    Spec --> TL_Spec{Revisión TL}
+    TL_Spec -->|Rechazado| Spec
+    TL_Spec -->|Aprobado| Dev
+    
+    Categorias -->|2. Visual / UI-UX| UI[Paso 1.B: Ajuste de Interfaz - UI Designer]
+    UI --> Dev
+    
+    Categorias -->|3. Arquitectura / Técnico| Tech[Paso 1.C: Ajuste Técnico - Architect]
+    Tech --> TL_Arch{Revisión TL}
+    TL_Arch -->|Rechazado| Tech
+    TL_Arch -->|Aprobado| Dev
+    
+    Categorias -->|4. Implementación Pura| Dev[Paso 2: Corrección - Developer]
+    
+    Categorias -->|5. Crítico / Hotfix| Hot[Paso Especial: Hotfix Directo]
+    Hot --> Dev
+    
+    Dev --> QA[Paso 3: Validación - QA]
+    QA --> QA_Status{¿Bug Resuelto?}
+    QA_Status -->|No| Dev
+    QA_Status -->|Sí| TL_Final{Paso 4: Veredicto Final - Tech Lead}
+    
+    TL_Final -->|Aprobado| Deploy[Paso 5: Deploy y Cierre]
+    TL_Final -->|Rechazado| Dev
 ```
 
 ---
 
 ## Pasos Detallados
 
-### Paso 0 — Triaje y Registro
+### Paso 0 — Triaje y Clasificación (QA / Tech Lead)
 
-1. **Asignar un ID** al bug: `BUG-NNN` (incrementar el Registro de IDs en `.ai/context.md`)
-2. **Determinar la severidad:**
-   - 🔴 Crítico — pérdida de datos, sistema caído, seguridad comprometida
-   - 🟠 Alto — funcionalidad principal no funciona
-   - 🟡 Medio — funcionalidad secundaria afectada, existe workaround
-   - 🟢 Bajo — cosmético, no afecta funcionalidad
-3. **Identificar si el bug pertenece a una feature específica:**
-   - Sí → leer `.ai/features/FEAT-XXX/` (o `archive/FEAT-XXX/` si ya fue archivada)
-   - No → leer `.ai/architecture.md` para entender el componente afectado
+Al detectar un defecto, se debe abrir un caso de corrección registrando un ID incremental `BUG-NNN` en el registro de IDs de `.ai/context.md` y clasificarlo bajo dos dimensiones:
 
----
+#### A. Severidad
+- 🔴 **Crítico:** Bloqueo completo del sistema, pérdida de integridad de datos o brecha de seguridad. Activa el pipeline de **Hotfix**.
+- 🟠 **Alto:** Funcionalidad principal rota sin alternativa de uso temporal (workaround).
+- 🟡 **Medio:** Fallo en funcionalidad secundaria o existe un workaround viable.
+- 🟢 **Bajo:** Defecto cosmético o comportamiento visual menor que no interrumpe la operación.
 
-### Paso 1 — Documentación del Bug (QA)
+#### B. Categoría e Impacto (Activa el Sub-pipeline)
 
-**Agente:** QA Engineer  
-**Activación:**
-
-```
-Actúa como el agente QA Engineer definido en roles/qa.md.
-
-Contexto del proyecto: [contenido de .ai/context.md]
-
-Necesito documentar el siguiente bug: BUG-NNN
-
-Descripción del comportamiento incorrecto:
-[descripción]
-
-Contexto adicional (feature afectada, entorno, datos de prueba):
-[contexto]
-```
-
-**Output:** Reporte de bug con pasos de reproducción, resultado esperado, resultado actual y severidad.
-
-**Template:** [`templates/bug-report.md`](../templates/bug-report.md)
+| Categoría | Causa Raíz | Pipeline de Agentes | Entregables Modificados |
+| :--- | :--- | :--- | :--- |
+| **1. Negocio o Funcional** | Requerimiento original ambiguo o contradictorio. | Analyst ➡️ Tech Lead ➡️ Developer ➡️ QA | `.ai/features/FEAT-XXX/spec.md` o `.ai/business-rules.md` |
+| **2. Visual o UI/UX** | Problemas de responsive, fallos visuales o estados omitidos. | UI Designer ➡️ Developer ➡️ QA | `.ai/features/FEAT-XXX/ui-design.md` o `ui-review.md` |
+| **3. Arquitectura / Técnico** | Mal diseño de BD, condición de carrera o fallo de integración. | Architect ➡️ Tech Lead ➡️ Developer ➡️ QA | `.ai/features/FEAT-XXX/architecture.md` o `.ai/architecture.md` |
+| **4. Implementación Pura** | Error lógico del Developer; la especificación y el diseño visual/técnico son correctos. | Developer ➡️ QA | Solo archivos de código del proyecto |
 
 ---
 
-### Paso 2 — Análisis de Causa Raíz
+### Paso 1 — Ajuste Documental (Dinámico por Agente)
 
-Antes de implementar cualquier corrección, identificar:
+Según la clasificación del bug, se activa el agente correspondiente para corregir el diseño antes de tocar código:
 
-- **¿Es un bug de implementación?** El código no respeta el diseño aprobado → corrige el Developer
-- **¿Es un bug de diseño?** El diseño estaba incorrecto o incompleto → corrige el Architect, luego el Developer
-- **¿Es un bug de especificación?** El requerimiento era ambiguo → aclarar con el Analyst/stakeholder
+#### 1.A. Ajuste de Especificación Funcional (Product Analyst)
+*Se activa si el bug es funcional o de negocio.*
+- **Entrada:** Reporte de bug.
+- **Acción:** Corregir `.ai/features/FEAT-XXX/spec.md` (o crearla en `.ai/features/BUG-NNN-slug/spec.md` si es general) y actualizar `.ai/business-rules.md` si aplica.
+- **Aprobación:** El Tech Lead debe validar los cambios funcionales antes de que pasen al Developer.
 
-Si el bug revela un problema en `.ai/business-rules.md` o `.ai/architecture.md`, esos documentos deben actualizarse como parte de la corrección.
+#### 1.B. Ajuste de Especificación Visual (UI Designer)
+*Se activa si el bug es de UI/UX, responsive, o a11y.*
+- **Entrada:** Reporte de bug + `ui-design.md` anterior.
+- **Acción:** Modificar el diseño en `ui-design.md` para corregir la alineación, adaptabilidad o definir el estado visual omitido. No requiere aprobación formal del Tech Lead a menos que modifique tokens de diseño globales.
+
+#### 1.C. Ajuste de Diseño Técnico (Software Architect)
+*Se activa si el bug es arquitectónico o de lógica técnica compleja.*
+- **Entrada:** Reporte de bug + diseño técnico actual.
+- **Acción:** Actualizar `architecture.md` de la feature o el archivo de arquitectura global `.ai/architecture.md`. Si se toma una decisión de diseño de impacto general, registrar una nueva decisión `ARCH-NNN` en `.ai/decisions.md`.
+- **Aprobación:** El Tech Lead debe revisar y aprobar el diseño técnico modificado.
 
 ---
 
-### Paso 3 — Corrección (Developer)
+### Paso 2 — Implementación de la Corrección (Developer)
 
 **Agente:** Senior Developer  
-**Activación:**
+**Entradas:** Reporte del bug + especificaciones modificadas (funcional, visual o técnica, según aplique).
 
+**Activación:**
 ```
 Actúa como el agente Senior Developer definido en roles/developer.md.
+Tengo el bug BUG-NNN clasificado como [Categoría] con severidad [Severidad].
 
-Contexto del proyecto: [contenido de .ai/context.md]
-
-Bug a corregir: BUG-NNN
-
-Reporte del bug:
-[descripción, pasos de reproducción, resultado esperado/actual]
-
-Diseño de referencia:
-[contenido de .ai/architecture.md o .ai/features/FEAT-XXX/architecture.md según aplique]
+Reporte del Bug: [Detalles del comportamiento incorrecto]
+Especificación de corrección de referencia:
+[Contenido de spec.md, ui-design.md o architecture.md modificados en el Paso 1]
 ```
 
-**Reglas para la corrección:**
-- La corrección debe ser **mínima y enfocada** — no aprovechar para refactors no relacionados
-- Si la corrección requiere cambios arquitectónicos → escalar al Tech Lead antes de implementar
-- Documentar claramente qué cambió y por qué
+**Reglas de Corrección:**
+- La intervención de código debe ser **mínima y enfocada** estrictamente a resolver el bug.
+- Queda estrictamente prohibido realizar refactorizaciones o agregar features no relacionadas (scope creep) dentro del fix.
+- Si el fix requiere modificar APIs o esquemas de BD no contemplados en el Paso 1.C, detener la implementación y notificar al Architect.
 
 ---
 
-### Paso 4 — Re-validación (QA)
+### Paso 3 — Validación (QA)
 
 **Agente:** QA Engineer  
-**Verificar:**
-- El bug original fue corregido
-- La corrección no introdujo regresiones en funcionalidades relacionadas
-- Los casos borde que generaron el bug están cubiertos
+**Entradas:** Cambios implementados + Reporte del Bug + Checklist de verificación.
 
 **Activación:**
-
 ```
 Actúa como el agente QA Engineer definido en roles/qa.md.
+Estoy validando la resolución de BUG-NNN.
 
-Contexto del proyecto: [contenido de .ai/context.md]
-
-Estoy re-validando la corrección de: BUG-NNN
-
-Descripción del bug original:
-[descripción]
-
-Corrección implementada:
-[descripción de los cambios]
+Reporte del bug original: [Detalles]
+Cambios realizados: [Lista de commits o descripción de modificaciones de código]
 ```
 
----
-
-### Paso 5 — Veredicto Final (Tech Lead)
-
-**Agente:** Tech Lead  
-**Acción:** Revisar que el bug fue correctamente documentado, corregido y validado. Aprobar el deploy.
+**Flujo de Verificación:**
+- Si el bug era **Visual/UI-UX**, el QA Engineer (o el UI Designer) debe auditar los cambios contra el checklist [`checklists/ui-review.md`](../checklists/ui-review.md).
+- Si el bug era **Técnico**, validar que no haya regresiones en endpoints o integraciones mediante [`checklists/frontend-review.md`](../checklists/frontend-review.md) o [`checklists/backend-review.md`](../checklists/backend-review.md).
+- Si la prueba falla, el bug vuelve al **Paso 2** (Developer) con los logs y pasos de fallo documentados.
 
 ---
 
-### Paso 6 — Deployment y Cierre
+### Paso 4 — Veredicto Final (Tech Lead)
 
-1. Hacer deploy del fix (ver [`workflows/release.md`](release.md))
-2. **Actualizar** documentos permanentes si el bug reveló algo que debía estar documentado:
-   - `.ai/business-rules.md` si el bug reveló una regla no documentada
-   - `.ai/architecture.md` si el bug reveló un problema de diseño corregido
-3. Si la corrección fue en código de una feature archivada → no actualizar la feature en `archive/` (es read-only), sino actualizar `.ai/architecture.md` directamente
+El Tech Lead revisa la trazabilidad del bug:
+- ¿Se documentó correctamente el bug y su causa raíz?
+- ¿Participaron los agentes necesarios según su impacto?
+- ¿El reporte de QA está en `PASS`?
+Si todo está conforme, emite el veredicto de `APROBADO` para el deployment.
+
+---
+
+### Paso 5 — Deploy y Cierre
+
+1. Desplegar el fix a producción (ver [`workflows/release.md`](release.md)).
+2. Consolidar cambios en la memoria del proyecto:
+   - Si se modificó la arquitectura, actualizar `.ai/architecture.md`.
+   - Si se modificó una regla funcional, actualizar `.ai/business-rules.md`.
+3. Actualizar `CHANGELOG.md` documentando el bug resuelto en la sección de "Corregido".
+
+---
+
+## Flujo de Emergencia: Hotfix Crítico 🔴
+
+Si la severidad es **Crítica** y el sistema o datos están comprometidos, el flujo dinámico se optimiza para minimizar el tiempo de inactividad:
+
+1. **Bypass del Pipeline:** El Developer inicia la corrección directamente en una rama `hotfix/BUG-NNN` basada en `main`.
+2. **Validación Rápida:** QA realiza pruebas de humo rápidas directamente sobre el fix enfocado.
+3. **Despliegue Inmediato:** Se realiza el deploy de emergencia con aprobación verbal del Tech Lead.
+4. **Documentación Post-Mortem:** Dentro de las 24 horas posteriores al deploy, el Tech Lead convoca a los agentes (Analyst, Architect, UI Designer, según corresponda) para:
+   - Analizar la causa raíz.
+   - Actualizar retroactivamente la documentación técnica o funcional (`context.md`, `architecture.md`, `business-rules.md`).
+   - Registrar la lección aprendida en `.ai/decisions.md` para prevenir recurrencia.
 
 ---
 
 ## Checklist de Cierre de Bug Fix
 
-- [ ] Bug documentado con ID `BUG-NNN` y severidad asignada
-- [ ] Causa raíz identificada (implementación / diseño / especificación)
-- [ ] Corrección implementada y revisada por Tech Lead si fue de diseño
-- [ ] QA validó que el bug fue resuelto
-- [ ] QA confirmó ausencia de regresiones
-- [ ] Veredicto del Tech Lead: `APROBADO`
-- [ ] Deploy realizado
-- [ ] Documentos permanentes actualizados si fue necesario
-- [ ] `CHANGELOG.md` actualizado con el fix
+- [ ] Identificado e incrementado el ID del bug `BUG-NNN` en `.ai/context.md`.
+- [ ] Bug clasificado por Severidad y Categoría en el triaje.
+- [ ] **Documentación ajustada:**
+  - [ ] `spec.md` modificada por el Analyst (si el bug fue de Negocio).
+  - [ ] `ui-design.md` modificada por el UI Designer (si el bug fue Visual).
+  - [ ] `architecture.md` modificada por el Architect (si el bug fue Técnico).
+- [ ] Corrección de código enfocada y sin adición de código externo o refactores.
+- [ ] QA validó el fix y aplicó el checklist de revisión respectivo (`ui-review`, `frontend-review`, `backend-review`).
+- [ ] Veredicto del Tech Lead: `APROBADO`.
+- [ ] Despliegue completado con éxito.
+- [ ] Memoria del proyecto (`.ai/`) actualizada con las modificaciones definitivas.
+- [ ] `CHANGELOG.md` del proyecto actualizado.
 
 ---
 
-## Escalación de bugs críticos 🔴
-
-Cuando el bug es de severidad **Crítica**:
-
-1. **Notificar al Tech Lead inmediatamente** — no esperar el flujo normal
-2. **Evaluar si se necesita un hotfix** (branch `hotfix/slug` desde `main`)
-3. **Decidir si la funcionalidad debe desactivarse** temporalmente hasta el fix
-4. **Comunicar al stakeholder** el impacto y el ETA de la corrección
-5. **Post-mortem:** después del fix, documentar en `.ai/decisions.md` qué ocurrió y qué se cambió para evitar que se repita
-
----
-
-*Workflow bug-fix v1.0 — ai-agents library | github.com/ezequielmendoza-dev/ai-agents*
+*Workflow bug-fix v2.0 — ai-agents library | github.com/ezequielmendoza-dev/ai-agents*

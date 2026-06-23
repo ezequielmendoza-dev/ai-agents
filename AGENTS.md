@@ -15,6 +15,7 @@
 ai-agents/
 ├── roles/                    # Definiciones de agentes (v2.0)
 │   ├── analyst.md
+│   ├── ui-designer.md
 │   ├── architect.md
 │   ├── tech-lead.md
 │   ├── developer.md
@@ -62,6 +63,7 @@ Los agentes están definidos en `roles/`:
 | Agente | Archivo | Responsabilidad |
 | :--- | :--- | :--- |
 | **Product Analyst** | [analyst.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/analyst.md) | Especificaciones funcionales |
+| **UI Designer** | [ui-designer.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/ui-designer.md) | Diseño de interfaz de usuario y UX |
 | **Software Architect** | [architect.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/architect.md) | Diseño técnico y ADRs |
 | **Tech Lead** | [tech-lead.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/tech-lead.md) | Revisión y estándares |
 | **Senior Developer** | [developer.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/developer.md) | Implementación y tests |

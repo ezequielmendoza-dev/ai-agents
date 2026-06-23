@@ -25,7 +25,7 @@ En lugar de improvisar prompts o depender de respuestas genéricas, este reposit
 |-----------|-------------|
 | **Única Fuente de Verdad** | Los agentes viven en este repositorio, no en cada proyecto |
 | **Roles Claros** | Cada agente tiene responsabilidades definidas y límites explícitos |
-| **Flujo Estructurado** | El trabajo sigue un pipeline: Analyst → Architect → Tech Lead → Developer → QA |
+| **Flujo Estructurado** | El trabajo sigue un pipeline: Analyst ➡️ UI Designer ➡️ Architect ➡️ Tech Lead ➡️ Developer ➡️ QA |
 | **Reutilización** | Templates y checklists son agnósticos al proyecto |
 | **Evolución Gradual** | El repositorio crece con cada proyecto real |
 | **Sin Duplicación** | Los proyectos referencian, no copian |
@@ -38,6 +38,7 @@ En lugar de improvisar prompts o depender de respuestas genéricas, este reposit
 | Agente | Archivo | Responsabilidad Principal |
 |--------|---------|--------------------------| 
 | **Product Analyst** | [`roles/analyst.md`](roles/analyst.md) | Transforma ideas en especificaciones funcionales claras |
+| **UI Designer** | [`roles/ui-designer.md`](roles/ui-designer.md) | Diseña la interfaz visual, responsividad y accesibilidad (a11y) |
 | **Software Architect** | [`roles/architect.md`](roles/architect.md) | Diseña soluciones técnicas escalables |
 | **Tech Lead** | [`roles/tech-lead.md`](roles/tech-lead.md) | Supervisa, coordina y toma decisiones técnicas |
 | **Senior Developer** | [`roles/developer.md`](roles/developer.md) | Implementa siguiendo la arquitectura aprobada |
@@ -59,6 +60,7 @@ ai-agents/
 │
 ├── roles/                    # Definiciones de agentes (v2.0)
 │   ├── analyst.md             # Product Analyst
+│   ├── ui-designer.md         # UI/UX Designer
 │   ├── architect.md           # Software Architect
 │   ├── tech-lead.md           # Tech Lead (supervisor y árbitro)
 │   ├── developer.md           # Senior Developer
@@ -76,6 +78,7 @@ ai-agents/
 │   │   ├── clinerules         # Reglas para Cline / Roo-Code
 │   │   └── copilot-instructions.md  # Instrucciones para GitHub Copilot
 │   ├── feature-spec.md        # Especificación funcional
+│   ├── ui-design-spec.md      # Diseño visual de interfaz
 │   ├── architecture-spec.md   # Diseño técnico
 │   ├── technical-task.md      # Tarea para el Developer
 │   ├── qa-report.md           # Reporte de QA
@@ -85,12 +88,13 @@ ai-agents/
 │
 ├── checklists/                # Checklists por área técnica
 │   ├── frontend-review.md
+│   ├── ui-review.md
 │   ├── backend-review.md
 │   └── database-review.md
 │
 ├── workflows/                 # Flujos de trabajo para escenarios comunes
-│   ├── new-feature.md         # Pipeline completo de nueva feature
-│   ├── bug-fix.md             # Proceso de corrección de bugs
+│   ├── new-feature.md         # Pipeline completo de nueva feature (Analyst ➡️ UI ➡️ Architect ➡️ TL ➡️ Dev ➡️ QA)
+│   ├── bug-fix.md             # Proceso dinámico de corrección de bugs
 │   ├── refactor.md            # Refactorización sin cambio de comportamiento
 │   ├── release.md             # Proceso de deployment a producción
 │   └── architecture-change.md # Cambios estructurales del sistema
@@ -142,6 +146,7 @@ Los agentes que generan documentos arbitrariamente producen: crecimiento descont
 .ai/features/
 ├── FEAT-001-seat-layout/
 │   ├── spec.md
+│   ├── ui-design.md
 │   ├── architecture.md
 │   ├── qa.md
 │   └── decision.md
@@ -356,11 +361,17 @@ Ver [`docs/project-integration.md`](docs/project-integration.md) para troublesho
 # Paso 1: Asignar FEAT-NNN y crear la carpeta
 mkdir -p .ai/features/FEAT-001-nombre
 touch .ai/features/FEAT-001-nombre/spec.md
+touch .ai/features/FEAT-001-nombre/ui-design.md
 
 # Paso 2: Activar Analyst
 Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
 Contexto del proyecto: [contenido de .ai/context.md]
 Feature: FEAT-001 — [descripción del requerimiento]
+
+# Paso 3: Activar UI Designer
+Actúa como el agente UI Designer definido en .ai/agents/roles/ui-designer.md.
+Contexto del proyecto: [contenido de .ai/context.md]
+Especificación funcional de referencia: [contenido de .ai/features/FEAT-001-nombre/spec.md]
 ```
 
 ### Reportar un bug
@@ -410,7 +421,7 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 | Campo | Valor |
 |-------|-------|
-| Versión | `v1.3.0` |
+| Versión | `v1.5.0` |
 | Estado | Estable |
 | Última actualización | Junio 2026 |
 

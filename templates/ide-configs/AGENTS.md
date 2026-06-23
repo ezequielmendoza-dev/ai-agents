@@ -48,6 +48,7 @@ Para cualquier tarea compleja, la IA debe asumir uno de los siguientes roles esp
 | Agente / Rol | Archivo de Instrucciones | Responsabilidad Principal |
 | :--- | :--- | :--- |
 | **Product Analyst** | `.ai/agents/roles/analyst.md` | Clarificar requerimientos y escribir especificaciones funcionales (`spec.md`) |
+| **UI Designer** | `.ai/agents/roles/ui-designer.md` | Diseñar la interfaz visual, layout, estados y lineamientos de accesibilidad (`ui-design.md`) |
 | **Software Architect** | `.ai/agents/roles/architect.md` | Diseñar soluciones técnicas y documentar en `architecture.md` (ADRs) |
 | **Tech Lead** | `.ai/agents/roles/tech-lead.md` | Revisar diseños y código, validar adherencia a estándares, actuar como árbitro |
 | **Senior Developer** | `.ai/agents/roles/developer.md` | Escribir código limpio, tests unitarios y asegurar calidad de implementación |
@@ -68,8 +69,8 @@ La IA debe seguir estrictamente los workflows detallados en `.ai/agents/workflow
 
 | Workflow | Archivo | Pipeline |
 | :--- | :--- | :--- |
-| **Nueva Feature** | `new-feature.md` | Analyst (Spec) ➡️ Architect (Design) ➡️ Tech Lead (Approval) ➡️ Developer (Code) ➡️ QA (Validation) ➡️ Release |
-| **Corrección de Bugs** | `bug-fix.md` | Identificación ➡️ Reproducción ➡️ Diseño de corrección ➡️ Codificación ➡️ Validación QA |
+| **Nueva Feature** | `new-feature.md` | Analyst (Spec) ➡️ UI Designer (UI) ➡️ Architect (Design) ➡️ Tech Lead (Approval) ➡️ Developer (Code) ➡️ QA (Validation) ➡️ Release |
+| **Corrección de Bugs** | `bug-fix.md` | Dinámico (QA ➡️ Triaje ➡️ Analyst/UI/Architect [según origen] ➡️ Developer ➡️ QA ➡️ Tech Lead) |
 | **Refactorización** | `refactor.md` | Plan ➡️ Cobertura de tests ➡️ Modificación incremental ➡️ Verificación de comportamiento |
 | **Release** | `release.md` | Verificación QA completa ➡️ Checklists ➡️ Deploy |
 | **Cambio Arquitectónico** | `architecture-change.md` | Creación de ADR ➡️ Actualización de planos globales ➡️ Ejecución migratoria |
@@ -83,6 +84,7 @@ Los templates se encuentran en `.ai/agents/templates/` y deben usarse como base 
 | Template | Uso |
 | :--- | :--- |
 | `feature-spec.md` | Especificación funcional de una feature |
+| `ui-design-spec.md` | Plantilla para el diseño visual de interfaz de una feature |
 | `architecture-spec.md` | Diseño técnico de una feature |
 | `technical-task.md` | Tarea técnica para el Developer |
 | `qa-report.md` | Reporte de validación de QA |
@@ -99,6 +101,7 @@ Antes de un release o revisión, verificar los checklists en `.ai/agents/checkli
 | Checklist | Área |
 | :--- | :--- |
 | `frontend-review.md` | Revisión de código frontend |
+| `ui-review.md` | Revisión de UI/UX, consistencia visual y accesibilidad |
 | `backend-review.md` | Revisión de código backend |
 | `database-review.md` | Revisión de base de datos |
 
@@ -131,6 +134,13 @@ Por favor, lee .ai/context.md y genera el archivo .ai/features/FEAT-NNN-slug/spe
 ### Product Analyst (Bootstrap / Auto-Contextualización)
 ```
 Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md y genera el archivo `.ai/context.md` de este proyecto basándote en la plantilla `.ai/agents/templates/project-context.md` tras escanear la estructura y archivos de configuración.
+```
+
+### UI Designer
+```
+Actúa como el agente UI Designer definido en .ai/agents/roles/ui-designer.md.
+Nuestra feature actual es: FEAT-NNN-slug
+Lee la especificación funcional en .ai/features/FEAT-NNN-slug/spec.md y genera el diseño visual en .ai/features/FEAT-NNN-slug/ui-design.md.
 ```
 
 ### Software Architect

@@ -9,6 +9,7 @@
 ```
 .ai/features/FEAT-NNN-slug-descriptivo/
 ├── spec.md           # Especificación funcional
+├── ui-design.md      # Diseño visual de interfaz
 ├── architecture.md   # Diseño técnico
 ├── qa.md             # Reporte de QA
 └── decision.md       # Decisiones específicas de esta feature
@@ -24,6 +25,7 @@
 
 mkdir -p .ai/features/FEAT-001-nombre-feature
 touch .ai/features/FEAT-001-nombre-feature/spec.md
+touch .ai/features/FEAT-001-nombre-feature/ui-design.md
 touch .ai/features/FEAT-001-nombre-feature/architecture.md
 touch .ai/features/FEAT-001-nombre-feature/qa.md
 touch .ai/features/FEAT-001-nombre-feature/decision.md
@@ -84,6 +86,50 @@ Actualizar el registro de IDs en `.ai/context.md`:
 ```
 
 **Template completo:** [`templates/feature-spec.md`](../../templates/feature-spec.md)
+
+---
+
+## `ui-design.md` — Diseño de Interfaz (UI/UX)
+
+**Responsable:** UI Designer  
+**Cuándo se crea:** Después de que `spec.md` es aprobada por el Tech Lead  
+**Cuándo se actualiza:** Si el Tech Lead rechaza el diseño visual, o si durante la implementación o arquitectura se requiere un ajuste en la interfaz
+
+**Propósito:** Define **cómo se ve y se comporta** la interfaz de usuario. Contiene layouts, componentes, estados (loading, success, error, empty) y lineamientos de accesibilidad.
+
+**Contenido:**
+
+```markdown
+# Diseño de Interfaz: [Nombre de la Feature]
+
+**Feature ID:** FEAT-NNN  
+**Versión:** 1.0  
+**Estado:** Draft | En revisión | Aprobado  
+**Autor:** UI Designer  
+**Fecha:** YYYY-MM-DD
+
+---
+
+## Concepto Visual
+[Dirección visual, colores y tipografía]
+
+## Layout y Pantallas
+[Estructura y distribución de vistas]
+
+## Componentes UI
+[Nuevos y reutilizados con estados de interacción]
+
+## Estados de la UI
+[Loading, Success, Error, Empty]
+
+## Adaptabilidad
+[Diseño mobile, tablet y desktop]
+
+## Accesibilidad
+[Contrasto, tab index, ARIA y roles]
+```
+
+**Template completo:** [`templates/ui-design-spec.md`](../../templates/ui-design-spec.md)
 
 ---
 
@@ -225,7 +271,9 @@ FEAT-NNN creada
      ↓
 spec.md (Analyst) → revisión Tech Lead
      ↓ Aprobada
-architecture.md (Architect) → revisión Tech Lead
+ui-design.md (UI Designer)
+     ↓
+architecture.md (Architect) → revisión Tech Lead (UI y Técnico)
      ↓ Aprobado
 Implementación (Developer)
      ↓
