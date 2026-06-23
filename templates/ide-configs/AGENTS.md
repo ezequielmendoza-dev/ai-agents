@@ -120,12 +120,20 @@ Antes de un release o revisión, verificar los checklists en `.ai/agents/checkli
 
 Para activar un agente de IA en su rol respectivo, utilizar una de las siguientes plantillas:
 
-### Product Analyst
+### Product Analyst (Análisis de Feature)
 ```
 Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
 Nuestra feature actual es: FEAT-NNN-slug
 Requerimiento original: [Descripción breve de la idea]
 Por favor, lee .ai/context.md y genera el archivo .ai/features/FEAT-NNN-slug/spec.md.
+```
+
+### Product Analyst (Bootstrap / Auto-Contextualización)
+```
+Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
+Estamos inicializando las herramientas de IA en este proyecto existente.
+Tu tarea es escanear los archivos de configuración del proyecto y la estructura de directorios para autogenerar el archivo `.ai/context.md` basándote en la plantilla `.ai/agents/templates/project-context.md`.
+Identifica el stack tecnológico, módulos y convenciones reales. Deja placeholders para metas de negocio o contactos y hazme preguntas directas al final de tu output si es necesario completarlos.
 ```
 
 ### Software Architect

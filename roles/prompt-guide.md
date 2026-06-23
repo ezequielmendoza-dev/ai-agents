@@ -56,6 +56,14 @@ Requerimiento a analizar:
 La calificación es con estrellas del 1 al 5 y un comentario opcional."
 ```
 
+#### Prompt de Bootstrap / Auto-Contextualización de un Proyecto
+```
+Actúa como el agente Product Analyst definido en roles/analyst.md.
+Estamos inicializando las herramientas de IA en este proyecto existente.
+Tu tarea es escanear los archivos de configuración del proyecto y la estructura de directorios para autogenerar el archivo `.ai/context.md` basándote en la plantilla `.ai/agents/templates/project-context.md`.
+Identifica el stack tecnológico, módulos y convenciones reales. Deja placeholders para metas de negocio o contactos y hazme preguntas directas al final de tu output si es necesario completarlos.
+```
+
 #### Prompt con contexto de archivo
 ```
 Actúa como el agente Product Analyst definido en roles/analyst.md.
