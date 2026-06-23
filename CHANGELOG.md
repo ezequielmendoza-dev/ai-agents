@@ -6,6 +6,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [1.6.1] — 2026-06-23
+
+### Modificado
+- `templates/ide-configs/AGENTS.md` — Agregada referencia explícita a `.ai/context.md` en el encabezado principal para guiar a la IA al contexto del proyecto inmediatamente.
+- `README.md` y `scripts/setup-ide.sh` — Sincronizada la versión del proyecto a la última versión estable.
+
+---
+
 ## [1.6.0] — 2026-06-23
 
 ### Agregado

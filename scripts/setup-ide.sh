@@ -18,7 +18,7 @@ NC='\033[0m' # Sin color
 
 echo -e "${BLUE}====================================================${NC}"
 echo -e "${BLUE}   🤖 Instalador de Configuración de IDEs de IA      ${NC}"
-echo -e "${BLUE}            ai-agents OS v1.5.0                     ${NC}"
+echo -e "${BLUE}            ai-agents OS v1.6.1                     ${NC}"
 echo -e "${BLUE}====================================================${NC}"
 
 # 1. Determinar rutas y directorios

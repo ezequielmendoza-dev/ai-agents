@@ -2,6 +2,7 @@
 
 > Este documento es la **fuente de verdad** sobre cómo funciona el sistema de desarrollo asistido por IA en este proyecto.
 > Debe ser leído por cualquier asistente de IA (Cursor, Claude Code, Windsurf, Cline, Copilot) antes de realizar cualquier tarea.
+> **Importante:** Para comprender el contexto de negocio, stack técnico y especificaciones particulares de este proyecto, la IA debe leer primero [.ai/context.md](file:///.ai/context.md).
 
 ---
 
