@@ -32,7 +32,7 @@ flowchart TD
     I -->|FAIL| G
     I -->|PASS / PASS WITH OBS| J{Tech Lead: Veredicto final}
     J -->|Rechazado| G
-    J -->|Aprobado| Ask[💬 Preguntar Commit y Versión]
+    J -->|Aprobado| Ask[💬 Preguntar Commit, Push y Release]
     Ask --> K[🚀 DevOps: Deployment]
     K --> L[📁 Mover FEAT-XXX a archive/]
     L --> M[📝 Actualizar docs permanentes si aplica]
@@ -228,11 +228,11 @@ Si el resultado es **PASS** o **PASS WITH OBSERVATIONS** → continuar al Paso 8
 **Agente:** Tech Lead  
 **Acción:** Revisar el reporte de QA y emitir veredicto final de deployment.
 
-**Interacción Interactiva (Commit y Versión):**
+**Interacción Interactiva (Commit, Push y Release):**
 > [!IMPORTANT]
-> Una vez que el Tech Lead apruebe la feature, la IA **debe preguntar activamente al usuario** lo siguiente antes de proceder a la fase de despliegue o cierre:
-> 1. **¿Deseas realizar el commit de los cambios implementados?** (Debe proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md)).
-> 2. **¿Requiere esta feature actualizar la versión del proyecto?** (Preguntar si se debe incrementar la versión y en qué archivos de configuración realizarlo, como `package.json` o `README.md`).
+> Una vez que el Tech Lead apruebe la feature, la IA **debe guiar activamente al usuario en la realización de commit y push de los cambios, e indicarle si proceder con el commit y push de una nueva release**. Para ello, debe hacer lo siguiente:
+> 1. **Validar y proponer Commit y Push:** Proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md) (ej. `feat(scope): FEAT-NNN - descripcion`). Preguntar al usuario si desea proceder con el commit y push de estos cambios.
+> 2. **Validar e Indicar si Procede una Nueva Release:** Analizar si el cambio implementado califica para generar una nueva versión/release del proyecto (por ejemplo, si introduce características principales, secundarias, etc.). Indicarle explícitamente al usuario si debe proceder con el commit y push de una nueva release (siguiendo el workflow de [`workflows/release.md`](release.md)), sugiriendo el incremento de versión apropiado (Major/Minor/Patch) y solicitando su confirmación para preparar la release.
 
 ---
 

@@ -43,7 +43,7 @@ flowchart TD
     QA_Status -->|No| Dev
     QA_Status -->|Sí| TL_Final{Paso 4: Veredicto Final - Tech Lead}
     
-    TL_Final -->|Aprobado| Ask[💬 Preguntar Commit y Versión]
+    TL_Final -->|Aprobado| Ask[💬 Preguntar Commit, Push y Release]
     TL_Final -->|Rechazado| Dev
     
     Ask --> Deploy[Paso 5: Deploy y Cierre]
@@ -148,11 +148,11 @@ El Tech Lead revisa la trazabilidad del bug:
 - ¿El reporte de QA está en `PASS`?
 Si todo está conforme, emite el veredicto de `APROBADO` para el deployment.
 
-**Interacción Interactiva (Commit y Versión):**
+**Interacción Interactiva (Commit, Push y Release):**
 > [!IMPORTANT]
-> Una vez que el Tech Lead apruebe la corrección, la IA **debe preguntar activamente al usuario** lo siguiente antes de proceder a la fase de despliegue o cierre:
-> 1. **¿Deseas realizar el commit de los cambios implementados?** (Debe proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md)).
-> 2. **¿Requiere esta corrección actualizar la versión del proyecto?** (Preguntar si se debe incrementar la versión y en qué archivos de configuración realizarlo, como `package.json` o `README.md`).
+> Una vez que el Tech Lead apruebe la corrección, la IA **debe guiar activamente al usuario en la realización de commit y push de los cambios, e indicarle si proceder con el commit y push de una nueva release**. Para ello, debe hacer lo siguiente:
+> 1. **Validar y proponer Commit y Push:** Proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md) (ej. `fix(scope): BUG-NNN - descripcion`). Preguntar al usuario si desea proceder con el commit y push de estos cambios.
+> 2. **Validar e Indicar si Procede una Nueva Release:** Analizar si el cambio implementado califica para generar una nueva versión/release del proyecto (por ejemplo, un parche o hotfix). Indicarle explícitamente al usuario si debe proceder con el commit y push de una nueva release (siguiendo el workflow de [`workflows/release.md`](release.md)), sugiriendo el incremento de versión apropiado (normalmente Patch o Hotfix) y solicitando su confirmación para preparar la release.
 
 ---
 

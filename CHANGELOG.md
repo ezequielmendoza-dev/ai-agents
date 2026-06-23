@@ -4,6 +4,13 @@ Todas los cambios notables en este repositorio se documentan en este archivo.
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.6.4] — 2026-06-23
+
+### Modificado
+- `workflows/new-feature.md` y `workflows/bug-fix.md` — Se actualizó el paso de interacción interactiva final para requerir la validación y guía de commit y push de cambios, así como indicarle activamente al usuario si procede iniciar el workflow para una nueva release.
+
+---
+
 ## [1.6.3] — 2026-06-23
 
 ### Agregado
