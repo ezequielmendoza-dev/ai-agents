@@ -55,7 +55,7 @@ fi
 echo -e "\n${BLUE}--- Paso 1: Inicialización de Estructura Documental .ai/ ---${NC}"
 
 # Preguntar si desea inicializar la estructura .ai/
-read -p "¿Deseas inicializar o actualizar la estructura de carpetas .ai/? (s/n): " init_ai
+read -p "¿Deseas inicializar la estructura de carpetas .ai/? (s/n): " init_ai
 if [[ "$init_ai" =~ ^[sS]$ ]]; then
     # Crear carpetas
     mkdir -p "$PROJECT_ROOT/.ai/features"
