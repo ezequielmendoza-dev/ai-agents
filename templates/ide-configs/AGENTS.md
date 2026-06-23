@@ -130,10 +130,7 @@ Por favor, lee .ai/context.md y genera el archivo .ai/features/FEAT-NNN-slug/spe
 
 ### Product Analyst (Bootstrap / Auto-Contextualización)
 ```
-Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
-Estamos inicializando las herramientas de IA en este proyecto existente.
-Tu tarea es escanear los archivos de configuración del proyecto y la estructura de directorios para autogenerar el archivo `.ai/context.md` basándote en la plantilla `.ai/agents/templates/project-context.md`.
-Identifica el stack tecnológico, módulos y convenciones reales. Deja placeholders para metas de negocio o contactos y hazme preguntas directas al final de tu output si es necesario completarlos.
+Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md y genera el archivo `.ai/context.md` de este proyecto basándote en la plantilla `.ai/agents/templates/project-context.md` tras escanear la estructura y archivos de configuración.
 ```
 
 ### Software Architect
