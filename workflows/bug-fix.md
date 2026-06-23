@@ -43,8 +43,10 @@ flowchart TD
     QA_Status -->|No| Dev
     QA_Status -->|Sí| TL_Final{Paso 4: Veredicto Final - Tech Lead}
     
-    TL_Final -->|Aprobado| Deploy[Paso 5: Deploy y Cierre]
+    TL_Final -->|Aprobado| Ask[💬 Preguntar Commit y Versión]
     TL_Final -->|Rechazado| Dev
+    
+    Ask --> Deploy[Paso 5: Deploy y Cierre]
 ```
 
 ---
@@ -145,6 +147,12 @@ El Tech Lead revisa la trazabilidad del bug:
 - ¿Participaron los agentes necesarios según su impacto?
 - ¿El reporte de QA está en `PASS`?
 Si todo está conforme, emite el veredicto de `APROBADO` para el deployment.
+
+**Interacción Interactiva (Commit y Versión):**
+> [!IMPORTANT]
+> Una vez que el Tech Lead apruebe la corrección, la IA **debe preguntar activamente al usuario** lo siguiente antes de proceder a la fase de despliegue o cierre:
+> 1. **¿Deseas realizar el commit de los cambios implementados?** (Debe proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md)).
+> 2. **¿Requiere esta corrección actualizar la versión del proyecto?** (Preguntar si se debe incrementar la versión y en qué archivos de configuración realizarlo, como `package.json` o `README.md`).
 
 ---
 

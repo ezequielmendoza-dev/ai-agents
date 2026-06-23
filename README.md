@@ -421,7 +421,7 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 | Campo | Valor |
 |-------|-------|
-| Versión | `v1.6.1` |
+| Versión | `v1.6.2` |
 | Estado | Estable |
 | Última actualización | Junio 2026 |
 

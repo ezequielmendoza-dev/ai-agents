@@ -32,7 +32,8 @@ flowchart TD
     I -->|FAIL| G
     I -->|PASS / PASS WITH OBS| J{Tech Lead: Veredicto final}
     J -->|Rechazado| G
-    J -->|Aprobado| K[🚀 DevOps: Deployment]
+    J -->|Aprobado| Ask[💬 Preguntar Commit y Versión]
+    Ask --> K[🚀 DevOps: Deployment]
     K --> L[📁 Mover FEAT-XXX a archive/]
     L --> M[📝 Actualizar docs permanentes si aplica]
 ```
@@ -226,6 +227,12 @@ Si el resultado es **PASS** o **PASS WITH OBSERVATIONS** → continuar al Paso 8
 
 **Agente:** Tech Lead  
 **Acción:** Revisar el reporte de QA y emitir veredicto final de deployment.
+
+**Interacción Interactiva (Commit y Versión):**
+> [!IMPORTANT]
+> Una vez que el Tech Lead apruebe la feature, la IA **debe preguntar activamente al usuario** lo siguiente antes de proceder a la fase de despliegue o cierre:
+> 1. **¿Deseas realizar el commit de los cambios implementados?** (Debe proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md)).
+> 2. **¿Requiere esta feature actualizar la versión del proyecto?** (Preguntar si se debe incrementar la versión y en qué archivos de configuración realizarlo, como `package.json` o `README.md`).
 
 ---
 

@@ -6,6 +6,13 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [1.6.2] — 2026-06-23
+
+### Modificado
+- `workflows/new-feature.md` y `workflows/bug-fix.md` — Agregado un paso de interacción interactiva al final del pipeline (después de la aprobación del Tech Lead) para preguntar al usuario si requiere realizar el commit (siguiendo Conventional Commits) y actualizar la versión del proyecto.
+
+---
+
 ## [1.6.1] — 2026-06-23
 
 ### Modificado
