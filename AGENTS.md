@@ -86,6 +86,34 @@ Los flujos de trabajo están en `workflows/`:
 
 ---
 
+## ✅ Checklists de Revisión
+
+Los checklists están en `checklists/` y sirven para validar el cumplimiento de estándares de calidad antes del merge:
+
+| Checklist | Archivo | Propósito |
+| :--- | :--- | :--- |
+| **Frontend Review** | [frontend-review.md](file:///Volumes/ExternalSSD/Dev/ai-agents/checklists/frontend-review.md) | Revisión de código frontend, semántica HTML y responsividad |
+| **UI/UX Review** | [ui-review.md](file:///Volumes/ExternalSSD/Dev/ai-agents/checklists/ui-review.md) | Validación de UI/UX, consistencia visual y a11y |
+| **Backend Review** | [backend-review.md](file:///Volumes/ExternalSSD/Dev/ai-agents/checklists/backend-review.md) | Revisión de código backend, API y manejo de errores |
+| **Database Review** | [database-review.md](file:///Volumes/ExternalSSD/Dev/ai-agents/checklists/database-review.md) | Revisión de esquemas de BD, queries y migraciones |
+| **Security Review** | [security-review.md](file:///Volumes/ExternalSSD/Dev/ai-agents/checklists/security-review.md) | Auditoría de autenticación, input validation y secretos |
+| **Performance Review** | [performance-review.md](file:///Volumes/ExternalSSD/Dev/ai-agents/checklists/performance-review.md) | Verificación de tiempos de respuesta, queries óptimas y leaks |
+| **Release Review** | [release-review.md](file:///Volumes/ExternalSSD/Dev/ai-agents/checklists/release-review.md) | Checklist operacional para lanzamientos y rollbacks |
+
+---
+
+## ⚙️ Scripts de Automatización
+
+Los scripts se encuentran en `scripts/` y automatizan tareas repetitivas de setup y validación:
+
+| Script | Propósito | Uso |
+| :--- | :--- | :--- |
+| [`setup-ide.sh`](file:///Volumes/ExternalSSD/Dev/ai-agents/scripts/setup-ide.sh) | Inicializa la estructura `.ai/` y genera reglas de IDE | `bash .ai/agents/scripts/setup-ide.sh` |
+| [`new-initiative.sh`](file:///Volumes/ExternalSSD/Dev/ai-agents/scripts/new-initiative.sh) | Bootstrap automático de una feature o bug | `bash .ai/agents/scripts/new-initiative.sh <FEAT\|BUG> <ID> <slug>` |
+| [`validate-project.sh`](file:///Volumes/ExternalSSD/Dev/ai-agents/scripts/validate-project.sh) | Valida el cumplimiento de la estructura y reglas en `.ai/` | `bash .ai/agents/scripts/validate-project.sh` |
+
+---
+
 ## 📝 Templates para IDEs de IA
 
 Las plantillas de configuración para IDEs están en `templates/ide-configs/`:

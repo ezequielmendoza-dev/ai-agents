@@ -6,6 +6,23 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [1.6.0] — 2026-06-23
+
+### Agregado
+- **Checklist de Seguridad**: Nuevo checklist `checklists/security-review.md` para auditoría de autenticación, validación de datos, control de acceso y manejo de secretos.
+- **Checklist de Rendimiento**: Nuevo checklist `checklists/performance-review.md` para verificación de optimizaciones de front/back, consultas de base de datos y leaks de memoria.
+- **Checklist de Despliegue (Release)**: Nuevo checklist `checklists/release-review.md` para control operacional durante ventanas de despliegue y planes de contingencia.
+- **Script de Bootstrap (`new-initiative.sh`)**: Script automatizado `scripts/new-initiative.sh` para crear la estructura de una feature (FEAT) o bug (BUG) y registrarla en el context de forma automatizada.
+- **Script de Validación (`validate-project.sh`)**: Script automatizado `scripts/validate-project.sh` para verificar el cumplimiento de las reglas documentales locales y nomenclatura.
+- **Plantilla de GitHub Actions (`github-action-ci.yml`)**: Plantilla `templates/github-action-ci.yml` para correr la validación de conformidad de forma automatizada en el pipeline de CI/CD.
+
+### Modificado
+- `roles/README.md` — Integrado el rol de `UI Designer` a la tabla del pipeline principal y al diagrama visual de flujo de desarrollo.
+- `templates/project-context.md` — Añadida la sección `## Registro de IDs` de forma predeterminada para el seguimiento de iniciativas.
+- `AGENTS.md` y `templates/ide-configs/AGENTS.md` — Actualizados para documentar y referenciar los nuevos checklists y scripts locales de automatización.
+
+---
+
 ## [1.5.0] — 2026-06-23
 
 ### Modificado

@@ -11,10 +11,11 @@ Estos agentes forman el flujo estándar de desarrollo. Se usan en orden.
 | Archivo | Rol | Posición en el pipeline |
 |---------|-----|------------------------|
 | [`analyst.md`](analyst.md) | Product Analyst | 1° — Especificaciones funcionales |
-| [`architect.md`](architect.md) | Software Architect | 2° — Diseño técnico |
-| [`tech-lead.md`](tech-lead.md) | Tech Lead | 3° / Supervisor — Revisión y decisiones |
-| [`developer.md`](developer.md) | Senior Developer | 4° — Implementación |
-| [`qa.md`](qa.md) | QA Engineer | 5° — Validación y calidad |
+| [`ui-designer.md`](ui-designer.md) | UI Designer | 2° — Diseño visual y de interfaz (UI/UX) |
+| [`architect.md`](architect.md) | Software Architect | 3° — Diseño técnico |
+| [`tech-lead.md`](tech-lead.md) | Tech Lead | 4° / Supervisor — Revisión y decisiones |
+| [`developer.md`](developer.md) | Senior Developer | 5° — Implementación |
+| [`qa.md`](qa.md) | QA Engineer | 6° — Validación y calidad |
 
 ## Agentes Especializados
 
@@ -35,10 +36,13 @@ Estos agentes se activan bajo demanda, no siguen el pipeline estándar.
 🔍 analyst.md ──────────► feature-spec.md
         │
         ▼
+🎨 ui-designer.md ──────► ui-design.md
+        │
+        ▼
 🏗️ architect.md ─────────► architecture-spec.md
         │
         ▼
-⚖️ tech-lead.md ◄───────── Revisar ambos documentos
+⚖️ tech-lead.md ◄───────── Revisar documentos (spec, UI, arquitectura)
         │
    ┌────┴────┐
    ▼         ▼

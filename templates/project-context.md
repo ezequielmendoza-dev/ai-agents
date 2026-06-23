@@ -227,6 +227,14 @@ FCM_SERVER_KEY=
 
 ---
 
+## Registro de IDs
+
+- Último FEAT asignado: FEAT-000
+- Último BUG asignado: BUG-000
+- Último ARCH asignado: ARCH-000
+
+---
+
 ## 11. Contactos y Recursos
 
 | Rol | Nombre | Contacto |

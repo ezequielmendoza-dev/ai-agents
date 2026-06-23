@@ -1,0 +1,40 @@
+# ==============================================================================
+# github-action-ci.yml — ai-agents OS Compliance Check Action Template
+# ==============================================================================
+# Este archivo es una plantilla para configurar validación automatizada en GitHub.
+# Para utilizarlo, cópialo a la raíz de tu proyecto como:
+# `.github/workflows/ai-agents-validation.yml`
+# ==============================================================================
+
+name: "ai-agents Documental Validation"
+
+on:
+  push:
+    branches: [ "main", "develop", "master" ]
+  pull_request:
+    branches: [ "main", "develop", "master" ]
+
+jobs:
+  validate-ai-structure:
+    name: Validate .ai structure and naming conventions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # Asegura que se descargue el submódulo ai-agents
+          fetch-depth: 0
+
+      - name: Validate ai-agents OS compliance
+        run: |
+          if [ -f ".ai/agents/scripts/validate-project.sh" ]; then
+            echo "🚀 Ejecutando script de validación..."
+            bash .ai/agents/scripts/validate-project.sh
+          elif [ -f "scripts/validate-project.sh" ]; then
+            echo "🚀 Ejecutando script de validación local..."
+            bash scripts/validate-project.sh
+          else
+            echo "❌ Error: No se encontró validate-project.sh en .ai/agents/scripts/ ni en scripts/"
+            exit 1
+          fi

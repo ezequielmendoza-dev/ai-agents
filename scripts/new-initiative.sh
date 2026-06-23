@@ -1,0 +1,220 @@
+#!/usr/bin/env bash
+
+# ==============================================================================
+# new-initiative.sh — ai-agents Initiative Bootstrapper
+# ==============================================================================
+# Automatiza el bootstrap de una nueva feature (FEAT) o bug (BUG) en la carpeta
+# .ai/features/ y actualiza el registro de IDs en .ai/context.md.
+# ==============================================================================
+
+set -euo pipefail
+
+# Colores para la consola
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # Sin color
+
+# 1. Determinar rutas y directorios
+CWD="$(pwd)"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+AI_AGENTS_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Buscar la raíz del proyecto (donde debería estar la carpeta .ai/)
+PROJECT_ROOT=""
+if [ -d "$CWD/.ai" ]; then
+    PROJECT_ROOT="$CWD"
+elif [ -d "$CWD/../.ai" ]; then
+    PROJECT_ROOT="$(cd "$CWD/.." && pwd)"
+elif [ -d "$CWD/../../.ai" ]; then
+    PROJECT_ROOT="$(cd "$CWD/../.." && pwd)"
+else
+    # Si no se encuentra, usar el CWD pero advertir
+    PROJECT_ROOT="$CWD"
+fi
+
+echo -e "${BLUE}====================================================${NC}"
+echo -e "${BLUE}   🤖 Generador de Iniciativas (ai-agents OS)       ${NC}"
+echo -e "${BLUE}====================================================${NC}"
+
+# Validar que existe la carpeta .ai/
+if [ ! -d "$PROJECT_ROOT/.ai" ]; then
+    echo -e "${RED}Error: No se encontró la carpeta de configuración documental (.ai/) en la raíz del proyecto: $PROJECT_ROOT${NC}"
+    echo -e "Asegúrate de ejecutar este script desde la raíz del proyecto o haber corrido primero 'setup-ide.sh'."
+    exit 1
+fi
+
+# Variables de la iniciativa
+TYPE=""
+ID=""
+SLUG=""
+
+# Determinar modo de ejecución (argumentos vs interactivo)
+if [ "$#" -ge 3 ]; then
+    # Modo argumentos
+    TYPE=$(echo "$1" | tr '[:lower:]' '[:upper:]')
+    ID="$2"
+    SLUG="$3"
+else
+    # Modo interactivo
+    echo "Selecciona el tipo de iniciativa:"
+    echo "1) Nueva Feature (FEAT)"
+    echo "2) Corrección de Bug (BUG)"
+    read -p "Ingresa tu opción (1-2): " type_choice
+    
+    if [ "$type_choice" = "1" ]; then
+        TYPE="FEAT"
+    elif [ "$type_choice" = "2" ]; then
+        TYPE="BUG"
+    else
+        echo -e "${RED}Opción inválida. Cancelando.${NC}"
+        exit 1
+    fi
+    
+    # Intentar sugerir el siguiente ID analizando context.md
+    SUGGESTED_ID=""
+    CONTEXT_FILE="$PROJECT_ROOT/.ai/context.md"
+    if [ -f "$CONTEXT_FILE" ]; then
+        # Buscar la línea correspondiente (e.g. - Último FEAT asignado: FEAT-012)
+        LAST_ASSIGNED=$(grep -i "Último $TYPE asignado:" "$CONTEXT_FILE" | grep -oE "$TYPE-[0-9]+" | cut -d'-' -f2 || true)
+        if [ -n "$LAST_ASSIGNED" ]; then
+            # Eliminar ceros a la izquierda para sumar 1
+            NUM=$((10#$LAST_ASSIGNED + 1))
+            SUGGESTED_ID=$(printf "%03d" "$NUM")
+            echo -e "${GREEN}✓ Detectado último ID en context.md. ID sugerido: $SUGGESTED_ID${NC}"
+        fi
+    fi
+    
+    # Solicitar ID
+    if [ -n "$SUGGESTED_ID" ]; then
+        read -p "Ingresa el ID numérico de 3 dígitos [Presiona Enter para usar $SUGGESTED_ID]: " input_id
+        ID=${input_id:-$SUGGESTED_ID}
+    else
+        read -p "Ingresa el ID numérico de 3 dígitos (ej: 001): " ID
+    fi
+    
+    # Solicitar slug
+    read -p "Ingresa el slug descriptivo en kebab-case (ej: login-seguro): " SLUG
+fi
+
+# 2. Validar formatos
+if [[ ! "$TYPE" =~ ^(FEAT|BUG)$ ]]; then
+    echo -e "${RED}Error: El tipo debe ser FEAT o BUG.${NC}"
+    exit 1
+fi
+
+if [[ ! "$ID" =~ ^[0-9]{3}$ ]]; then
+    echo -e "${RED}Error: El ID debe ser un número de exactamente 3 dígitos (ej: 001, 023).${NC}"
+    exit 1
+fi
+
+# Validar slug (solo minúsculas, números y guiones)
+if [[ ! "$SLUG" =~ ^[a-z0-9-]+$ ]]; then
+    echo -e "${YELLOW}Advertencia: El slug debe estar en kebab-case (ej: mi-nueva-feature).${NC}"
+    read -p "¿Deseas corregirlo automáticamente a kebab-case? (s/n): " fix_slug
+    if [[ "$fix_slug" =~ ^[sS]$ ]]; then
+        # Convertir a minúsculas, reemplazar espacios/subguiones por guiones, quitar caracteres especiales
+        SLUG=$(echo "$SLUG" | tr '[:upper:]' '[:lower:]' | sed 's/[_ ]/-/g' | sed 's/[^a-z0-9-]//g' | sed 's/-\{1,\}/-/g')
+        echo -e "${GREEN}✓ Slug formateado a: $SLUG${NC}"
+    else
+        echo -e "${RED}Error: Slug inválido.${NC}"
+        exit 1
+    fi
+fi
+
+INITIATIVE_NAME="${TYPE}-${ID}-${SLUG}"
+TARGET_DIR="$PROJECT_ROOT/.ai/features/$INITIATIVE_NAME"
+
+# 3. Verificar si ya existe
+if [ -d "$TARGET_DIR" ]; then
+    echo -e "${RED}Error: El directorio de la iniciativa ya existe en: $TARGET_DIR${NC}"
+    exit 1
+fi
+
+# 4. Crear carpetas
+echo -e "\n${BLUE}Creando estructura para $INITIATIVE_NAME...${NC}"
+mkdir -p "$TARGET_DIR"
+
+# Compatibilidad de sed inplace entre macOS (Darwin) y Linux
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    SED_INPLACE=(sed -i '')
+else
+    SED_INPLACE=(sed -i)
+fi
+
+# Origen de plantillas
+TEMPLATES_DIR="$AI_AGENTS_ROOT/templates"
+
+if [ "$TYPE" = "FEAT" ]; then
+    # Copiar especificaciones para Features
+    [ -f "$TEMPLATES_DIR/feature-spec.md" ] && cp "$TEMPLATES_DIR/feature-spec.md" "$TARGET_DIR/spec.md"
+    [ -f "$TEMPLATES_DIR/ui-design-spec.md" ] && cp "$TEMPLATES_DIR/ui-design-spec.md" "$TARGET_DIR/ui-design.md"
+    [ -f "$TEMPLATES_DIR/architecture-spec.md" ] && cp "$TEMPLATES_DIR/architecture-spec.md" "$TARGET_DIR/architecture.md"
+    [ -f "$TEMPLATES_DIR/qa-report.md" ] && cp "$TEMPLATES_DIR/qa-report.md" "$TARGET_DIR/qa.md"
+    
+    # Crear decision.md inicial
+    cat << EOF > "$TARGET_DIR/decision.md"
+# Registro de Decisiones - $INITIATIVE_NAME
+
+Este documento registra las decisiones técnicas puntuales tomadas para esta feature.
+Si una decisión aplica globalmente al sistema, debe ser promovida a .ai/decisions.md (ADR) al cerrar la feature.
+
+## Decisiones Locales
+- Ninguna decisión registrada aún.
+EOF
+
+    # Reemplazar placeholders en los archivos copiados
+    for f in "$TARGET_DIR"/spec.md "$TARGET_DIR"/ui-design.md "$TARGET_DIR"/architecture.md "$TARGET_DIR"/qa.md; do
+        if [ -f "$f" ]; then
+            "${SED_INPLACE[@]}" "s/FEAT-XXX/$TYPE-$ID/g" "$f"
+            "${SED_INPLACE[@]}" "s/\[nombre\]/$SLUG/g" "$f"
+        fi
+    done
+    echo -e "${GREEN}✓ Creados archivos de feature: spec.md, ui-design.md, architecture.md, qa.md, decision.md${NC}"
+
+elif [ "$TYPE" = "BUG" ]; then
+    # Copiar especificaciones para Bugs
+    [ -f "$TEMPLATES_DIR/bug-report.md" ] && cp "$TEMPLATES_DIR/bug-report.md" "$TARGET_DIR/bug-report.md"
+    [ -f "$TEMPLATES_DIR/qa-report.md" ] && cp "$TEMPLATES_DIR/qa-report.md" "$TARGET_DIR/qa.md"
+    
+    # Reemplazar placeholders
+    for f in "$TARGET_DIR"/bug-report.md "$TARGET_DIR"/qa.md; do
+        if [ -f "$f" ]; then
+            "${SED_INPLACE[@]}" "s/BUG-XXX/$TYPE-$ID/g" "$f"
+            "${SED_INPLACE[@]}" "s/\[nombre\]/$SLUG/g" "$f"
+        fi
+    done
+    echo -e "${GREEN}✓ Creados archivos de bug: bug-report.md, qa.md${NC}"
+fi
+
+# 5. Actualizar .ai/context.md
+CONTEXT_FILE="$PROJECT_ROOT/.ai/context.md"
+if [ -f "$CONTEXT_FILE" ]; then
+    echo -e "\n${BLUE}Actualizando registro de IDs en .ai/context.md...${NC}"
+    
+    # Si no existe la sección ## Registro de IDs, añadirla al final
+    if ! grep -q "## Registro de IDs" "$CONTEXT_FILE"; then
+        cat << 'EOF' >> "$CONTEXT_FILE"
+
+## Registro de IDs
+- Último FEAT asignado: FEAT-000
+- Último BUG asignado: BUG-000
+- Último ARCH asignado: ARCH-000
+EOF
+        echo -e "${YELLOW}! Sección '## Registro de IDs' agregada al final de context.md${NC}"
+    fi
+    
+    # Reemplazar el último asignado del tipo seleccionado
+    "${SED_INPLACE[@]}" "s/- Último $TYPE asignado:.*/- Último $TYPE asignado: $TYPE-$ID/g" "$CONTEXT_FILE"
+    echo -e "${GREEN}✓ Registrado $TYPE-$ID como el último asignado en context.md.${NC}"
+else
+    echo -e "${YELLOW}Advertencia: No se encontró el archivo .ai/context.md. No se pudo actualizar el registro de IDs.${NC}"
+fi
+
+echo -e "\n${GREEN}====================================================${NC}"
+echo -e "${GREEN}   🎉 ¡Iniciativa $INITIATIVE_NAME inicializada!      ${NC}"
+echo -e "${GREEN}====================================================${NC}"
+echo -e "Carpeta: ${YELLOW}.ai/features/$INITIATIVE_NAME/${NC}"
+echo -e "Comienza tu flujo de trabajo instanciando los agentes recomendados."
+echo -e "===================================================="

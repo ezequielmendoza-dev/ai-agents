@@ -98,12 +98,27 @@ Los templates se encuentran en `.ai/agents/templates/` y deben usarse como base 
 
 Antes de un release o revisión, verificar los checklists en `.ai/agents/checklists/`:
 
-| Checklist | Área |
+| Checklist | Área / Propósito |
 | :--- | :--- |
-| `frontend-review.md` | Revisión de código frontend |
+| `frontend-review.md` | Revisión de código frontend, semántica HTML y responsividad |
 | `ui-review.md` | Revisión de UI/UX, consistencia visual y accesibilidad |
-| `backend-review.md` | Revisión de código backend |
-| `database-review.md` | Revisión de base de datos |
+| `backend-review.md` | Revisión de código backend, APIs y manejo de errores |
+| `database-review.md` | Revisión de base de datos, índices y consistencia de datos |
+| `security-review.md` | Auditoría de seguridad: autenticación, validación de datos y secretos |
+| `performance-review.md` | Validación de rendimiento: optimizaciones, consultas lentas y leaks |
+| `release-review.md` | Checklist operacional para lanzamientos seguros y planes de rollback |
+
+---
+
+## ⚙️ Scripts de Automatización
+
+El proyecto cuenta con herramientas en `.ai/agents/scripts/` para simplificar flujos comunes de desarrollo:
+
+| Script | Uso / Propósito |
+| :--- | :--- |
+| `setup-ide.sh` | Regenerar configuraciones de IDEs o inicializar carpetas: `bash .ai/agents/scripts/setup-ide.sh` |
+| `new-initiative.sh` | Crear nueva feature o bug automáticamente: `bash .ai/agents/scripts/new-initiative.sh <FEAT\|BUG> <ID> <slug>` |
+| `validate-project.sh` | Validar conformidad del proyecto local con las reglas documentales: `bash .ai/agents/scripts/validate-project.sh` |
 
 ---
 
