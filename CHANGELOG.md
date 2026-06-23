@@ -6,6 +6,18 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [1.2.0] — 2026-06-23
+
+### Agregado
+- `templates/ide-configs/` — Plantillas de configuración para IDEs de IA como Cursor (`.cursorrules`), Claude Code (`CLAUDE.md`), Windsurf (`.windsurfrules`), Cline (`.clinerules`), y Copilot (`copilot-instructions.md`).
+- `scripts/setup-ide.sh` — Script automatizado interactivo para inicializar la estructura `.ai/` y copiar las plantillas de configuración de IDEs de IA en el proyecto.
+- `docs/project-integration.md` — Guía detallada para integrar `ai-agents` como submódulo Git.
+
+### Modificado
+- `README.md` — Reescrita la guía de integración como un paso a paso detallado y limpio que detalla la estructura y el uso del script `setup-ide.sh`.
+
+---
+
 ## [1.1.0] — 2026-06-22
 
 ### Agregado

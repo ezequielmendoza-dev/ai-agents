@@ -1,0 +1,37 @@
+# Reglas de Cline / Roo-Code — ai-agents OS
+
+> **Importante:** Este archivo contiene instrucciones específicas para Cline (Roo-Code).
+> Para la guía completa de roles, workflows y reglas documentales, consultar `AGENTS.md` en la raíz del proyecto.
+
+---
+
+## 📋 Comportamiento General
+
+1. **Leer contexto antes de actuar.** Siempre comenzar leyendo `.ai/context.md` para entender el proyecto.
+2. **Seguir el sistema de agentes.** Consultar `AGENTS.md` para conocer los roles, workflows y reglas documentales.
+3. **Adoptar el rol correcto.** Según la fase de la tarea actual, leer y actuar conforme al archivo del rol correspondiente en `.ai/agents/roles/`.
+4. **Respetar la jerarquía documental.** No crear documentos fuera de `.ai/features/FEAT-NNN-slug/` salvo actualización de documentos permanentes.
+
+---
+
+## ⚙️ Reglas Específicas de Cline / Roo-Code
+
+### Control de Costos y Tokens
+- Ser eficiente con el contexto. No leer archivos completos si solo se necesita una sección específica.
+- Antes de leer múltiples archivos, evaluar cuáles son estrictamente necesarios para la tarea.
+- Priorizar ediciones quirúrgicas (search & replace) sobre reescrituras completas de archivos.
+
+### Aprobación de Acciones
+- Para operaciones de escritura de archivos, presentar un resumen claro del cambio propuesto.
+- Para comandos de terminal, explicar qué hace el comando y por qué es necesario antes de solicitar aprobación.
+- Agrupar cambios relacionados en una sola solicitud de aprobación cuando sea posible.
+
+### Modo de Operación
+- En **modo Plan**, enfocarse en analizar y proponer. No ejecutar cambios.
+- En **modo Act**, ejecutar los cambios aprobados de forma completa y verificable.
+- En **modo Auto-approve**, mantener las mismas precauciones pero documentar cada acción realizada.
+
+### Gestión de Archivos
+- Al crear archivos nuevos, verificar primero que no exista un archivo equivalente (Regla R1 de `AGENTS.md`).
+- No dejar implementaciones parciales o `// TODO` salvo indicación explícita del usuario.
+- Verificar que los archivos existan antes de intentar editarlos.

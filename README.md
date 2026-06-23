@@ -67,7 +67,14 @@ ai-agents/
 │   ├── prompt-guide.md        # Guía de prompts para usar los agentes
 │   └── README.md
 │
-├── templates/                 # Plantillas reutilizables para documentos de proyecto
+├── templates/                 # Plantillas reutilizables
+│   ├── ide-configs/           # 🆕 Configuraciones para IDEs de IA
+│   │   ├── AGENTS.md          # Fuente de verdad: roles, workflows, reglas
+│   │   ├── CLAUDE.md          # Instrucciones para Claude Code CLI
+│   │   ├── cursorrules        # Reglas para Cursor IDE
+│   │   ├── windsurfrules      # Reglas para Windsurf (Cascade)
+│   │   ├── clinerules         # Reglas para Cline / Roo-Code
+│   │   └── copilot-instructions.md  # Instrucciones para GitHub Copilot
 │   ├── feature-spec.md        # Especificación funcional
 │   ├── architecture-spec.md   # Diseño técnico
 │   ├── technical-task.md      # Tarea para el Developer
@@ -88,6 +95,9 @@ ai-agents/
 │   ├── release.md             # Proceso de deployment a producción
 │   └── architecture-change.md # Cambios estructurales del sistema
 │
+├── scripts/                   # 🆕 Scripts de automatización
+│   └── setup-ide.sh           # Instalador de configuración para IDEs de IA
+│
 ├── docs/                      # Documentación del repositorio
 │   ├── agent-definitions.md   # Estándar de diseño de agentes
 │   ├── repository-structure.md
@@ -99,8 +109,9 @@ ai-agents/
 │   ├── naming-conventions.md       # 📋 Convenciones FEAT-001, BUG-001, ARCH-001
 │   └── project-ai-structure.md     # 📋 Guía de la estructura .ai/ por proyecto
 │
-├── .gitignore
+├── AGENTS.md                  # Guía de contribución a este repo
 ├── CHANGELOG.md               # Historial de cambios del repositorio
+├── .gitignore
 └── README.md
 ```
 
@@ -195,55 +206,137 @@ Ver [`docs/naming-conventions.md`](docs/naming-conventions.md) para las convenci
 
 ---
 
-## 💻 Integración con IDEs
+## 🚀 Guía de Integración en tu Proyecto
 
-### Cursor / Windsurf / Cline
+Esta sección explica cómo integrar `ai-agents` en cualquier proyecto de desarrollo para que la IA de tu IDE pueda instanciar los agentes, seguir los workflows y respetar el sistema documental.
 
-Cada proyecto que use `ai-agents` debe tener una carpeta `.ai/` en su raíz:
+### Paso 1: Agregar como Git Submodule
+
+```bash
+# Desde la raíz de tu proyecto
+git submodule add https://github.com/ezequielmendoza-dev/ai-agents.git .ai/agents
+git commit -m "chore: add ai-agents as submodule in .ai/agents"
+```
+
+Esto crea la carpeta `.ai/agents/` con todo el contenido de este repositorio, y un archivo `.gitmodules` en la raíz de tu proyecto.
+
+> **¿Ya clonaste un proyecto que lo tiene?** Ejecutá:
+> ```bash
+> git submodule update --init --recursive
+> ```
+
+### Paso 2: Ejecutar el Instalador
+
+```bash
+# Desde la raíz de tu proyecto
+bash .ai/agents/scripts/setup-ide.sh
+```
+
+El script interactivo [`setup-ide.sh`](scripts/setup-ide.sh) te guiará a través de 3 pasos:
+
+#### 2.1 — Inicialización de la estructura `.ai/`
+
+Crea automáticamente la memoria del proyecto:
 
 ```
 mi-proyecto/
 └── .ai/
-    ├── context.md              # Contexto del proyecto
-    ├── business-rules.md       # Reglas de negocio del dominio
-    ├── architecture.md         # Arquitectura actual
-    ├── decisions.md            # Log de decisiones
-    ├── glossary.md             # Glosario del dominio
-    ├── features/               # Trabajo activo por feature
-    ├── archive/                # Features completadas (read-only)
-    ├── sessions/               # Sesiones de trabajo guardadas
-    └── agents -> ../ai-agents/ # Symlink o submodule al repo compartido
+    ├── agents/              ← Git Submodule (este repositorio)
+    ├── context.md           ← Identidad del proyecto (stack, módulos, convenciones)
+    ├── business-rules.md    ← Reglas de negocio permanentes del dominio
+    ├── architecture.md      ← Arquitectura actual del sistema en producción
+    ├── decisions.md         ← Log de decisiones técnicas (ADRs)
+    ├── glossary.md          ← Glosario del dominio
+    ├── features/            ← Trabajo activo por feature (FEAT-NNN-slug/)
+    ├── archive/             ← Features completadas (read-only)
+    └── sessions/            ← Sesiones de trabajo locales (no se commitea)
 ```
 
-### Reglas de Cursor (`.cursorrules`)
+#### 2.2 — Generación de archivos de configuración para IDEs
+
+El script te pregunta qué IDEs usás y copia los archivos correspondientes a la raíz de tu proyecto:
+
+| Opción | Archivo generado | IDE | Qué hace |
+| :---: | :--- | :--- | :--- |
+| 1 | `.cursorrules` | Cursor | Reglas para Composer, Chat y edición inline |
+| 2 | `CLAUDE.md` | Claude Code CLI | Comandos del proyecto, reglas de terminal |
+| 3 | `.windsurfrules` | Windsurf | Reglas para flujos de Cascade |
+| 4 | `.clinerules` | Cline / Roo-Code | Control de costos, aprobación de acciones |
+| 5 | `.github/copilot-instructions.md` | GitHub Copilot | Autocompletado, PR review |
+| 6 | `AGENTS.md` | Todos | **Fuente de verdad**: roles, workflows, reglas, prompts |
+| 7 | Todos los anteriores | — | Instala todo de una vez |
+
+> **Arquitectura DRY:** `AGENTS.md` centraliza toda la información de roles, workflows, reglas documentales y prompts de activación. Los archivos específicos de cada IDE (`cursorrules`, `CLAUDE.md`, etc.) solo contienen instrucciones exclusivas de esa herramienta y referencian a `AGENTS.md` como fuente de verdad.
+
+#### 2.3 — Configuración de `.gitignore`
+
+Agrega automáticamente `.ai/sessions/` al `.gitignore` de tu proyecto para que las sesiones de trabajo locales no se commiteen.
+
+### Paso 3: Completar el contexto del proyecto
+
+Abrí `.ai/context.md` y completá la información técnica de tu proyecto. Este archivo es **la memoria del proyecto** — es lo primero que cualquier agente de IA leerá antes de actuar.
+
+Las secciones mínimas obligatorias son:
 
 ```markdown
-Cuando trabajes en este proyecto:
-1. Lee `.ai/context.md` para entender el proyecto
-2. Lee `.ai/architecture.md` para entender la arquitectura actual
-3. Consulta `.ai/business-rules.md` antes de definir comportamientos
-4. Usa los agentes de `.ai/agents/roles/` según el tipo de tarea
-5. Sigue los workflows de `.ai/agents/workflows/`
-6. Trabaja dentro de `.ai/features/FEAT-XXX/` para la feature actual
-7. Nunca crees documentos fuera de `.ai/features/FEAT-XXX/` salvo que corresponda actualizar un documento permanente
+## Nombre y tipo del proyecto
+## Stack tecnológico (con versiones)
+## Módulos existentes y su estado
+## Convenciones del proyecto (naming, estructura)
+## Decisiones técnicas importantes
+## Restricciones conocidas
 ```
 
----
+Ver [`templates/project-context.md`](templates/project-context.md) como referencia completa.
 
-## 🔗 Integración con Proyectos vía Git Submodules
+### Paso 4: Empezar a trabajar con la IA
+
+Una vez configurado, tu IDE de IA puede:
+
+1. **Leer la memoria del proyecto** — `.ai/context.md`, `.ai/architecture.md`, `.ai/business-rules.md`
+2. **Asumir roles especializados** — leyendo los archivos de `.ai/agents/roles/`
+3. **Seguir los workflows** — según el tipo de tarea (`new-feature`, `bug-fix`, `refactor`, etc.)
+4. **Usar templates y checklists** — para crear documentos y validar calidad
+
+Para ejemplos de prompts de activación de agentes, ver la sección "Cómo Instanciar un Agente" en `AGENTS.md` o la guía detallada en [`roles/prompt-guide.md`](roles/prompt-guide.md).
+
+### Resultado Final
+
+Después del setup, tu proyecto tendrá esta estructura:
+
+```
+mi-proyecto/
+├── src/                     # Tu código
+├── .ai/
+│   ├── agents/              # ← Submódulo ai-agents (este repo)
+│   ├── context.md           # ← Completado por vos
+│   ├── business-rules.md
+│   ├── architecture.md
+│   ├── decisions.md
+│   ├── glossary.md
+│   └── features/
+│       └── FEAT-001-slug/   # ← Trabajo activo
+├── AGENTS.md                # ← Guía de agentes para la IA
+├── .cursorrules             # ← Reglas de Cursor (o el IDE que elijas)
+├── CLAUDE.md                # ← Reglas de Claude Code
+└── .gitignore               # ← Actualizado con .ai/sessions/
+```
+
+### Mantener los Agentes Actualizados
 
 ```bash
-# Agregar ai-agents como submodule en un proyecto
-git submodule add https://github.com/ezequielmendoza-dev/ai-agents.git .ai/agents
-
-# Inicializar en un proyecto clonado
-git submodule update --init --recursive
-
-# Actualizar a la última versión
+# Actualizar al último commit de ai-agents
 git submodule update --remote .ai/agents
+git add .ai/agents
+git commit -m "chore: update ai-agents submodule to latest"
+
+# Pinear a una versión específica (recomendado para producción)
+cd .ai/agents && git checkout v2.0.0 && cd ../..
+git add .ai/agents
+git commit -m "chore: pin ai-agents to v2.0.0"
 ```
 
-Ver [`docs/project-integration.md`](docs/project-integration.md) para instrucciones completas.
+Ver [`docs/project-integration.md`](docs/project-integration.md) para troubleshooting y estrategias de actualización por tipo de proyecto.
 
 ---
 
@@ -309,7 +402,7 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 | Campo | Valor |
 |-------|-------|
-| Versión | `v1.1.0` |
+| Versión | `v1.2.0` |
 | Estado | Estable |
 | Última actualización | Junio 2026 |
 

@@ -1,0 +1,39 @@
+# Reglas de Cursor — ai-agents OS
+
+> **Importante:** Este archivo contiene instrucciones específicas para Cursor IDE.
+> Para la guía completa de roles, workflows y reglas documentales, consultar `AGENTS.md` en la raíz del proyecto.
+
+---
+
+## 📋 Comportamiento General
+
+1. **Leer contexto antes de actuar.** Siempre comenzar leyendo `.ai/context.md` para entender el proyecto.
+2. **Seguir el sistema de agentes.** Consultar `AGENTS.md` para conocer los roles, workflows y reglas documentales.
+3. **Adoptar el rol correcto.** Según la fase de la tarea actual, leer y actuar conforme al archivo del rol correspondiente en `.ai/agents/roles/`.
+4. **Respetar la jerarquía documental.** No crear documentos fuera de `.ai/features/FEAT-NNN-slug/` salvo actualización de documentos permanentes.
+
+---
+
+## ⚙️ Reglas Específicas de Cursor
+
+### Composer (Agente)
+- Cuando se trabaje en modo Composer (agente), ejecutar las tareas de forma completa: no dejar `// TODO` ni implementaciones parciales salvo que el usuario lo indique.
+- Al crear archivos nuevos, verificar primero que no exista un archivo equivalente (Regla R1 de `AGENTS.md`).
+- Si una tarea requiere cambios en múltiples archivos, agrupar los cambios lógicamente y explicar el orden de ejecución.
+
+### Chat
+- En modo Chat, priorizar respuestas concisas y contextualmente relevantes.
+- Referenciar archivos del proyecto usando `@` cuando sea útil para el usuario (ej: `@.ai/context.md`).
+- Si el usuario pregunta sobre la arquitectura o reglas de negocio, citar directamente los documentos permanentes de `.ai/`.
+
+### Edición Inline (Cmd+K)
+- Mantener el estilo del código circundante.
+- No alterar imports o funciones que no estén directamente relacionadas con la edición solicitada.
+- Respetar las convenciones de naming definidas en `.ai/context.md`.
+
+### Archivos de Contexto
+- Si Cursor solicita archivos adicionales de contexto, priorizar en este orden:
+  1. `.ai/context.md`
+  2. `.ai/architecture.md`
+  3. `.ai/business-rules.md`
+  4. El archivo del rol activo (ej: `.ai/agents/roles/developer.md`)

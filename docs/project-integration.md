@@ -202,58 +202,64 @@ git commit -m "docs: update project context - add bookings module"
 
 ---
 
-## 6. Integración con IDEs
+## 6. Integración con IDEs de IA
 
-### 6.1 Cursor IDE
+Para que el asistente de IA en tu IDE entienda el flujo y los agentes de `ai-agents`, debes configurar las reglas correspondientes. Este repositorio incluye un instalador interactivo para automatizar este proceso.
 
-Crear `.cursorrules` en la raíz del proyecto:
+### 6.1 Instanciación Automatizada (Recomendado)
 
-```markdown
-# Reglas para Cursor en este proyecto
-
-## Contexto del proyecto
-Antes de cualquier tarea, lee `.ai/context.md` para entender el proyecto.
-
-## Agentes disponibles
-Los agentes están en `.ai/agents/roles/`. Úsalos según el tipo de tarea:
-- Nueva feature → `.ai/agents/roles/analyst.md`
-- Diseño técnico → `.ai/agents/roles/architect.md`
-- Supervisión → `.ai/agents/roles/tech-lead.md`
-- Implementación → `.ai/agents/roles/developer.md`
-- Validación → `.ai/agents/roles/qa.md`
-- CI/CD/Deploy → `.ai/agents/roles/devops.md`
-
-## Workflow estándar
-Seguir el pipeline: Analyst → Architect → Tech Lead → Developer → QA
-
-## Templates
-Los templates están en `.ai/agents/templates/`
-
-## Guía de prompts
-Ver `.ai/agents/roles/prompt-guide.md` para ejemplos de activación de agentes.
-```
-
-### 6.2 Windsurf / Cline / Continue
-
-Estos IDEs leen archivos de contexto de distintas formas. La estructura `.ai/` es compatible con todos:
+Una vez que has añadido `ai-agents` como submódulo Git en `.ai/agents/`, ejecuta el siguiente comando desde la raíz de tu proyecto:
 
 ```bash
-# En Windsurf — referenciar el agente directamente
-@.ai/agents/roles/analyst.md
-
-# En Cline — incluir como documento de contexto
-/add .ai/context.md
-/add .ai/agents/roles/analyst.md
+bash .ai/agents/scripts/setup-ide.sh
 ```
 
-### 6.3 VS Code (con extensiones de AI)
+El script te ofrecerá:
+*   Crear automáticamente las carpetas del sistema documental (`.ai/features/`, `.ai/archive/`, `.ai/sessions/`).
+*   Inicializar archivos clave como `.ai/context.md` y `.ai/business-rules.md`.
+*   Generar los archivos de reglas en la raíz de tu proyecto según el IDE que uses.
 
-Agregar a `.vscode/settings.json`:
+---
+
+### 6.2 Archivos de Reglas Generados por IDE
+
+A continuación se detallan los archivos de reglas que se pueden generar:
+
+#### A. Cursor (`.cursorrules`)
+Configura las reglas para Cursor (Composer y Chat). Instruye al modelo para que:
+1. Consulte siempre la memoria permanente en `.ai/` (`context.md`, `business-rules.md`, `architecture.md`).
+2. Adopte el rol correcto según la fase de desarrollo (Analyst, Architect, Tech Lead, Developer, QA).
+3. Escriba las especificaciones y diseños técnicos de nuevas características estrictamente dentro de `.ai/features/FEAT-NNN-slug/`.
+
+#### B. Claude Code (`CLAUDE.md`)
+Reglas específicas para la herramienta CLI **Claude Code** de Anthropic. Contiene:
+*   Comandos rápidos del proyecto (build, test, lint, format).
+*   Instrucciones para respetar el sistema documental y leer `.ai/context.md` antes de escribir código.
+*   Enrutamiento de tareas a través de los agentes definidos en `.ai/agents/roles/`.
+
+#### C. Windsurf (`.windsurfrules`)
+Configura el agente Cascade de Windsurf para que actúe según los roles y siga los workflows definidos en `.ai/agents/workflows/`.
+
+#### D. Cline & Roo-Code (`.clinerules`)
+Archivo de reglas para Cline/Roo-Code que restringe al agente para que no cree archivos redundantes y respete las restricciones documentales R1-R5.
+
+#### E. GitHub Copilot (`.github/copilot-instructions.md`)
+Reglas para guiar a GitHub Copilot Chat dentro de VS Code o Visual Studio, asegurando que siga las convenciones técnicas descritas en `.ai/context.md`.
+
+#### F. Guía General (`AGENTS.md`)
+Un documento general para humanos e IAs que explica cómo está organizado el sistema multi-agente en el proyecto, listando todos los agentes disponibles, los workflows y cómo invocar cada rol con prompts rápidos.
+
+---
+
+### 6.3 Configuración de VS Code (Opcional)
+
+Si usas extensiones clásicas de IA en VS Code, puedes añadir a `.vscode/settings.json`:
 
 ```json
 {
   "ai.contextFiles": [
     ".ai/context.md",
+    "AGENTS.md",
     ".ai/agents/roles/prompt-guide.md"
   ]
 }
