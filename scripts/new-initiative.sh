@@ -9,30 +9,17 @@
 
 set -euo pipefail
 
-# Colores para la consola
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m' # Sin color
+# Determinar directorio del script e importar utilidades comunes
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ -f "$SCRIPT_DIR/common.sh" ]; then
+    source "$SCRIPT_DIR/common.sh"
+else
+    echo "Error: No se encontró common.sh en $SCRIPT_DIR"
+    exit 1
+fi
 
 # 1. Determinar rutas y directorios
-CWD="$(pwd)"
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-AI_AGENTS_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-
-# Buscar la raíz del proyecto (donde debería estar la carpeta .ai/)
-PROJECT_ROOT=""
-if [ -d "$CWD/.ai" ]; then
-    PROJECT_ROOT="$CWD"
-elif [ -d "$CWD/../.ai" ]; then
-    PROJECT_ROOT="$(cd "$CWD/.." && pwd)"
-elif [ -d "$CWD/../../.ai" ]; then
-    PROJECT_ROOT="$(cd "$CWD/../.." && pwd)"
-else
-    # Si no se encuentra, usar el CWD pero advertir
-    PROJECT_ROOT="$CWD"
-fi
+PROJECT_ROOT="$(detect_project_root)"
 
 echo -e "${BLUE}====================================================${NC}"
 echo -e "${BLUE}   🤖 Generador de Iniciativas (ai-agents OS)       ${NC}"

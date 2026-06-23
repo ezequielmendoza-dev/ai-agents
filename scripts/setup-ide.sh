@@ -9,35 +9,32 @@
 
 set -euo pipefail
 
-# Colores para la consola
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m' # Sin color
+# Determinar directorio del script e importar utilidades comunes
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ -f "$SCRIPT_DIR/common.sh" ]; then
+    source "$SCRIPT_DIR/common.sh"
+else
+    echo "Error: No se encontró common.sh en $SCRIPT_DIR"
+    exit 1
+fi
 
 echo -e "${BLUE}====================================================${NC}"
 echo -e "${BLUE}   🤖 Instalador de Configuración de IDEs de IA      ${NC}"
-echo -e "${BLUE}            ai-agents OS v1.6.2                     ${NC}"
+echo -e "${BLUE}            ai-agents OS v1.6.3                     ${NC}"
 echo -e "${BLUE}====================================================${NC}"
 
 # 1. Determinar rutas y directorios
-CWD="$(pwd)"
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-AI_AGENTS_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJECT_ROOT="$(detect_project_root)"
 
-# Intentar detectar si ai-agents está como submódulo en .ai/agents
-if [ -d "$CWD/.ai/agents" ]; then
-    PROJECT_ROOT="$CWD"
+# Determinar si está en modo submódulo
+if [ -d "$PROJECT_ROOT/.ai/agents" ]; then
     IN_SUBMODULE=true
     echo -e "${GREEN}✓ Detectado proyecto raíz en: ${PROJECT_ROOT}${NC}"
     echo -e "${GREEN}✓ ai-agents está integrado como submódulo Git.${NC}"
-elif [ "$CWD" = "$AI_AGENTS_ROOT" ]; then
-    PROJECT_ROOT="$CWD"
+elif [ "$PROJECT_ROOT" = "$AI_AGENTS_ROOT" ]; then
     IN_SUBMODULE=false
     echo -e "${YELLOW}! Ejecutando directamente en el repositorio ai-agents (modo desarrollo).${NC}"
 else
-    PROJECT_ROOT="$CWD"
     IN_SUBMODULE=false
     echo -e "${YELLOW}! No se detectó la carpeta .ai/agents/. Usando el directorio actual como raíz del proyecto.${NC}"
 fi

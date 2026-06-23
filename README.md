@@ -99,8 +99,11 @@ ai-agents/
 │   ├── release.md             # Proceso de deployment a producción
 │   └── architecture-change.md # Cambios estructurales del sistema
 │
-├── scripts/                   # 🆕 Scripts de automatización
-│   └── setup-ide.sh           # Instalador de configuración para IDEs de IA
+├── scripts/                   # Scripts de automatización
+│   ├── common.sh              # Utilidades y variables comunes (interno)
+│   ├── setup-ide.sh           # Inicializador de estructura .ai/ y reglas de IDE
+│   ├── new-initiative.sh      # Bootstrap automático de una feature o bug
+│   └── validate-project.sh    # Validador de cumplimiento de estructura documental (R1-R5)
 │
 ├── docs/                      # Documentación del repositorio
 │   ├── agent-definitions.md   # Estándar de diseño de agentes
@@ -353,6 +356,52 @@ Ver [`docs/project-integration.md`](docs/project-integration.md) para troublesho
 
 ---
 
+## ⚙️ Scripts de Automatización
+
+El repositorio cuenta con scripts en bash (`scripts/`) para facilitar la configuración, mantenimiento y apego a la metodología de `ai-agents OS` de forma rápida y sin errores.
+
+### 🛠️ `scripts/setup-ide.sh`
+**Propósito:** Inicializar el entorno del proyecto consumidor.
+- **Paso 1:** Pregunta si se desea crear la estructura documental `.ai/` (`features/`, `archive/`, `sessions/`) y copia las plantillas permanentes iniciales (`context.md`, `business-rules.md`, `architecture.md`, `decisions.md`, `glossary.md`).
+- **Paso 2:** Genera las configuraciones específicas del IDE (`.cursorrules`, `CLAUDE.md`, `.windsurfrules`, `.clinerules`, `.github/copilot-instructions.md`, y la guía global `AGENTS.md`) de forma modular (DRY).
+- **Paso 3:** Configura el `.gitignore` del proyecto para ignorar las sesiones locales en `.ai/sessions/`.
+- **Uso:**
+  ```bash
+  bash .ai/agents/scripts/setup-ide.sh
+  ```
+
+### 🚀 `scripts/new-initiative.sh`
+**Propósito:** Automatizar la creación de una nueva iniciativa (Feature o Bug) respetando las convenciones.
+- **Modo interactivo:** Si se ejecuta sin argumentos, te guía preguntándote el tipo de iniciativa, lee `.ai/context.md` para sugerir automáticamente el siguiente ID numérico disponible (ej: si el último fue `FEAT-002`, sugiere `003`), y valida el slug en `kebab-case`.
+- **Modo directo (Argumentos):**
+  ```bash
+  bash .ai/agents/scripts/new-initiative.sh <FEAT|BUG> <ID> <slug>
+  ```
+  *Ejemplo:* `bash .ai/agents/scripts/new-initiative.sh FEAT 003 login-seguro`
+- **Archivos creados:**
+  - Para `FEAT`: Genera `spec.md`, `ui-design.md`, `architecture.md`, `qa.md` y `decision.md`.
+  - Para `BUG`: Genera `bug-report.md` y `qa.md`.
+- **Actualización:** Reemplaza los placeholders `FEAT-XXX` / `BUG-XXX` y actualiza automáticamente el registro de IDs en `.ai/context.md`.
+
+### 🔍 `scripts/validate-project.sh`
+**Propósito:** Validar el cumplimiento de la estructura de `ai-agents OS` (ideal para pipelines de CI/CD).
+- Escanea la carpeta `.ai/` buscando archivos obligatorios vacíos o faltantes.
+- Comprueba que las carpetas de iniciativas en `features/` y `archive/` cumplan estrictamente el formato de nomenclatura `(FEAT|BUG)-NNN-slug`.
+- Verifica que las carpetas de iniciativas contengan todos los archivos mandatorios.
+- Retorna un código de salida `0` si todo está en orden, o `1` si hay violaciones críticas de cumplimiento documental.
+- **Uso:**
+  ```bash
+  bash .ai/agents/scripts/validate-project.sh
+  ```
+
+### 📦 `scripts/common.sh`
+**Propósito:** Librería compartida interna (DRY).
+- Centraliza la definición de colores de salida para consola.
+- Resuelve rutas base globales (`AI_AGENTS_ROOT`, `CWD`).
+- Contiene la función lógica `detect_project_root` para ubicar la carpeta del proyecto en cualquier escenario (directo, submódulo, ejecución anidada).
+
+---
+
 ## 🧪 Ejemplos de Uso
 
 ### Crear una nueva feature
@@ -421,7 +470,7 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 | Campo | Valor |
 |-------|-------|
-| Versión | `v1.6.2` |
+| Versión | `v1.6.3` |
 | Estado | Estable |
 | Última actualización | Junio 2026 |
 

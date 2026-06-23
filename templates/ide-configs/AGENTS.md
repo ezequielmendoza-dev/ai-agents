@@ -120,6 +120,7 @@ El proyecto cuenta con herramientas en `.ai/agents/scripts/` para simplificar fl
 | `setup-ide.sh` | Regenerar configuraciones de IDEs o inicializar carpetas: `bash .ai/agents/scripts/setup-ide.sh` |
 | `new-initiative.sh` | Crear nueva feature o bug automáticamente: `bash .ai/agents/scripts/new-initiative.sh <FEAT\|BUG> <ID> <slug>` |
 | `validate-project.sh` | Validar conformidad del proyecto local con las reglas documentales: `bash .ai/agents/scripts/validate-project.sh` |
+| `common.sh` | Librería compartida de soporte (interno, DRY) |
 
 ---
 

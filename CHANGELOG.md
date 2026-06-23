@@ -4,6 +4,15 @@ Todas los cambios notables en este repositorio se documentan en este archivo.
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.6.3] — 2026-06-23
+
+### Agregado
+- `scripts/common.sh` — Creado utilitario compartido para centralizar colores de consola, cálculo de rutas base y la función de detección de directorio raíz del proyecto (`detect_project_root`).
+
+### Modificado
+- `scripts/setup-ide.sh`, `scripts/new-initiative.sh` y `scripts/validate-project.sh` — Refactorizados para consumir `common.sh`, eliminando definiciones redundantes y simplificando el código de cabecera.
+- `README.md`, `AGENTS.md` y `templates/ide-configs/AGENTS.md` — Se actualizó la estructura y se documentaron detalladamente los propósitos y modos de uso de todos los scripts de automatización.
+
 ---
 
 ## [1.6.2] — 2026-06-23
