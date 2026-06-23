@@ -6,6 +6,16 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 ---
 
+## [1.3.0] — 2026-06-23
+
+### Agregado
+- **Auto-Contextualización / Bootstrap**: Se extendió el rol del `Product Analyst` (`roles/analyst.md`) y las plantillas de configuración (`templates/ide-configs/AGENTS.md`) con la capacidad de inicializar el archivo `.ai/context.md` de forma guiada y automatizada escaneando el código y la estructura de directorios del proyecto.
+
+### Modificado
+- `README.md` — Se actualizó el Paso 3 de la guía de integración detallando cómo usar la IA del IDE para autogenerar el contexto del proyecto a partir del código existente.
+
+---
+
 ## [1.2.0] — 2026-06-23
 
 ### Agregado

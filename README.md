@@ -276,7 +276,18 @@ Agrega automáticamente `.ai/sessions/` al `.gitignore` de tu proyecto para que 
 
 Abrí `.ai/context.md` y completá la información técnica de tu proyecto. Este archivo es **la memoria del proyecto** — es lo primero que cualquier agente de IA leerá antes de actuar.
 
-Las secciones mínimas obligatorias son:
+#### 💡 Autogeneración del Contexto por la IA (Recomendado)
+Si ya tienes código en tu proyecto, en lugar de completarlo a mano, puedes pedirle a tu asistente de IA del IDE que lo autogenere analizando el codebase. 
+
+Ejecuta este prompt en el Composer/Chat de tu IDE:
+```markdown
+Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
+Estamos inicializando las herramientas de IA en este proyecto existente.
+Tu tarea es escanear los archivos de configuración del proyecto y la estructura de directorios para autogenerar el archivo `.ai/context.md` basándote en la plantilla `.ai/agents/templates/project-context.md`.
+Identifica el stack tecnológico, módulos y convenciones reales. Deja placeholders para metas de negocio o contactos y hazme preguntas directas al final de tu output si es necesario completarlos.
+```
+
+Las secciones mínimas obligatorias que generará son:
 
 ```markdown
 ## Nombre y tipo del proyecto
@@ -287,7 +298,7 @@ Las secciones mínimas obligatorias son:
 ## Restricciones conocidas
 ```
 
-Ver [`templates/project-context.md`](templates/project-context.md) como referencia completa.
+Ver [`templates/project-context.md`](templates/project-context.md) como referencia de la plantilla.
 
 ### Paso 4: Empezar a trabajar con la IA
 
@@ -402,7 +413,7 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 | Campo | Valor |
 |-------|-------|
-| Versión | `v1.2.0` |
+| Versión | `v1.3.0` |
 | Estado | Estable |
 | Última actualización | Junio 2026 |
 
