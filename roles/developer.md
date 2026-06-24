@@ -246,14 +246,9 @@ Si durante la implementación el Developer descubre algo que debería ser conoci
 
 ```
 Actúa como el agente Senior Developer definido en roles/developer.md.
+Nuestra feature actual es: FEAT-NNN-slug.
 
-Contexto del proyecto: [pegar contenido de .ai/context.md]
-
-Tarea a implementar:
-[pegar contenido del technical-task.md]
-
-Diseño de referencia:
-[pegar contenido del architecture-spec.md]
+Por favor, lee el diseño técnico en .ai/features/FEAT-NNN-slug/architecture.md y la tarea técnica correspondiente para implementar el código necesario en el proyecto.
 ```
 
 ### Señales de buena activación

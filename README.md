@@ -404,23 +404,27 @@ El repositorio cuenta con scripts en bash (`scripts/`) para facilitar la configu
 
 ## 🧪 Ejemplos de Uso
 
+> [!NOTE]
+> Gracias a las reglas del IDE (`.cursorrules`, `CLAUDE.md`, etc.), la IA lee de forma autónoma la memoria de `.ai/context.md` al ser invocada. Por lo tanto, **no necesitas pegar ni pasar el contexto del proyecto en ningún prompt**.
+
 ### Crear una nueva feature
 
 ```markdown
-# Paso 1: Asignar FEAT-NNN y crear la carpeta
+# Paso 1: Crear la estructura de la feature
+# (Puedes usar el asistente o el script `new-initiative.sh`)
 mkdir -p .ai/features/FEAT-001-nombre
 touch .ai/features/FEAT-001-nombre/spec.md
 touch .ai/features/FEAT-001-nombre/ui-design.md
 
 # Paso 2: Activar Analyst
 Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
-Contexto del proyecto: [contenido de .ai/context.md]
-Feature: FEAT-001 — [descripción del requerimiento]
+Nuestra feature actual es: FEAT-001-nombre
+Requerimiento: [descripción del requerimiento o idea de negocio]
 
 # Paso 3: Activar UI Designer
 Actúa como el agente UI Designer definido en .ai/agents/roles/ui-designer.md.
-Contexto del proyecto: [contenido de .ai/context.md]
-Especificación funcional de referencia: [contenido de .ai/features/FEAT-001-nombre/spec.md]
+Nuestra feature actual es: FEAT-001-nombre
+Genera el diseño visual en .ai/features/FEAT-001-nombre/ui-design.md basándote en la spec.md.
 ```
 
 ### Reportar un bug
@@ -428,9 +432,8 @@ Especificación funcional de referencia: [contenido de .ai/features/FEAT-001-nom
 ```markdown
 # Activar QA para documentar el bug
 Actúa como el agente QA Engineer definido en .ai/agents/roles/qa.md.
-Contexto del proyecto: [contenido de .ai/context.md]
-Necesito documentar: BUG-001
-Descripción del comportamiento incorrecto: [descripción]
+Nuestra feature actual es: BUG-001-nombre-bug
+Escribe el reporte de bug en .ai/features/BUG-001-nombre-bug/bug-report.md basándote en: [descripción del fallo]
 ```
 
 ### Revisar código o diseño
@@ -438,9 +441,8 @@ Descripción del comportamiento incorrecto: [descripción]
 ```markdown
 # Activar Tech Lead
 Actúa como el agente Tech Lead definido en .ai/agents/roles/tech-lead.md.
-Contexto del proyecto: [contenido de .ai/context.md]
-Estoy presentando para revisión: [feature-spec / arch-spec / implementación]
-[contenido del documento a revisar]
+Nuestra feature actual es: FEAT-001-nombre
+Por favor, revisa el archivo de diseño (.ai/features/FEAT-001-nombre/architecture.md) y de especificación (.ai/features/FEAT-001-nombre/spec.md).
 ```
 
 ---
@@ -470,7 +472,7 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 | Campo | Valor |
 |-------|-------|
-| Versión | `v1.6.3` |
+| Versión | `v1.6.5` |
 | Estado | Estable |
 | Última actualización | Junio 2026 |
 

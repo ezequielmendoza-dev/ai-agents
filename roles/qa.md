@@ -278,14 +278,9 @@ Si el QA descubre durante la validación:
 
 ```
 Actúa como el agente QA Engineer definido en roles/qa.md.
+Nuestra feature actual es: FEAT-NNN-slug.
 
-Contexto del proyecto: [pegar contenido de .ai/context.md]
-
-Feature spec de referencia:
-[pegar contenido del feature-spec.md]
-
-Implementación a revisar:
-[describir los cambios o pegar el output del Developer]
+Por favor, lee la especificación funcional en .ai/features/FEAT-NNN-slug/spec.md e inspecciona los cambios implementados para validar la feature y escribir el reporte de QA en .ai/features/FEAT-NNN-slug/qa.md.
 ```
 
 ### Señales de buena activación

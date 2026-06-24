@@ -145,7 +145,7 @@ Para activar un agente de IA en su rol respectivo, utilizar una de las siguiente
 Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md.
 Nuestra feature actual es: FEAT-NNN-slug
 Requerimiento original: [Descripción breve de la idea]
-Por favor, lee .ai/context.md y genera el archivo .ai/features/FEAT-NNN-slug/spec.md.
+Genera el archivo .ai/features/FEAT-NNN-slug/spec.md.
 ```
 
 ### Product Analyst (Bootstrap / Auto-Contextualización)
@@ -157,40 +157,35 @@ Actúa como el agente Product Analyst definido en .ai/agents/roles/analyst.md y 
 ```
 Actúa como el agente UI Designer definido en .ai/agents/roles/ui-designer.md.
 Nuestra feature actual es: FEAT-NNN-slug
-Lee la especificación funcional en .ai/features/FEAT-NNN-slug/spec.md y genera el diseño visual en .ai/features/FEAT-NNN-slug/ui-design.md.
+Genera el diseño visual en .ai/features/FEAT-NNN-slug/ui-design.md basándote en la especificación en .ai/features/FEAT-NNN-slug/spec.md.
 ```
 
 ### Software Architect
 ```
 Actúa como el agente Software Architect definido en .ai/agents/roles/architect.md.
-Estamos diseñando la solución para: FEAT-NNN-slug.
-Lee la especificación funcional en .ai/features/FEAT-NNN-slug/spec.md y genera el diseño
-técnico en .ai/features/FEAT-NNN-slug/architecture.md, incluyendo cualquier ADR nuevo
-que deba registrarse en .ai/decisions.md.
+Nuestra feature actual es: FEAT-NNN-slug.
+Lee la especificación funcional en .ai/features/FEAT-NNN-slug/spec.md y genera el diseño técnico en .ai/features/FEAT-NNN-slug/architecture.md, incluyendo cualquier ADR nuevo que deba registrarse en .ai/decisions.md.
 ```
 
 ### Tech Lead
 ```
 Actúa como el agente Tech Lead definido en .ai/agents/roles/tech-lead.md.
-Revisa el archivo de especificación (.ai/features/FEAT-NNN-slug/spec.md) y de diseño
-(.ai/features/FEAT-NNN-slug/architecture.md). Evalúa si cumple con las convenciones
-definidas en .ai/context.md y da tu feedback o aprobación.
+Nuestra feature actual es: FEAT-NNN-slug
+Revisa el archivo de especificación (.ai/features/FEAT-NNN-slug/spec.md) y de diseño (.ai/features/FEAT-NNN-slug/architecture.md). Evalúa si cumplen con los estándares y convenciones del proyecto y da tu feedback o aprobación.
 ```
 
 ### Senior Developer
 ```
 Actúa como el agente Senior Developer definido en .ai/agents/roles/developer.md.
-Implementa el código correspondiente a la tarea detallada en la especificación
-(.ai/features/FEAT-NNN-slug/spec.md) y el diseño técnico
-(.ai/features/FEAT-NNN-slug/architecture.md). Escribe tests y adhiérete a las guías de estilo.
+Nuestra feature actual es: FEAT-NNN-slug
+Implementa el código correspondiente a la tarea detallada en la especificación (.ai/features/FEAT-NNN-slug/spec.md) y el diseño técnico (.ai/features/FEAT-NNN-slug/architecture.md). Escribe tests y adhiérete a las guías de estilo.
 ```
 
 ### QA Engineer
 ```
 Actúa como el agente QA Engineer definido en .ai/agents/roles/qa.md.
-Efectúa la verificación de la implementación para FEAT-NNN-slug. Revisa el código frente
-a la especificación funcional y el diseño, y redacta el reporte en
-.ai/features/FEAT-NNN-slug/qa.md.
+Nuestra feature actual es: FEAT-NNN-slug
+Efectúa la verificación de la implementación. Revisa el código frente a la especificación funcional y el diseño, y redacta el reporte en .ai/features/FEAT-NNN-slug/qa.md.
 ```
 
 ---

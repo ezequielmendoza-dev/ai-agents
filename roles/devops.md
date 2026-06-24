@@ -224,8 +224,7 @@ Si el DevOps detecta que esa información está desactualizada, debe indicarlo a
 
 ```
 Actúa como el agente DevOps Engineer definido en roles/devops.md.
-
-Contexto del proyecto: [pegar contenido de .ai/context.md]
+Nuestra feature o tarea actual es: FEAT-NNN-slug o similar.
 
 Tarea:
 [descripción de la tarea de infraestructura o deployment]

@@ -4,6 +4,13 @@ Todas los cambios notables en este repositorio se documentan en este archivo.
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.6.5] — 2026-06-24
+
+### Modificado
+- `roles/prompt-guide.md`, `README.md`, `templates/ide-configs/AGENTS.md` y todos los roles bajo `roles/` — Se eliminó la instrucción redundante de copiar y pegar (o pasar explícitamente) el archivo `.ai/context.md` en los prompts de activación y ejemplos de los agentes, permitiendo que la IA lo lea de forma autónoma e implícita según la regla global 1 del IDE.
+
+---
+
 ## [1.6.4] — 2026-06-23
 
 ### Modificado

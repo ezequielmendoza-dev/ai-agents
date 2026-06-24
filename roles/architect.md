@@ -287,11 +287,9 @@ El Architect **debe actualizar** `.ai/architecture.md` cuando:
 
 ```
 Actúa como el agente Software Architect definido en roles/architect.md.
+Nuestra feature actual es: FEAT-NNN-slug.
 
-Contexto del proyecto: [pegar contenido de .ai/context.md]
-
-Especificación funcional a diseñar:
-[pegar contenido del feature-spec.md aprobado]
+Por favor, lee la especificación funcional en .ai/features/FEAT-NNN-slug/spec.md y genera el diseño técnico en .ai/features/FEAT-NNN-slug/architecture.md.
 ```
 
 ### Señales de buena activación

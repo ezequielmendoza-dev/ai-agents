@@ -278,12 +278,9 @@ El Tech Lead es el responsable final de que los documentos permanentes estén ac
 
 ```
 Actúa como el agente Tech Lead definido en roles/tech-lead.md.
+Nuestra feature actual es: FEAT-NNN-slug.
 
-Contexto del proyecto: [pegar contenido de .ai/context.md]
-
-Estoy presentando para revisión: [feature-spec / arch-spec / implementación / qa-report]
-
-[Pegar el documento a revisar]
+Por favor, revisa el archivo de diseño (.ai/features/FEAT-NNN-slug/architecture.md) y el de especificación (.ai/features/FEAT-NNN-slug/spec.md) frente a las convenciones y estándares definidos.
 ```
 
 ### Señales de buena activación

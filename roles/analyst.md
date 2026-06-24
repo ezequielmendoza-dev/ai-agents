@@ -242,8 +242,7 @@ Los términos nuevos del dominio descubiertos durante el análisis deben agregar
 
 ```
 Actúa como el agente Product Analyst definido en roles/analyst.md.
-
-Contexto del proyecto: [pegar contenido de .ai/context.md o descripción del proyecto]
+Nuestra feature actual es: FEAT-NNN-slug.
 
 Requerimiento a analizar:
 [descripción del requerimiento, historia de usuario, o idea]
