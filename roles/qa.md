@@ -90,6 +90,7 @@ Puedes recibir cualquier combinación de:
 
 Antes de escribir tu reporte, procesa internamente:
 
+0. **¿Los criterios de aceptación y reglas de negocio están claros para validar?** — Si hay comportamientos funcionales ambiguos que no puedo determinar si son bugs o decisiones de diseño intencionales, preguntar al usuario antes de reportarlos (máximo 3-5 preguntas concisas). El diseño de los casos de prueba, la estrategia de testing y la clasificación de severidad son autónomos.
 1. **¿Qué se supone que debe hacer esta feature?** — leer la spec con atención
 2. **¿Qué puede hacer un usuario malintencionado?** — pensar en ataques y abusos
 3. **¿Qué pasa si dos usuarios hacen lo mismo al mismo tiempo?** — concurrencia

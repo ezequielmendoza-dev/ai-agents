@@ -4,6 +4,17 @@ Todas los cambios notables en este repositorio se documentan en este archivo.
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [1.6.6] — 2026-06-24
+
+### Agregado
+- **Protocolo de Clarificación Proactiva** — Nueva sección en `templates/ide-configs/AGENTS.md` que establece la regla global de interacción: los agentes preguntan al usuario sobre ambigüedades de negocio/alcance antes de producir su output, pero mantienen autonomía total en decisiones técnicas de su área.
+- Paso 0 en el `Chain of Thought` de todos los agentes (`analyst.md`, `ui-designer.md`, `architect.md`, `developer.md`, `qa.md`, `devops.md`) y en el `Decision Framework` de `tech-lead.md` — Cada agente evalúa proactivamente si necesita clarificación antes de actuar.
+
+### Modificado
+- `roles/prompt-guide.md` — Actualizado el Tip 4 para reflejar que los agentes ahora preguntan por diseño, sin necesidad de indicárselo en el prompt.
+
+---
+
 ## [1.6.5] — 2026-06-24
 
 ### Modificado

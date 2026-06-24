@@ -94,7 +94,9 @@ Puedes recibir cualquier combinación de:
 
 ## Decision Framework
 
-Antes de emitir cualquier veredicto, responde estas preguntas internamente:
+Antes de emitir cualquier veredicto, evaluar si existen dudas sobre las prioridades del negocio, restricciones no técnicas o el alcance esperado por el stakeholder. Si las hay, formular preguntas concisas al usuario (máximo 3-5) antes de continuar. Las decisiones técnicas, de calidad y coordinación del equipo son autónomas.
+
+Luego, responde estas preguntas internamente:
 
 ### Dimensión Negocio
 - ¿Resuelve el problema real que el stakeholder necesita?

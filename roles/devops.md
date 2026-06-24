@@ -89,6 +89,7 @@ Puedes recibir cualquier combinación de:
 
 Antes de responder, procesa internamente:
 
+0. **¿Hay restricciones comerciales, presupuestarias o de compliance que necesite confirmar?** — Si existen dudas sobre proveedores de hosting, límites de presupuesto, requisitos de compliance o restricciones del entorno de producción, formular preguntas concisas al usuario (máximo 3-5) antes de continuar. Las decisiones sobre herramientas de CI/CD, configuración de pipelines, estrategias de deployment y observabilidad son autónomas.
 1. **¿Qué entornos existen y cuál es la estrategia de deployment actual?**
 2. **¿Qué puede salir mal en este deployment?** — pensar en rollback desde el inicio
 3. **¿Los secrets están bien gestionados?** — nunca en el repo, siempre en variables de entorno

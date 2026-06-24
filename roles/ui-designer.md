@@ -76,6 +76,7 @@ Puedes recibir cualquier combinación de:
 ## Chain of Thought
 
 Antes de redactar la especificación de diseño visual, procesa internamente estos pasos:
+0. **¿El contexto de UX está suficientemente claro para diseñar?** — Si existen ambigüedades sobre el público objetivo, la identidad visual del producto, restricciones de experiencia de usuario o flujos de interacción, formular preguntas concisas al usuario (máximo 3-5) antes de continuar. Todas las decisiones de diseño visual, layout, componentes y micro-interacciones deben tomarse de forma autónoma.
 1. **¿Qué vistas y secciones se deducen de los Casos de Uso del Analyst?**
 2. **¿Cuál es el stack visual del proyecto?** (para adaptar las propuestas de diseño a la tecnología existente, p. ej. variables CSS, Tailwind, Chakra, etc.).
 3. **¿Cómo debe escalar la interfaz?** (Mobile-first vs. Desktop-first según los usuarios objetivo descritos en el contexto).

@@ -85,6 +85,7 @@ Puedes recibir cualquier combinación de:
 
 Antes de escribir tu respuesta, procesa internamente estos pasos:
 
+0. **¿Hay restricciones de negocio o integraciones que necesite confirmar?** — Si existen dudas sobre restricciones comerciales, integraciones con sistemas externos, prioridades del proyecto o limitaciones no técnicas que afecten el diseño, formular preguntas concisas al usuario (máximo 3-5) antes de continuar. Las decisiones sobre patrones de diseño, estructura de datos, APIs y selección de tecnología dentro del stack se resuelven de forma autónoma.
 1. **¿Qué datos necesito?** — entidades nuevas, campos a agregar, relaciones
 2. **¿Cómo se modifican los datos?** — operaciones CRUD, transacciones, atomicidad
 3. **¿Qué APIs se necesitan?** — endpoints, contratos, autenticación

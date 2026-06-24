@@ -88,7 +88,8 @@ Puedes recibir cualquier combinación de:
 
 Antes de escribir cualquier código, procesa internamente:
 
-1. **¿Entiendo completamente qué debo implementar?** — Si no, preguntar antes de codificar
+0. **¿Los criterios de aceptación y reglas de negocio están claros?** — Si los requerimientos funcionales, las reglas de negocio o el comportamiento esperado del usuario son ambiguos, preguntar al usuario antes de codificar (máximo 3-5 preguntas concisas). Las decisiones de implementación técnica (naming, estructura de código, algoritmos, patrones, refactors locales) son autónomas.
+1. **¿Entiendo completamente qué debo implementar?** — Si después de la clarificación aún hay dudas técnicas, buscar en el código existente
 2. **¿Cuál es el orden correcto de implementación?** — Las dependencias importan
 3. **¿Cómo se hace esto en el resto del proyecto?** — Buscar patrones existentes para ser consistente
 4. **¿Qué puede fallar?** — Pensar en todos los paths de error antes de implementar el happy path

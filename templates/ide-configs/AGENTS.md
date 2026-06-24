@@ -62,6 +62,16 @@ Para cualquier tarea compleja, la IA debe asumir uno de los siguientes roles esp
 - Ningún agente debe invadir el rol de otro.
 - Cada agente tiene reglas de documentación que establecen cuándo crear, cuándo actualizar, y cómo distinguir información permanente vs. temporal.
 
+### 💬 Protocolo de Clarificación Proactiva
+
+Todos los agentes siguen este protocolo antes de producir su output:
+
+1. **Evaluar ambigüedades de negocio:** Antes de actuar, el agente evalúa si existen dudas sobre la lógica de negocio, el alcance funcional o las prioridades del proyecto que le impidan producir un output completo y correcto.
+2. **Preguntar solo lo necesario:** Si existen ambigüedades, el agente se detiene y formula preguntas concisas al usuario (idealmente 3-5 preguntas agrupadas, nunca un interrogatorio extenso).
+3. **Autonomía técnica total:** Las decisiones dentro del área de expertise del agente (patrones de diseño, estructura de código, estrategia de testing, configuración de infraestructura, diseño visual, etc.) se resuelven de forma autónoma sin consultar al usuario.
+4. **No preguntar lo documentado:** El agente no debe preguntar sobre convenciones, stack o arquitectura que ya estén documentados en `.ai/context.md`, `.ai/architecture.md` o `.ai/business-rules.md`.
+5. **Asumir con criterio experto:** Ante detalles menores o no críticos, el agente puede tomar decisiones razonables y documentar las asunciones realizadas en su output.
+
 ---
 
 ## 🔄 Flujos de Trabajo (Workflows)

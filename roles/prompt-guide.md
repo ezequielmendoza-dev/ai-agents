@@ -242,11 +242,15 @@ En algunos IDEs (Cursor, Windsurf) puedes hacer `@roles/analyst.md` para incluir
 ### Tip 3: Mantener la memoria del proyecto actualizada
 La diferencia más grande en la calidad del output viene de tener `.ai/context.md` bien documentado y actualizado. La IA lo lee de forma transparente al inicializarse gracias a las reglas del IDE (`.cursorrules`, `CLAUDE.md`, etc.), por lo que no es necesario copiarlo ni pegarlo en el chat.
 
-### Tip 4: Pedir al agente que haga preguntas antes de responder
-```
-"Antes de producir el output, pregúntame todo lo que necesites saber
-para hacer un análisis completo. No asumas nada."
-```
+### Tip 4: Los agentes preguntan antes de asumir (por diseño)
+Todos los agentes tienen un **Protocolo de Clarificación Proactiva** integrado en su proceso de pensamiento. Antes de producir su output, evalúan si existen ambigüedades de negocio o alcance funcional y, si las encuentran, se detienen y te formulan preguntas concisas. No necesitas indicárselo en el prompt — lo hacen de forma autónoma.
+
+Las preguntas que puede hacer un agente son siempre sobre:
+- Lógica de negocio y reglas del dominio
+- Alcance funcional y prioridades del proyecto
+- Restricciones comerciales o del entorno
+
+Las decisiones técnicas dentro de su área de expertise las toman sin consultar.
 
 ---
 
