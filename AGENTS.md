@@ -21,7 +21,9 @@ ai-agents/
 │   ├── developer.md
 │   ├── qa.md
 │   ├── devops.md
+│   ├── skill-manager.md
 │   └── prompt-guide.md
+├── skills/                   # Skills metodológicas (Framework Skills)
 ├── templates/                # Plantillas reutilizables
 │   ├── ide-configs/          # Configuraciones para IDEs de IA
 │   └── *.md                  # Templates de documentos de proyecto
@@ -62,6 +64,7 @@ Los agentes están definidos en `roles/`:
 
 | Agente | Archivo | Responsabilidad |
 | :--- | :--- | :--- |
+| **Skill Manager** | [skill-manager.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/skill-manager.md) | Orquestación, descubrimiento y resolución de skills (Pre-procesador) |
 | **Product Analyst** | [analyst.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/analyst.md) | Especificaciones funcionales |
 | **UI Designer** | [ui-designer.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/ui-designer.md) | Diseño de interfaz de usuario y UX |
 | **Software Architect** | [architect.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/architect.md) | Diseño técnico y ADRs |
@@ -83,6 +86,20 @@ Los flujos de trabajo están en `workflows/`:
 | Refactorización | [refactor.md](file:///Volumes/ExternalSSD/Dev/ai-agents/workflows/refactor.md) |
 | Release | [release.md](file:///Volumes/ExternalSSD/Dev/ai-agents/workflows/release.md) |
 | Cambio Arquitectónico | [architecture-change.md](file:///Volumes/ExternalSSD/Dev/ai-agents/workflows/architecture-change.md) |
+
+---
+
+## 🧩 Sistema de Orquestación y Skills
+
+El sistema ha evolucionado de mantener un repositorio gigante de tecnologías a un modelo de **Orquestación y Descubrimiento**. Las piezas clave están documentadas en `docs/`:
+
+| Concepto | Archivo | Descripción |
+| :--- | :--- | :--- |
+| **Skill Discovery** | [skill-discovery.md](file:///Volumes/ExternalSSD/Dev/ai-agents/docs/skill-discovery.md) | Fuentes de descubrimiento (Project, User Installed, Framework) |
+| **Skill Resolution** | [skill-resolution.md](file:///Volumes/ExternalSSD/Dev/ai-agents/docs/skill-resolution.md) | Resolución de alias, dependencias y conflictos (Shadowing) |
+| **External Providers**| [external-skill-providers.md](file:///Volumes/ExternalSSD/Dev/ai-agents/docs/external-skill-providers.md) | Integración con Claude Code, Gemini CLI, MCP Servers |
+| **Skill Context** | [skill-context.md](file:///Volumes/ExternalSSD/Dev/ai-agents/docs/skill-context.md) | Cómo el contexto enriquece el comportamiento del agente |
+| **Registry Rules** | [registry.md](file:///Volumes/ExternalSSD/Dev/ai-agents/skills/registry.md) | Reglas dinámicas de priorización y catalogación |
 
 ---
 

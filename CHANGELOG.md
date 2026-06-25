@@ -4,6 +4,24 @@ Todas los cambios notables en este repositorio se documentan en este archivo.
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [2.0.0] — 2026-06-25
+
+### Agregado
+- **Sistema de Orquestación y Descubrimiento de Skills** — Evolución arquitectónica completa. `ai-agents` ya no es una biblioteca de skills tecnológicas, sino un orquestador que descubre capacidades desde el proyecto, entorno del usuario y extensiones.
+- Nuevo rol: `Skill Manager` (`roles/skill-manager.md`), encargado de descubrir, priorizar y resolver conflictos de skills como paso previo a la ejecución.
+- Documentación del motor de orquestación en `docs/`: `skill-discovery.md`, `skill-resolution.md`, `external-skill-providers.md`, y `skill-context.md`.
+- Scaffolding de **Framework Skills** (Skills metodológicas): `analysis/requirements-discovery.md`, `architecture/api-design.md`, `development/code-review.md`, `qa/test-strategy.md`, `workflow/release-readiness.md`.
+
+### Modificado
+- `skills/registry.md` — Transformado de un índice estático de tecnologías a un catálogo dinámico de reglas de orquestación, priorización (Shadowing) y resolución de conflictos.
+- Todos los roles (`analyst.md`, `architect.md`, `ui-designer.md`, `tech-lead.md`, `developer.md`, `qa.md`, `devops.md`) actualizados para incluir la sección **Skill Awareness**, obligándolos a subordinar su conocimiento a las skills activas detectadas.
+- `README.md` y `AGENTS.md` actualizados para reflejar el nuevo paradigma de orquestación agnóstica.
+
+### Eliminado
+- Todas las skills tecnológicas hardcodeadas (`frontend/`, `backend/`, `database/`, etc.). El conocimiento tecnológico ahora debe vivir en el proyecto (`.skills/`) o en el entorno del usuario (ej. Gemini CLI, Claude Code).
+
+---
+
 ## [1.6.6] — 2026-06-24
 
 ### Agregado

@@ -1,0 +1,50 @@
+# Skill Registry Rules
+
+> **Versión:** 2.0  
+> **Propósito:** Define las reglas maestras de cómo `ai-agents` cataloga, clasifica y resuelve conflictos de skills descubiertas dinámicamente.  
+> **Nota:** Este archivo **NO** es una lista estática de tecnologías.
+
+---
+
+## 1. Skill Sources (Fuentes de Origen)
+
+Cada skill que el Skill Manager procesa debe estar etiquetada con su origen. La fuente determina su nivel de autoridad en el sistema.
+
+| Nivel | Fuente (Source) | Descripción | Autoridad |
+|-------|-----------------|-------------|-----------|
+| L1 | `Project` | Skills alojadas en el repositorio actual (ej. `.skills/`). Representan la voluntad explícita del proyecto. | Máxima (100) |
+| L2 | `UserExternal` | Skills instaladas por el usuario en su entorno (ej. Gemini Plugins, Claude Code). | Alta (80) |
+| L3 | `Framework` | Skills metodológicas internas de `ai-agents` (`skills/analysis/`, etc). | Media (50) |
+| L4 | `LLM` | Conocimiento base pre-entrenado. | Baja (0) |
+
+## 2. Skill Types (Tipos de Skills)
+
+Para facilitar la orquestación, las skills se clasifican por su propósito, independientemente de su fuente:
+
+- **Methodological (`type: method`):** Definen *cómo* ejecutar un proceso de ingeniería (ej. `api-design`, `code-review`). Las `Framework Skills` siempre son de este tipo.
+- **Technological (`type: tech`):** Definen *cómo* utilizar una herramienta específica (ej. `react`, `docker`). Vienen de `Project` o `UserExternal`.
+- **Business (`type: business`):** Definen reglas de negocio, glosarios o dominio específico del producto. Generalmente vienen de `Project`.
+
+## 3. Skill Prioritization (Priorización y Shadowing)
+
+Cuando el orquestador encuentra múltiples skills con el mismo **ID** o **Alias**:
+1. Se ordena la lista de skills candidatas por Autoridad (ver tabla en sección 1).
+2. La skill con mayor autoridad gana (Shadowing) y se carga en el contexto.
+3. Las skills perdedoras se descartan y se registran en el *Skill Activation Report* bajo "Skills Descartadas por Shadowing".
+
+## 4. Conflict Resolution (Resolución de Conflictos)
+
+Los conflictos ocurren cuando se detectan skills con **IDs diferentes** pero que son lógicamente incompatibles (ej. detectar skills de `express` y `nestjs` simultáneamente para un microservicio monolítico).
+
+### Reglas de Manejo de Conflictos:
+1. **Revisión de Contexto Duro:** El Skill Manager debe examinar los manifiestos del proyecto (`package.json`, `Cargo.toml`, etc.) o el `.ai/context.md`. La skill que esté respaldada por el manifiesto se mantiene; las demás se descartan.
+2. **Intervención Humana Exigida:** Si los manifiestos no resuelven la ambigüedad, el Skill Manager **debe detener la ejecución** (usando herramientas como `ask_question`) para que el desarrollador humano decida. Nunca debe avanzar con un contexto tecnológico esquizofrénico o mezclado.
+
+## 5. El Catálogo Dinámico
+
+El Skill Manager no mantiene un JSON o tabla estática. Al iniciar una sesión de trabajo:
+1. Recolecta.
+2. Aplica Shadowing.
+3. Resuelve Dependencias transitivas.
+4. Aplica Resolución de Conflictos.
+5. Genera el **Skill Activation Report** que consumirán los agentes subsecuentes (Developer, Architect, etc).

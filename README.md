@@ -37,6 +37,7 @@ En lugar de improvisar prompts o depender de respuestas genéricas, este reposit
 
 | Agente | Archivo | Responsabilidad Principal |
 |--------|---------|--------------------------| 
+| **Skill Manager** | [`roles/skill-manager.md`](roles/skill-manager.md) | Orquestación, descubrimiento y resolución de skills (Pre-procesador) |
 | **Product Analyst** | [`roles/analyst.md`](roles/analyst.md) | Transforma ideas en especificaciones funcionales claras |
 | **UI Designer** | [`roles/ui-designer.md`](roles/ui-designer.md) | Diseña la interfaz visual, responsividad y accesibilidad (a11y) |
 | **Software Architect** | [`roles/architect.md`](roles/architect.md) | Diseña soluciones técnicas escalables |
@@ -66,8 +67,13 @@ ai-agents/
 │   ├── developer.md           # Senior Developer
 │   ├── qa.md                  # QA Engineer
 │   ├── devops.md              # DevOps Engineer (especializado, bajo demanda)
+│   ├── skill-manager.md       # Skill Manager (orquestador de contexto)
 │   ├── prompt-guide.md        # Guía de prompts para usar los agentes
 │   └── README.md
+│
+├── skills/                    # Skills metodológicas (Framework Skills)
+│   ├── registry.md            # Reglas de descubrimiento y orquestación
+│   └── ...                    # analysis/, architecture/, development/, etc.
 │
 ├── templates/                 # Plantillas reutilizables
 │   ├── ide-configs/           # 🆕 Configuraciones para IDEs de IA
@@ -121,6 +127,24 @@ ai-agents/
 ├── .gitignore
 └── README.md
 ```
+
+---
+
+## 🧩 Sistema de Orquestación y Skills
+
+El sistema ha evolucionado a un modelo de **Orquestación y Descubrimiento**. `ai-agents` no mantiene un repositorio gigante de tecnologías; en su lugar, el **Skill Manager** detecta, prioriza y ensambla dinámicamente las capacidades (skills) disponibles en:
+
+1. **Project Skills:** Específicas del repositorio actual.
+2. **User Installed Skills:** Herramientas y plugins externos (Gemini CLI, Claude Code, MCP Servers).
+3. **Framework Skills:** Capacidades metodológicas (*cómo* diseñar APIs, revisar código) incluidas en este framework.
+
+Estas skills se resuelven y entregan como contexto enriquecido a cada agente, garantizando que el diseño y la implementación respeten las reglas y herramientas reales del entorno. 
+
+Documentación clave:
+- [`docs/skill-discovery.md`](docs/skill-discovery.md)
+- [`docs/skill-resolution.md`](docs/skill-resolution.md)
+- [`docs/external-skill-providers.md`](docs/external-skill-providers.md)
+- [`docs/skill-context.md`](docs/skill-context.md)
 
 ---
 

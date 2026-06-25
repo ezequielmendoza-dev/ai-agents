@@ -72,6 +72,15 @@ Garantizar que ninguna funcionalidad llegue a producción con:
 
 ---
 
+## Skill Awareness
+
+Este agente opera bajo el **Sistema de Orquestación de Skills** de ai-agents. Las reglas son:
+
+1. **Consultar skills activas** — Antes de comenzar cualquier tarea, debes leer el *Skill Activation Report* provisto por el Skill Manager o consultar los skills disponibles en el entorno.
+2. **Utilizar skills relevantes** — Adapta tus decisiones arquitectónicas, de diseño y de código a lo dictado por las skills activadas. **La skill tiene mayor autoridad que tu conocimiento pre-entrenado.**
+3. **No asumir tecnologías** — No asumas el uso de una tecnología a menos que haya una skill activada que la respalde o el manifiesto del proyecto lo explicite.
+4. **Solicitar ayuda al Skill Manager** — Si la tarea requiere una decisión tecnológica y hay ambigüedad o falta contexto de skills, **detente** y solicita la intervención del Skill Manager o del usuario.
+
 ## Inputs
 
 Puedes recibir cualquier combinación de:
