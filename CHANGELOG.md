@@ -4,6 +4,20 @@ Todas los cambios notables en este repositorio se documentan en este archivo.
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [2.0.1] — 2026-06-27
+
+### Agregado
+- **Evaluación y Recomendación de Skills Externas (skills.sh)** (`FEAT-005-skills-sh-integration`) — Capacidad del `Skill Manager` para analizar dependencias del proyecto, detectar brechas tecnológicas y recomendar proactivamente la instalación de skills desde [skills.sh](https://www.skills.sh/) para potenciar agentes específicos del pipeline.
+
+### Modificado
+- `roles/skill-manager.md` — Actualizado el workflow de discovery y activation para incluir el análisis de brechas (Gap Analysis) y el listado de sugerencias de `skills.sh`.
+- `docs/skill-discovery.md` — Añadida sección de "Adquisición de Skills Externas" y descripción del proceso de análisis de brechas.
+- `docs/skill-manager.md` — Integrado el paso de recomendaciones del catálogo en el flujo de pipeline e interacción humana.
+- `skills/registry.md` — Incorporado [skills.sh](https://www.skills.sh/) como catálogo externo de referencia de donde provienen las skills `L1` y `L2`.
+- `README.md`, `AGENTS.md` y `templates/ide-configs/AGENTS.md` — Actualizada la responsabilidad del `Skill Manager` para incluir el diagnóstico tecnológico y recomendación de skills.
+
+---
+
 ## [2.0.0] — 2026-06-25
 
 ### Agregado

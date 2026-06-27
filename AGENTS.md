@@ -64,7 +64,7 @@ Los agentes están definidos en `roles/`:
 
 | Agente | Archivo | Responsabilidad |
 | :--- | :--- | :--- |
-| **Skill Manager** | [skill-manager.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/skill-manager.md) | Orquestación, descubrimiento y resolución de skills (Pre-procesador) |
+| **Skill Manager** | [skill-manager.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/skill-manager.md) | Orquestación, descubrimiento, resolución de skills y recomendación de catálogo externo (skills.sh) |
 | **Product Analyst** | [analyst.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/analyst.md) | Especificaciones funcionales |
 | **UI Designer** | [ui-designer.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/ui-designer.md) | Diseño de interfaz de usuario y UX |
 | **Software Architect** | [architect.md](file:///Volumes/ExternalSSD/Dev/ai-agents/roles/architect.md) | Diseño técnico y ADRs |

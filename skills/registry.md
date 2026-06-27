@@ -17,6 +17,12 @@ Cada skill que el Skill Manager procesa debe estar etiquetada con su origen. La 
 | L3 | `Framework` | Skills metodológicas internas de `ai-agents` (`skills/analysis/`, etc). | Media (50) |
 | L4 | `LLM` | Conocimiento base pre-entrenado. | Baja (0) |
 
+## 1.1 Adquisición de Skills (Catálogo skills.sh)
+
+Para subsanar las brechas tecnológicas identificadas (tecnologías detectadas en manifiestos pero sin skill activa), el Skill Manager sugerirá la instalación de la skill desde el catálogo público de referencia: [skills.sh](https://www.skills.sh/).
+- Las skills instaladas a través de este catálogo se incorporan al proyecto o entorno como `L1 (Project)` o `L2 (UserExternal)`.
+- La sugerencia detalla la URL exacta (ej: `https://www.skills.sh/skills/<id-skill>`), el agente a potenciar y su justificación.
+
 ## 2. Skill Types (Tipos de Skills)
 
 Para facilitar la orquestación, las skills se clasifican por su propósito, independientemente de su fuente:

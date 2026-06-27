@@ -37,7 +37,7 @@ En lugar de improvisar prompts o depender de respuestas genéricas, este reposit
 
 | Agente | Archivo | Responsabilidad Principal |
 |--------|---------|--------------------------| 
-| **Skill Manager** | [`roles/skill-manager.md`](roles/skill-manager.md) | Orquestación, descubrimiento y resolución de skills (Pre-procesador) |
+| **Skill Manager** | [`roles/skill-manager.md`](roles/skill-manager.md) | Orquestación, descubrimiento, resolución de skills y recomendación de catálogo externo (skills.sh) |
 | **Product Analyst** | [`roles/analyst.md`](roles/analyst.md) | Transforma ideas en especificaciones funcionales claras |
 | **UI Designer** | [`roles/ui-designer.md`](roles/ui-designer.md) | Diseña la interfaz visual, responsividad y accesibilidad (a11y) |
 | **Software Architect** | [`roles/architect.md`](roles/architect.md) | Diseña soluciones técnicas escalables |
@@ -132,11 +132,12 @@ ai-agents/
 
 ## 🧩 Sistema de Orquestación y Skills
 
-El sistema ha evolucionado a un modelo de **Orquestación y Descubrimiento**. `ai-agents` no mantiene un repositorio gigante de tecnologías; en su lugar, el **Skill Manager** detecta, prioriza y ensambla dinámicamente las capacidades (skills) disponibles en:
+El sistema ha evolucionado a un modelo de **Orquestación y Descubrimiento**. `ai-agents` no mantiene un repositorio gigante de tecnologías; en su lugar, el **Skill Manager** detecta, prioriza, ensambla dinámicamente las capacidades (skills) disponibles e identifica brechas tecnológicas, recomendando la instalación de skills desde [skills.sh](https://www.skills.sh/) en caso de carencias locales. Las fuentes analizadas son:
 
 1. **Project Skills:** Específicas del repositorio actual.
 2. **User Installed Skills:** Herramientas y plugins externos (Gemini CLI, Claude Code, MCP Servers).
 3. **Framework Skills:** Capacidades metodológicas (*cómo* diseñar APIs, revisar código) incluidas en este framework.
+4. **Catálogo de Referencia Externo (skills.sh):** Catálogo de adquisición y recomendación para tecnologías huérfanas en el entorno local.
 
 Estas skills se resuelven y entregan como contexto enriquecido a cada agente, garantizando que el diseño y la implementación respeten las reglas y herramientas reales del entorno. 
 

@@ -48,6 +48,7 @@ Para cualquier tarea compleja, la IA debe asumir uno de los siguientes roles esp
 
 | Agente / Rol | Archivo de Instrucciones | Responsabilidad Principal |
 | :--- | :--- | :--- |
+| **Skill Manager** | `.ai/agents/roles/skill-manager.md` | Orquestación, descubrimiento, resolución de skills y recomendación de catálogo externo (skills.sh) |
 | **Product Analyst** | `.ai/agents/roles/analyst.md` | Clarificar requerimientos y escribir especificaciones funcionales (`spec.md`) |
 | **UI Designer** | `.ai/agents/roles/ui-designer.md` | Diseñar la interfaz visual, layout, estados y lineamientos de accesibilidad (`ui-design.md`) |
 | **Software Architect** | `.ai/agents/roles/architect.md` | Diseñar soluciones técnicas y documentar en `architecture.md` (ADRs) |

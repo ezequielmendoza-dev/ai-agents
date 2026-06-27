@@ -34,6 +34,18 @@ El conocimiento intrínseco pre-entrenado que posee el LLM.
 
 ## El Proceso de Descubrimiento
 
-1. **Análisis de Entorno:** El Skill Manager analiza la solicitud del usuario, el `package.json`, y los archivos de contexto del proyecto (`.ai/context.md`).
-2. **Escaneo de Fuentes:** Escanea las rutas de `Project Skills` y se comunica con los `External Skill Providers` para listar capacidades.
-3. **Resolución:** Pasa la lista cruda al motor de [Resolución de Skills](skill-resolution.md) para resolver dependencias y conflictos.
+1. **Análisis de Entorno:** El Skill Manager analiza la solicitud del usuario, los manifiestos del proyecto (ej. `package.json`, `Cargo.toml`, `requirements.txt`), y los archivos de contexto del proyecto (`.ai/context.md`).
+2. **Escaneo de Fuentes:** Escanea las rutas de `Project Skills` y se comunica con los `External Skill Providers` para listar capacidades locales o globales activas.
+3. **Análisis de Brechas (Gap Analysis):** Identifica dependencias o herramientas detectadas en el paso 1 que no posean una skill local cargada. Cruza estas tecnologías con el catálogo disponible en [skills.sh](https://www.skills.sh/).
+4. **Resolución:** Pasa la lista de skills cargadas al motor de [Resolución de Skills](skill-resolution.md) para resolver dependencias y conflictos, y añade las sugerencias de adquisición externa al informe.
+
+## Adquisición de Skills Externas (skills.sh)
+
+Cuando una tecnología central del proyecto (por ejemplo, `react`, `docker`, `firebase`) carece de una skill en el entorno, el orquestador no debe limitarse al fallback de conocimiento base del LLM. En su lugar, sugiere proactivamente la instalación de la skill correspondiente desde [skills.sh](https://www.skills.sh/).
+
+### Estructura de Recomendación
+Para cada brecha tecnológica identificada, el Skill Manager presentará:
+1. **Identificador del Skill:** El nombre exacto de la skill en el registro (ej. `tailwindcss`).
+2. **Enlace Directo:** La URL al catálogo (ej. `https://www.skills.sh/skills/tailwindcss`).
+3. **Agente Destinatario:** A qué rol del pipeline potenciará principalmente (ej. `UI Designer`).
+4. **Justificación:** Por qué se detectó que es necesaria (ej. "Detectado en dependencias de package.json").
