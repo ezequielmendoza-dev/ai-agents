@@ -1,35 +1,36 @@
-# 🤖 ai-agents — AI-Assisted Development Operating System
+# 🤖 ai-agents — Specification-Driven Development Framework
 
-> Una biblioteca reutilizable de agentes, plantillas, workflows y checklists para desarrollo de software asistido por IA.  
-> Diseñada para evolucionar. Construida para durar.
+> Un framework para conducir todo el ciclo de desarrollo desde una idea hasta una feature implementada y validada.  
+> Centrado en los documentos. Impulsado por agentes especializados. Construido para durar.
 
 ---
 
 ## 🎯 Objetivo
 
-`ai-agents` es el **sistema operativo de desarrollo asistido por IA** para proyectos profesionales.
+`ai-agents` es un **framework de Specification-Driven Development (SDD)** para proyectos profesionales asistidos por IA.
 
-En lugar de improvisar prompts o depender de respuestas genéricas, este repositorio define:
+El principio rector es simple:
 
-- **Quién hace qué** (agentes especializados con roles claros)
-- **Cómo se trabaja** (workflows reproducibles)
-- **Qué se valida** (checklists por área)
-- **Cómo se documenta** (templates estructurados)
-- **Cómo se reutiliza** (entre proyectos, vía Git Submodules)
+> **Los documentos son la fuente de verdad. Los agentes son transformadores de conocimiento.**
+
+Cada pieza de conocimiento —funcional, visual, técnica— existe como un artefacto escrito antes de que cualquier código se produzca. Los agentes especializados producen, refinan y validan esos artefactos. El pipeline no es una secuencia de agentes — es una cadena de documentos.
 
 ---
 
 ## 🧠 Filosofía de Trabajo
 
 | Principio | Descripción |
-|-----------|-------------|
-| **Única Fuente de Verdad** | Los agentes viven en este repositorio, no en cada proyecto |
+|-----------|—-----------|
+| **Documentos > Conversación** | El conocimiento vive en artefactos verificables, no en el historial de chat |
+| **Artefactos como fuente de verdad** | Cada agente consume el *documento* del agente anterior, no el contexto conversacional |
 | **Roles Claros** | Cada agente tiene responsabilidades definidas y límites explícitos |
-| **Flujo Estructurado** | El trabajo sigue un pipeline: Analyst ➡️ UI Designer ➡️ Architect ➡️ Tech Lead ➡️ Developer ➡️ QA |
+| **Discovery antes de Spec** | Antes de especificar, se explora: ambigüedades, alternativas, decisiones |
+| **Flujo Estructurado** | Idea ➡️ Discovery ➡️ Spec ➡️ UI ➡️ Arquitectura ➡️ Implementación ➡️ Validación |
 | **Reutilización** | Templates y checklists son agnósticos al proyecto |
-| **Evolución Gradual** | El repositorio crece con cada proyecto real |
 | **Sin Duplicación** | Los proyectos referencian, no copian |
 | **Actualización > Creación** | Un documento existente actualizado vale más que uno nuevo |
+
+Ver [`docs/sdd-philosophy.md`](docs/sdd-philosophy.md) para el modelo mental completo.
 
 ---
 
@@ -197,31 +198,48 @@ Ver [`docs/project-ai-structure.md`](docs/project-ai-structure.md) para la estru
 
 ---
 
-## 🔄 Flujo de Trabajo Recomendado
+## 🔄 Flujo de Trabajo SDD
 
 ```mermaid
 flowchart TD
-    A[💡 Idea / Requerimiento] --> B[🔍 Product Analyst]
-    B --> C[🏗️ Software Architect]
-    C --> D[⚖️ Tech Lead Review]
-    D -->|Aprobado| E[💻 Senior Developer]
-    D -->|Rechazado| B
-    E --> F[🧪 QA Engineer]
-    F -->|PASS| G[🚀 Producción]
-    F -->|FAIL| E
-    G --> H[📁 Feature → archive/]
-    H --> I[📝 Actualizar docs permanentes]
+    A[💡 Idea / Requerimiento] --> B[🔍 Analyst: Discovery]
+    B --> C{Ambigüedades críticas?}
+    C -->|Sí| D[📝 discovery.md]
+    C -->|No| E[📝 spec.md]
+    D --> E
+    E --> F{Tech Lead: Revisa spec}
+    F -->|Rechazada| E
+    F -->|Aprobada| G[🎨 UI Designer: ui-design.md]
+    G --> H[🏗️ Architect: architecture.md]
+    H --> I{Tech Lead: Revisa diseños}
+    I -->|Rechazado| G
+    I -->|Rechazado| H
+    I -->|Aprobado| J[💻 Developer: Implementación]
+    J --> K[🧪 QA: qa.md]
+    K -->|FAIL| J
+    K -->|PASS| L[🚀 Producción]
+    L --> M[📁 Feature → archive/]
+    M --> N[📝 Actualizar docs permanentes]
 ```
 
-### Descripción del Flujo
+### El pipeline centrado en artefactos
 
-1. **Analyst** — Clarifica el requerimiento, crea `.ai/features/FEAT-XXX/spec.md`
-2. **Architect** — Diseña la solución, crea `.ai/features/FEAT-XXX/architecture.md`
-3. **Tech Lead** — Revisa y aprueba
-4. **Developer** — Implementa siguiendo la arquitectura aprobada
-5. **QA** — Valida, crea `.ai/features/FEAT-XXX/qa.md`
-6. **Producción** — Solo si QA emite PASS
-7. **Cierre** — Feature a `archive/`, documentos permanentes actualizados si aplica
+Cada agente consume el **documento** producido por el agente anterior — no el contexto conversacional. Esto hace el proceso reproducible: puede retomarse en cualquier momento sin perder contexto.
+
+| Paso | Agente | Produce | Consume |
+|------|--------|---------|--------|
+| 1 | Analyst | `discovery.md` (si hay ambigüedades) | `.ai/context.md`, `.ai/business-rules.md`, idea |
+| 2 | Analyst | `spec.md` | `discovery.md` (si existe), contexto del proyecto |
+| 3 | Tech Lead | Revisión | `spec.md` |
+| 4 | UI Designer | `ui-design.md` | `spec.md` aprobada |
+| 5 | Architect | `architecture.md` | `spec.md` + `ui-design.md` |
+| 6 | Tech Lead | Aprobación final | `ui-design.md` + `architecture.md` |
+| 7 | Developer | Código | `architecture.md` aprobada |
+| 8 | QA | `qa.md` | `spec.md` + `architecture.md` + código |
+| 9 | Tech Lead | Veredicto deploy | `qa.md` |
+| 10 | — | Knowledge update | Documentos permanentes `.ai/` |
+
+Ver [`docs/artifact-lifecycle.md`](docs/artifact-lifecycle.md) para el ciclo de vida completo de cada artefacto.
 
 ---
 
@@ -482,7 +500,8 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 ## ✅ Buenas Prácticas
 
-- **Siempre empieza con el Analyst** — evita implementar sin especificaciones claras
+- **Empieza siempre con Discovery** — si la idea tiene ambigüedades, el Analyst conduce una sesión de explorar antes de escribir la spec
+- **Los documentos antes que el código** — ningún agente técnico trabaja sin un artefacto aprobado como input
 - **El Tech Lead es el árbitro** — si hay conflicto entre Analyst y Architect, el Tech Lead decide
 - **Completa los checklists** — no son opcionales antes de un release
 - **Actualiza, no dupliques** — si el documento existe, actualizarlo es la respuesta correcta
@@ -497,9 +516,9 @@ Ver [`docs/roadmap.md`](docs/roadmap.md) para el plan evolutivo completo.
 
 | Campo | Valor |
 |-------|-------|
-| Versión | `v1.6.6` |
+| Versión | `v3.0.0` |
 | Estado | Estable |
-| Última actualización | Junio 2026 |
+| Última actualización | Julio 2026 |
 
 ---
 

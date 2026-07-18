@@ -1,20 +1,24 @@
 # Estrategia Documental — ai-agents
 
-> **Versión:** 1.0  
+> **Versión:** 2.0  
 > **Estado:** Vigente  
-> **Última actualización:** Junio 2026
+> **Última actualización:** Julio 2026
 
 ---
 
 ## Filosofía
 
-Este sistema opera bajo un principio central:
+Este sistema opera bajo dos principios centrales:
+
+> **Los documentos son la fuente de verdad. Los agentes son transformadores de conocimiento.**
 
 > **Un documento existente actualizado siempre vale más que un documento nuevo.**
 
 El conocimiento no crece creando archivos. Crece manteniendo una única fuente de verdad, actualizada, sin duplicación y sin ruido.
 
-Los agentes de `ai-agents` no son generadores de documentos. Son **mantenedores de conocimiento**.
+Los agentes de `ai-agents` no son generadores de documentos. Son **transformadores de conocimiento** que producen artefactos verificables.
+
+Ver [`docs/sdd-philosophy.md`](sdd-philosophy.md) para el modelo mental completo del framework.
 
 ### Los tres problemas que esta estrategia resuelve
 
@@ -192,6 +196,52 @@ DESACTUALIZADO   → Estado de error — debe corregirse antes de continuar trab
 
 ---
 
+## Estados de los Artefactos de Feature
+
+Cada artefacto de una feature tiene un ciclo de vida explícito. El estado se registra en el campo `Estado` del metadata de cada documento.
+
+### `discovery.md`
+
+```
+ACTIVO     → Durante la sesión de discovery
+COMPLETO   → Cuando spec.md fue producida a partir de él
+```
+
+### `spec.md`
+
+```
+Draft           → Analyst lo produjo, pendiente de revisión
+Reviewed        → Tech Lead revisó con observaciones
+Approved        → Tech Lead aprobó, ningún agente puede modificarlo sin aprobación
+```
+
+### `ui-design.md` y `architecture.md`
+
+```
+Draft           → Producido por el agente responsable
+Reviewed        → Tech Lead revisó con observaciones
+Approved        → Tech Lead aprobó
+```
+
+### `qa.md`
+
+```
+Open            → QA en progreso
+Pass            → Sin bugs críticos
+Pass with Obs.  → Bugs menores, Tech Lead decide
+Fail            → Bugs críticos, Developer debe corregir
+```
+
+### Ciclo de vida de la feature (campo `Estado` en `spec.md`)
+
+```
+Discovery → Draft → Reviewed → Approved → In Progress → Done → Archived
+```
+
+Ver [`docs/artifact-lifecycle.md`](artifact-lifecycle.md) para la referencia completa de estados, transiciones y responsables.
+
+---
+
 ## Anti-patrones a evitar
 
 | Anti-patrón | Por qué es un problema | Alternativa correcta |
@@ -216,6 +266,8 @@ Todos los agentes de `ai-agents` deben:
 
 Ver [`docs/project-ai-structure.md`](project-ai-structure.md) para la estructura completa recomendada.
 
+Ver [`docs/artifact-lifecycle.md`](artifact-lifecycle.md) para el ciclo de vida de los artefactos.
+
 ---
 
-*Estrategia documental v1.0 — ai-agents library | github.com/ezequielmendoza-dev/ai-agents*
+*Estrategia documental v2.0 — ai-agents framework | github.com/ezequielmendoza-dev/ai-agents*

@@ -2,7 +2,7 @@
 
 > Plan de evolución del repositorio en fases progresivas.  
 > Cada fase construye sobre la anterior y puede tardar semanas, meses o años.  
-> El objetivo final es una **AI Software Factory** personal.
+> El objetivo final es una **AI Software Factory** personal basada en Specification-Driven Development (SDD).
 
 ---
 
@@ -246,4 +246,4 @@ ai-agents/
 
 ---
 
-*Roadmap versión 1.0 — ai-agents library | [github.com/ezequielmendoza-dev/ai-agents](https://github.com/ezequielmendoza-dev/ai-agents)*
+*Roadmap versión 2.0 — ai-agents framework | [github.com/ezequielmendoza-dev/ai-agents](https://github.com/ezequielmendoza-dev/ai-agents)*

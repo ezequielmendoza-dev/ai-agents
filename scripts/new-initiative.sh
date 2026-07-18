@@ -135,6 +135,7 @@ TEMPLATES_DIR="$AI_AGENTS_ROOT/templates"
 
 if [ "$TYPE" = "FEAT" ]; then
     # Copiar especificaciones para Features
+    [ -f "$TEMPLATES_DIR/discovery.md" ] && cp "$TEMPLATES_DIR/discovery.md" "$TARGET_DIR/discovery.md"
     [ -f "$TEMPLATES_DIR/feature-spec.md" ] && cp "$TEMPLATES_DIR/feature-spec.md" "$TARGET_DIR/spec.md"
     [ -f "$TEMPLATES_DIR/ui-design-spec.md" ] && cp "$TEMPLATES_DIR/ui-design-spec.md" "$TARGET_DIR/ui-design.md"
     [ -f "$TEMPLATES_DIR/architecture-spec.md" ] && cp "$TEMPLATES_DIR/architecture-spec.md" "$TARGET_DIR/architecture.md"
@@ -152,13 +153,13 @@ Si una decisión aplica globalmente al sistema, debe ser promovida a .ai/decisio
 EOF
 
     # Reemplazar placeholders en los archivos copiados
-    for f in "$TARGET_DIR"/spec.md "$TARGET_DIR"/ui-design.md "$TARGET_DIR"/architecture.md "$TARGET_DIR"/qa.md; do
+    for f in "$TARGET_DIR"/discovery.md "$TARGET_DIR"/spec.md "$TARGET_DIR"/ui-design.md "$TARGET_DIR"/architecture.md "$TARGET_DIR"/qa.md; do
         if [ -f "$f" ]; then
             "${SED_INPLACE[@]}" "s/FEAT-XXX/$TYPE-$ID/g" "$f"
             "${SED_INPLACE[@]}" "s/\[nombre\]/$SLUG/g" "$f"
         fi
     done
-    echo -e "${GREEN}✓ Creados archivos de feature: spec.md, ui-design.md, architecture.md, qa.md, decision.md${NC}"
+    echo -e "${GREEN}✓ Creados archivos de feature: discovery.md, spec.md, ui-design.md, architecture.md, qa.md, decision.md${NC}"
 
 elif [ "$TYPE" = "BUG" ]; then
     # Copiar especificaciones para Bugs

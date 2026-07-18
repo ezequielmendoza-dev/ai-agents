@@ -1,8 +1,8 @@
 # Estructura .ai/ — Guía de Integración para Proyectos
 
-> **Versión:** 1.0  
+> **Versión:** 2.0  
 > **Estado:** Vigente  
-> **Última actualización:** Junio 2026
+> **Última actualización:** Julio 2026
 
 ---
 
@@ -28,7 +28,9 @@ proyecto/
     │
     ├── features/               # Trabajo activo por feature
     │   ├── FEAT-001-nombre/
+    │   │   ├── discovery.md    # (Opcional) Análisis previo a la spec
     │   │   ├── spec.md
+    │   │   ├── ui-design.md
     │   │   ├── architecture.md
     │   │   ├── qa.md
     │   │   └── decision.md
@@ -301,4 +303,4 @@ Ver [`docs/project-integration.md`](project-integration.md) para instrucciones c
 
 ---
 
-*Estructura .ai/ v1.0 — ai-agents library | github.com/ezequielmendoza-dev/ai-agents*
+*Project AI Structure v2.0 — ai-agents framework | github.com/ezequielmendoza-dev/ai-agents*

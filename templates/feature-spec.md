@@ -12,9 +12,10 @@
 |-------|-------|
 | **Proyecto** | `[nombre-del-proyecto]` |
 | **Feature ID** | `FEAT-XXX` |
+| **Fase Previa** | `[Ver discovery.md / No aplica]` |
 | **Fecha** | `YYYY-MM-DD` |
 | **Versión** | `1.0` |
-| **Estado** | `Draft / In Review / Approved` |
+| **Estado** | `Discovery / Draft / Reviewed / Approved / In Progress / Done / Archived` |
 | **Analista** | `[nombre]` |
 | **Stakeholder** | `[nombre]` |
 
@@ -180,4 +181,4 @@
 
 ---
 
-*Template versión 1.0 — ai-agents library*
+*Feature spec template v2.0 — ai-agents framework | github.com/ezequielmendoza-dev/ai-agents*

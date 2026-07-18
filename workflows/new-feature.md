@@ -1,6 +1,6 @@
 # Workflow: Nueva Feature
 
-> **Versión:** 1.0  
+> **Versión:** 2.0  
 > **Agentes involucrados:** Analyst → UI Designer → Architect → Tech Lead → Developer → QA → DevOps (si aplica)
 
 ---
@@ -18,24 +18,28 @@
 ```mermaid
 flowchart TD
     A[💡 Requerimiento del stakeholder] --> B[Verificar .ai/context.md y business-rules.md]
-    B --> C[🔍 Analyst: Crear spec.md en FEAT-XXX]
-    C --> D{Tech Lead: Revisar spec}
-    D -->|Rechazado| C
-    D -->|Aprobado| UI[🎨 UI Designer: Crear ui-design.md en FEAT-XXX]
-    UI --> E[🏗️ Architect: Crear architecture.md en FEAT-XXX]
-    E --> F{Tech Lead: Revisar diseño visual y técnico}
-    F -->|Rechazado UI| UI
-    F -->|Rechazado Técnico| E
-    F -->|Aprobado| G[💻 Developer: Implementar]
-    G --> H[🧪 QA: Crear qa.md en FEAT-XXX]
-    H --> I{Resultado QA}
-    I -->|FAIL| G
-    I -->|PASS / PASS WITH OBS| J{Tech Lead: Veredicto final}
-    J -->|Rechazado| G
-    J -->|Aprobado| Ask[💬 Preguntar Commit, Push y Release]
-    Ask --> K[🚀 DevOps: Deployment]
-    K --> L[📁 Mover FEAT-XXX a archive/]
-    L --> M[📝 Actualizar docs permanentes si aplica]
+    B --> C[🔍 Analyst: Discovery]
+    C --> D{Ambigüedades críticas?}
+    D -->|Sí| E[📝 discovery.md]
+    D -->|No| F[📝 spec.md]
+    E --> F
+    F --> G{Tech Lead: Revisar spec}
+    G -->|Rechazado| F
+    G -->|Aprobado| UI[🎨 UI Designer: Crear ui-design.md en FEAT-XXX]
+    UI --> H[🏗️ Architect: Crear architecture.md en FEAT-XXX]
+    H --> I{Tech Lead: Revisar diseño visual y técnico}
+    I -->|Rechazado UI| UI
+    I -->|Rechazado Técnico| H
+    I -->|Aprobado| J[💻 Developer: Implementar]
+    J --> K[🧪 QA: Crear qa.md en FEAT-XXX]
+    K --> L{Resultado QA}
+    L -->|FAIL| J
+    L -->|PASS / PASS WITH OBS| M{Tech Lead: Veredicto final}
+    M -->|Rechazado| J
+    M -->|Aprobado| Ask[💬 Preguntar Commit, Push y Release]
+    Ask --> N[🚀 DevOps: Deployment]
+    N --> O[📁 Mover FEAT-XXX a archive/]
+    O --> P[📝 Actualizar docs permanentes si aplica]
 ```
 
 ---
@@ -55,6 +59,7 @@ Antes de iniciar cualquier trabajo:
 
 ```bash
 mkdir -p .ai/features/FEAT-NNN-slug
+touch .ai/features/FEAT-NNN-slug/discovery.md # Opcional, solo si hay ambigüedades
 touch .ai/features/FEAT-NNN-slug/spec.md
 touch .ai/features/FEAT-NNN-slug/ui-design.md
 touch .ai/features/FEAT-NNN-slug/architecture.md
@@ -63,6 +68,18 @@ touch .ai/features/FEAT-NNN-slug/decision.md
 ```
 
 7. Actualizar el Registro de IDs en `.ai/context.md`
+
+---
+
+### Paso 0.5 — Discovery (Analyst - Opcional)
+
+**Agente:** Product Analyst  
+**Output:** `.ai/features/FEAT-NNN-slug/discovery.md`  
+**Template:** [`templates/discovery.md`](../templates/discovery.md)
+
+**Activación:** Ocurre automáticamente en la evaluación del Analyst. Si detecta ambigüedades críticas, interrumpe el flujo normal y produce este documento en lugar de la spec.
+
+**Criterio de salida:** `discovery.md` publicado. Se requiere respuesta del stakeholder para continuar.
 
 ---
 
@@ -276,4 +293,4 @@ Cuando la feature está en producción:
 
 ---
 
-*Workflow new-feature v1.0 — ai-agents library | github.com/ezequielmendoza-dev/ai-agents*
+*Workflow Nueva Feature v2.0 — ai-agents framework | github.com/ezequielmendoza-dev/ai-agents*

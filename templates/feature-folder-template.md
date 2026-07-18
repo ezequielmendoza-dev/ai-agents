@@ -8,11 +8,12 @@
 
 ```
 .ai/features/FEAT-NNN-slug-descriptivo/
-├── spec.md           # Especificación funcional
-├── ui-design.md      # Diseño visual de interfaz
-├── architecture.md   # Diseño técnico
-├── qa.md             # Reporte de QA
-└── decision.md       # Decisiones específicas de esta feature
+├── discovery.md  # Sesión de discovery (opcional, si hay ambigüedades críticas)
+├── spec.md       # Especificación funcional
+├── ui-design.md  # Diseño visual de interfaz
+├── architecture.md # Diseño técnico
+├── qa.md         # Reporte de QA
+└── decision.md   # Decisiones específicas de esta feature
 ```
 
 ---
@@ -24,6 +25,7 @@
 # Reemplazar "slug-descriptivo" con un nombre en kebab-case
 
 mkdir -p .ai/features/FEAT-001-nombre-feature
+touch .ai/features/FEAT-001-nombre-feature/discovery.md  # Solo si hay ambigüedades críticas
 touch .ai/features/FEAT-001-nombre-feature/spec.md
 touch .ai/features/FEAT-001-nombre-feature/ui-design.md
 touch .ai/features/FEAT-001-nombre-feature/architecture.md
@@ -36,6 +38,54 @@ Actualizar el registro de IDs en `.ai/context.md`:
 ## Registro de IDs
 - Último FEAT asignado: FEAT-001  ← actualizar este valor
 ```
+
+---
+
+## `discovery.md` — Sesión de Discovery
+
+**Responsable:** Product Analyst  
+**Cuándo se crea:** Cuando el Analyst detecta ambigüedades críticas que impiden producir una `spec.md` completa  
+**Cuándo es opcional:** Cuando la idea es suficientemente clara como para pasar directamente a la spec  
+**Cuándo se actualiza:** Durante la sesión de discovery, hasta que todas las ambigüedades se resuelven  
+**Aprobación requerida:** Ninguna — es un artefacto de trabajo interno del Analyst
+
+**Propósito:** Registra el razonamiento previo a la especificación formal: preguntas que se exploraron, alternativas evaluadas, decisiones tomadas y su justificación funcional. Permite reconstruir el *por qué* de las decisiones sin rehacer el análisis.
+
+**Diferencia clave con `spec.md`:**
+
+| `discovery.md` | `spec.md` |
+|----------------|----------|
+| Proceso de pensamiento | Resultado formal |
+| Preguntas y alternativas | Respuestas y decisiones |
+| Interno del Analyst | Entrada para todos los agentes |
+| No requiere aprobación | Requiere aprobación del Tech Lead |
+| Puede estar incompleto | Debe estar completo antes de avanzar |
+
+**Contenido mínimo:**
+
+```markdown
+# Discovery: [Nombre de la Feature]
+
+**Feature ID:** FEAT-NNN
+**Estado:** Activo | Completado
+
+## Idea Original
+[Transcripción fiel de la idea del stakeholder]
+
+## Contexto Consumido
+[Qué documentos del proyecto se leyeron antes de preguntar]
+
+## Ambigüedades Detectadas
+| ID | Ambigüedad | Criticidad |
+
+## Sesión de Discovery
+[Para cada ambigüedad: opciones propuestas + decisión tomada]
+
+## Decisiones del Discovery
+[Resumen de todas las decisiones que alimentan la spec.md]
+```
+
+**Template completo:** [`templates/discovery.md`](../../templates/discovery.md)
 
 ---
 
@@ -269,6 +319,8 @@ Actualizar el registro de IDs en `.ai/context.md`:
 ```
 FEAT-NNN creada
      ↓
+[Opcional] discovery.md (Analyst) → si hay ambigüedades críticas
+     ↓
 spec.md (Analyst) → revisión Tech Lead
      ↓ Aprobada
 ui-design.md (UI Designer)
@@ -284,6 +336,11 @@ Tech Lead: veredicto final → Producción
 Mover carpeta a .ai/archive/FEAT-NNN-slug/
 ```
 
+**Estados de la feature** (campo `Estado` en `spec.md`):
+```
+Discovery → Draft → Reviewed → Approved → In Progress → Done → Archived
+```
+
 ---
 
 ## Reglas de la carpeta de feature
@@ -291,10 +348,12 @@ Mover carpeta a .ai/archive/FEAT-NNN-slug/
 - ✅ Los documentos se actualizan en el lugar — no se crean versiones (`spec-v2.md`)
 - ✅ Si el Tech Lead rechaza y pide revisión, se actualiza el mismo documento
 - ✅ Registrar el historial de cambios importantes en el campo `Versión` del documento
-- ❌ No crear documentos adicionales fuera de estos 4 archivos sin justificación
+- ✅ `discovery.md` es opcional: solo se crea cuando el Analyst detecta ambigüedades críticas
+- ✅ `discovery.md` precede siempre a `spec.md` cuando existe — nunca al revés
+- ❌ No crear documentos adicionales fuera de estos archivos sin justificación
 - ❌ No compartir información entre features via estos documentos (cada feature es independiente)
 - ❌ No dejar la carpeta en `features/` cuando la feature ya está en producción
 
 ---
 
-*Feature folder template v1.0 — ai-agents library | github.com/ezequielmendoza-dev/ai-agents*
+*Feature folder template v2.0 — ai-agents framework | github.com/ezequielmendoza-dev/ai-agents*

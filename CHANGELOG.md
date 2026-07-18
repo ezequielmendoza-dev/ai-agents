@@ -4,6 +4,23 @@ Todas los cambios notables en este repositorio se documentan en este archivo.
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [3.0.0] — 2026-07-18
+
+### Agregado
+- **Specification-Driven Development (SDD)** — Evolución arquitectónica completa del repositorio. `ai-agents` pasa de ser una biblioteca de agentes a ser un **Framework** de ciclo de vida de desarrollo.
+- **Artefacto de Discovery (`discovery.md`)** — Nuevo documento para que el Analyst evalúe opciones funcionales de manera consultiva antes de producir la especificación, eliminando la asunción ciega de contexto.
+- **Documentos Core SDD:** `docs/sdd-philosophy.md` y `docs/artifact-lifecycle.md` explican la filosofía, los 7 estados de una feature y el principio de "los documentos como fuente de verdad".
+
+### Modificado
+- `roles/analyst.md` — Modificado para actuar como consultor estratégico, introduciendo la fase de descubrimiento y el requerimiento de producir un `discovery.md` si el alcance es ambiguo.
+- `roles/architect.md`, `roles/tech-lead.md`, `roles/developer.md`, `roles/qa.md` — Actualizados para imponer estrictamente el consumo de artefactos sobre el contexto conversacional.
+- `workflows/new-feature.md` — Incorporada la fase opcional de Discovery al diagrama y flujo de creación de features.
+- `scripts/new-initiative.sh` — Refactorizado para crear de forma automatizada `discovery.md` (opcionalmente) al inicializar una nueva feature.
+- `templates/feature-spec.md` — Agregado metadato de estado de feature.
+- `README.md` — Reestructurado completamente en torno al paradigma SDD.
+
+---
+
 ## [2.0.1] — 2026-06-27
 
 ### Agregado
