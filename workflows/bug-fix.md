@@ -150,9 +150,11 @@ Si todo está conforme, emite el veredicto de `APROBADO` para el deployment.
 
 **Interacción Interactiva (Commit, Push y Release):**
 > [!IMPORTANT]
-> Una vez que el Tech Lead apruebe la corrección, la IA **debe guiar activamente al usuario en la realización de commit y push de los cambios, e indicarle si proceder con el commit y push de una nueva release**. Para ello, debe hacer lo siguiente:
-> 1. **Validar y proponer Commit y Push:** Proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md) (ej. `fix(scope): BUG-NNN - descripcion`). Preguntar al usuario si desea proceder con el commit y push de estos cambios.
-> 2. **Validar e Indicar si Procede una Nueva Release:** Analizar si el cambio implementado califica para generar una nueva versión/release del proyecto (por ejemplo, un parche o hotfix). Indicarle explícitamente al usuario si debe proceder con el commit y push de una nueva release (siguiendo el workflow de [`workflows/release.md`](release.md)), sugiriendo el incremento de versión apropiado (normalmente Patch o Hotfix) y solicitando su confirmación para preparar la release.
+> Una vez que el Tech Lead apruebe la corrección, la IA **debe guiar activamente al usuario** en:
+> 1. **Commit y Push:** Proponer un mensaje de commit (ej. `fix(scope): BUG-NNN - descripcion`). Preguntar al usuario si desea proceder.
+> 2. **Version Bump:** Una vez hecho el commit, ejecutar `npm run bump:patch -- "BUG-NNN: descripción"` para actualizar la versión (patch), el CHANGELOG y el context.
+> 3. **Git Tag:** Crear tag `git tag -a vX.Y.Z -m "BUG-NNN: descripción"` y push con `git push --tags`.
+> 4. **Release:** Indicar al usuario si procede release según [`workflows/release.md`](release.md).
 
 ---
 
@@ -162,7 +164,7 @@ Si todo está conforme, emite el veredicto de `APROBADO` para el deployment.
 2. Consolidar cambios en la memoria del proyecto:
    - Si se modificó la arquitectura, actualizar `.ai/architecture.md`.
    - Si se modificó una regla funcional, actualizar `.ai/business-rules.md`.
-3. Actualizar `CHANGELOG.md` documentando el bug resuelto en la sección de "Corregido".
+3. Actualizar `CHANGELOG.md` documentando el bug resuelto en la sección de "Fixed" (esto ya se hizo automáticamente en el Paso 4 con `npm run bump:patch`).
 
 ---
 
@@ -194,6 +196,8 @@ Si la severidad es **Crítica** y el sistema o datos están comprometidos, el fl
 - [ ] Despliegue completado con éxito.
 - [ ] Memoria del proyecto (`.ai/`) actualizada con las modificaciones definitivas.
 - [ ] `CHANGELOG.md` del proyecto actualizado.
+- [ ] Versión bumpeda (`npm run bump:patch`).
+- [ ] Git tag `vX.Y.Z` creado y pusheado.
 
 ---
 

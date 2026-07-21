@@ -154,10 +154,11 @@ Por favor, verifica que todos los comportamientos existentes siguen funcionando 
 
 ### Paso 5 — Cierre del Refactor
 
-1. **Deploy** (ver [`workflows/release.md`](release.md))
-2. **Actualizar** `.ai/architecture.md` si el refactor cambió algo en la arquitectura global
-3. **Registrar** en `.ai/decisions.md` si el refactor implicó una decisión técnica importante (por qué se eligió esta nueva estructura)
-4. Actualizar `CHANGELOG.md` del proyecto
+1. **Actualizar CHANGELOG:** Registrar el cambio en `[Unreleased]` bajo `### Changed` directamente en `CHANGELOG.md`.
+2. **Version Bump y Commit:** Una vez aprobado por el Tech Lead, ejecutar `npm run bump:patch -- "refactor(scope): descripción"` para actualizar versión (patch), mover el unreleased a la nueva versión, y crear git tag.
+3. **Deploy** (ver [`workflows/release.md`](release.md))
+4. **Actualizar** `.ai/architecture.md` si el refactor cambió algo en la arquitectura global
+5. **Registrar** en `.ai/decisions.md` si el refactor implicó una decisión técnica importante
 
 ---
 
@@ -170,6 +171,9 @@ Por favor, verifica que todos los comportamientos existentes siguen funcionando 
 - [ ] Tests existentes pasan sin modificaciones (si fallan, hay un bug)
 - [ ] QA confirmó ausencia de regresiones
 - [ ] Veredicto del Tech Lead: `APROBADO`
+- [ ] `CHANGELOG.md` actualizado
+- [ ] Versión bumpeda (`npm run bump:patch`)
+- [ ] Git tag `vX.Y.Z` creado y pusheado
 - [ ] Deploy realizado
 - [ ] `architecture.md` actualizado si fue necesario
 - [ ] `decisions.md` actualizado si hubo una decisión técnica relevante

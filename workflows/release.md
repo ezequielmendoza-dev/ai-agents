@@ -171,7 +171,14 @@ Si algo falla → ejecutar el plan de rollback inmediatamente.
 
 ### Paso 7 — Cierre del Release
 
-1. **Actualizar `CHANGELOG.md`** del proyecto con las features y fixes del release
+> Si las iniciativas individuales ya ejecutaron su bump (según RN-045), el CHANGELOG y la versión ya están actualizados.  
+> Este paso es para releases que agrupan múltiples iniciativas sin bumps individuales previos.
+
+1. **Bump de versión global** (solo si no se bumpcaron individualmente):
+   ```bash
+   npm run bump:minor "Release vX.Y.Z - descripción"
+   ```
+   O ajustar `major`/`patch` según el contenido del release.
 2. **Mover features** a `archive/` en `.ai/`:
    ```bash
    mv .ai/features/FEAT-NNN-slug .ai/archive/FEAT-NNN-slug

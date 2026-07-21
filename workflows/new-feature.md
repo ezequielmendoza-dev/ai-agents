@@ -247,9 +247,11 @@ Si el resultado es **PASS** o **PASS WITH OBSERVATIONS** → continuar al Paso 8
 
 **Interacción Interactiva (Commit, Push y Release):**
 > [!IMPORTANT]
-> Una vez que el Tech Lead apruebe la feature, la IA **debe guiar activamente al usuario en la realización de commit y push de los cambios, e indicarle si proceder con el commit y push de una nueva release**. Para ello, debe hacer lo siguiente:
-> 1. **Validar y proponer Commit y Push:** Proponer un mensaje de commit que siga rigurosamente las convenciones de nomenclatura y Conventional Commits definidas en [.ai/context.md](file:///.ai/context.md) (ej. `feat(scope): FEAT-NNN - descripcion`). Preguntar al usuario si desea proceder con el commit y push de estos cambios.
-> 2. **Validar e Indicar si Procede una Nueva Release:** Analizar si el cambio implementado califica para generar una nueva versión/release del proyecto (por ejemplo, si introduce características principales, secundarias, etc.). Indicarle explícitamente al usuario si debe proceder con el commit y push de una nueva release (siguiendo el workflow de [`workflows/release.md`](release.md)), sugiriendo el incremento de versión apropiado (Major/Minor/Patch) y solicitando su confirmación para preparar la release.
+> Una vez que el Tech Lead apruebe la feature, la IA **debe guiar activamente al usuario** en:
+> 1. **Commit y Push:** Proponer un mensaje de commit que siga rigorousamente las convenciones (ej. `feat(scope): FEAT-NNN - descripcion`). Preguntar al usuario si desea proceder.
+> 2. **Version Bump:** Una vez hecho el commit, ejecutar `npm run bump:minor -- "FEAT-NNN: descripción"` para actualizar la versión (minor), el CHANGELOG y el context. Esto mueve los cambios de `[Unreleased]` a la nueva versión.
+> 3. **Git Tag:** Crear tag `git tag -a vX.Y.Z -m "FEAT-NNN: descripción"` y push con `git push --tags`.
+> 4. **Release:** Indicar al usuario si debe proceder con release según [`workflows/release.md`](release.md).
 
 ---
 
@@ -275,7 +277,7 @@ Cuando la feature está en producción:
    - `.ai/glossary.md` si aparecieron nuevos términos del dominio
    - `.ai/decisions.md` si hay decisiones que aplican globalmente
 
-3. **Actualizar** el `CHANGELOG.md` del proyecto con la feature completada.
+3. **Actualizar** el `CHANGELOG.md` del proyecto con la feature completada (esto ya se hizo automáticamente en el Paso 8 con `npm run bump:minor`).
 
 ---
 
@@ -290,6 +292,8 @@ Cuando la feature está en producción:
 - [ ] Documentos permanentes actualizados si fue necesario
 - [ ] Feature movida a `archive/`
 - [ ] `CHANGELOG.md` actualizado
+- [ ] Versión bumpeda (`npm run bump:minor`)
+- [ ] Git tag `vX.Y.Z` creado y pusheado
 
 ---
 
